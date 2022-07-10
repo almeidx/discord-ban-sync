@@ -2,6 +2,7 @@ import type { Client, Snowflake } from 'discord.js';
 import { ellipsis, parseDeleteMessageDays } from '../utils/common.js';
 import { error, warn } from '../utils/logger.js';
 import { MESSAGES } from '../utils/messages.js';
+import { removeRecentBan, removeRecentUnban } from '../utils/recentBans.js';
 
 const enum BanType {
   Ban,
@@ -104,6 +105,12 @@ export class BanQueue {
 
       error(e);
     } finally {
+      if (banInfo.type === BanType.Ban) {
+        removeRecentBan(banInfo.userId);
+      } else {
+        removeRecentUnban(banInfo.userId);
+      }
+
       this.#queueLock = false;
 
       void this.processQueue();

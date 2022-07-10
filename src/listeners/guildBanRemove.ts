@@ -8,7 +8,7 @@ import { addRecentUnban, recentlyUnbanned } from '../utils/recentBans.js';
 
 export function createGuildBanRemoveListener(banQueue: BanQueue): (banInfo: GuildBan) => void {
   return function guildBanRemove(banInfo: GuildBan): void {
-    if (recentlyUnbanned(banInfo.user.id)) return;
+    if (!GUILD_IDS.includes(banInfo.guild.id) || recentlyUnbanned(banInfo.user.id)) return;
 
     addRecentUnban(banInfo.user.id);
 

@@ -8,7 +8,7 @@ import { addRecentBan, recentlyBanned } from '../utils/recentBans.js';
 
 export function createGuildBanAddListener(banQueue: BanQueue): (banInfo: GuildBan) => void {
   return function guildBanAdd(banInfo: GuildBan): void {
-    if (recentlyBanned(banInfo.user.id)) return;
+    if (!GUILD_IDS.includes(banInfo.guild.id) || recentlyBanned(banInfo.user.id)) return;
 
     addRecentBan(banInfo.user.id);
 
