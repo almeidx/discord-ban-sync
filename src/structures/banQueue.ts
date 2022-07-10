@@ -11,6 +11,7 @@ interface BanInfo {
   userId: Snowflake;
   guildIds: Snowflake[];
   type: BanType;
+  ignore?: true;
 }
 
 export class BanQueue {
@@ -20,7 +21,8 @@ export class BanQueue {
   public constructor(public client: Client<true>) {}
 
   public queueBan(userId: Snowflake, guildIds: Snowflake[]): void {
-    // TODO: Check if the user unban/ban is already in queue
+    // If the following method returns 1, there is a ban item for this user in the queue
+    if (this.checkAndInvalidateQueueItem(userId, BanType.Unban)) return;
 
     this.#queue.push({ guildIds, userId, type: BanType.Ban });
 
@@ -28,11 +30,35 @@ export class BanQueue {
   }
 
   public queueUnban(userId: Snowflake, guildIds: Snowflake[]): void {
-    // TODO: Check if the user unban/ban is already in queue
+    // If the following method returns 1, there is an unban item for this user in the queue
+    if (this.checkAndInvalidateQueueItem(userId, BanType.Ban)) return;
 
     this.#queue.push({ guildIds, userId, type: BanType.Unban });
 
     void this.processQueue();
+  }
+
+  /**
+   * Invalidates a queue item, if it exists
+   * @param userId The id of the user that is being actioned on
+   * @param banType The opposite banType than the one that is being enqueued
+   * @returns `1` if there is an opposite of `banType` item for this user, `0` otherwise
+   */
+  private checkAndInvalidateQueueItem(userId: Snowflake, banType: BanType): number {
+    const existingQueueItem = this.#queue.find((info) => info.userId === userId);
+    if (existingQueueItem) {
+      // There is a <banType> for this user in the queue, ignore it
+      if (existingQueueItem.type === banType) {
+        existingQueueItem.ignore = true;
+        return 0;
+      }
+
+      // There is an <opposite of banType> for this user in the queue
+      return 1;
+    }
+
+    // There is no existing item for this user in the queue
+    return 0;
   }
 
   private async processQueue(): Promise<void> {
@@ -44,6 +70,11 @@ export class BanQueue {
 
     // This will always exist because of the length check at the beginning
     const banInfo = this.#queue.shift()!;
+
+    if (banInfo.ignore) {
+      this.#queueLock = false;
+      return void this.processQueue();
+    }
 
     try {
       for (const guildId of banInfo.guildIds) {
@@ -59,14 +90,14 @@ export class BanQueue {
           await guild.bans.remove(banInfo.userId, 'BanQueue');
         }
       }
-
-      this.#queueLock = false;
     } catch (e) {
-      error(e);
+      // TODO: Handle 30035
 
+      error(e);
+    } finally {
       this.#queueLock = false;
 
-      await this.processQueue();
+      void this.processQueue();
     }
   }
 }
