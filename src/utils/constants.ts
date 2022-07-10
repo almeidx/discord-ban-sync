@@ -6,3 +6,5 @@ export const GUILD_IDS: Snowflake[] = env.GUILD_IDS!.replaceAll(' ', '').split('
 export const ELLIPSIS_CHAR = '…';
 
 export const DEFAULT_DELETE_MESSAGE_DAYS = 0;
+
+export const SWEEPER_INTERVAL = 60 * 60; // 1 hour

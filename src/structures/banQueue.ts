@@ -1,5 +1,5 @@
-import type { Client, Snowflake } from 'discord.js';
-import { ellipsis, parseDeleteMessageDays } from '../utils/common.js';
+import { Client, RESTJSONErrorCodes, Snowflake } from 'discord.js';
+import { ellipsis, isDiscordAPIError, parseDeleteMessageDays } from '../utils/common.js';
 import { error, warn } from '../utils/logger.js';
 import { MESSAGES } from '../utils/messages.js';
 import { removeRecentBan, removeRecentUnban } from '../utils/recentBans.js';
@@ -23,7 +23,7 @@ interface BanInfo {
 export class BanQueue {
   #queueLock = false;
   readonly #queue: BanInfo[] = [];
-  private readonly deleteMessageDays: number = parseDeleteMessageDays();
+  readonly #deleteMessageDays: number = parseDeleteMessageDays();
 
   public constructor(public client: Client<true>) {}
 
@@ -54,13 +54,13 @@ export class BanQueue {
   private checkAndInvalidateQueueItem(userId: Snowflake, banType: BanType): number {
     const existingQueueItem = this.#queue.find((info) => info.userId === userId);
     if (existingQueueItem) {
-      // There is a <banType> for this user in the queue, ignore it
+      // There is a <banType> for this user in the queue, invalidate it
       if (existingQueueItem.type === banType) {
         existingQueueItem.ignore = true;
         return 0;
       }
 
-      // There is an <opposite of banType> for this user in the queue
+      // There is a different ban type for this user in the queue
       return 1;
     }
 
@@ -84,6 +84,8 @@ export class BanQueue {
     }
 
     try {
+      const reason = this.resolveReason(banInfo.type, banInfo.guildName, banInfo.reason);
+
       for (const guildId of banInfo.guildIds) {
         const guild = this.client.guilds.cache.get(guildId);
         if (!guild) {
@@ -92,18 +94,28 @@ export class BanQueue {
         }
 
         if (banInfo.type === BanType.Ban) {
-          await guild.bans.create(banInfo.userId, {
-            deleteMessageDays: this.deleteMessageDays,
-            reason: this.resolveReason(BanType.Ban, guild.name, banInfo.reason),
-          });
+          await guild.bans.create(banInfo.userId, { deleteMessageDays: this.#deleteMessageDays, reason });
         } else {
-          await guild.bans.remove(banInfo.userId, this.resolveReason(BanType.Unban, guild.name, banInfo.reason));
+          try {
+            await guild.bans.remove(banInfo.userId, reason);
+          } catch (err) {
+            if (isDiscordAPIError(err) && err.code === RESTJSONErrorCodes.UnknownBan) {
+              // User was not banned in this guild, ignore
+              continue;
+            }
+
+            throw err;
+          }
         }
       }
-    } catch (e) {
-      // TODO: Handle 30035
+    } catch (err) {
+      if (isDiscordAPIError(err) && err.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded) {
+        // TODO: Disable ban queue until the day is over/after one day has passed
 
-      error(e);
+        warn(MESSAGES.MAX_NON_MEMBER_BANS_REACHED);
+      } else {
+        error(err);
+      }
     } finally {
       if (banInfo.type === BanType.Ban) {
         removeRecentBan(banInfo.userId);

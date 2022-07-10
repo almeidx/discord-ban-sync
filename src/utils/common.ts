@@ -1,5 +1,5 @@
 import { env } from 'node:process';
-import type { Snowflake, User } from 'discord.js';
+import { DiscordAPIError, Snowflake, User } from 'discord.js';
 import { DEFAULT_DELETE_MESSAGE_DAYS, ELLIPSIS_CHAR } from './constants.js';
 
 export function makeUserInfo(user: User): string {
@@ -26,4 +26,8 @@ export function parseDeleteMessageDays(): number {
   if (Number.isNaN(days)) return DEFAULT_DELETE_MESSAGE_DAYS;
 
   return Math.max(0, Math.min(7, days));
+}
+
+export function isDiscordAPIError(error: unknown): error is DiscordAPIError {
+  return error instanceof DiscordAPIError;
 }
