@@ -48,7 +48,7 @@ The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,5133
 ### Deployment with PM2
 
 - `yarn build`
-- `pm2 start`
+- `pm2 start ecosystem.config.cjs`
 
 ---
 
