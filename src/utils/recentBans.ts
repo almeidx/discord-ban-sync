@@ -11,7 +11,7 @@ export function recentlyBanned(userId: Snowflake): boolean {
 }
 
 export function recentlyUnbanned(userId: Snowflake): boolean {
-  return recentBans.has(userId);
+  return recentUnbans.has(userId);
 }
 
 export function addRecentBan(userId: Snowflake): void {
