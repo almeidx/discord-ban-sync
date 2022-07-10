@@ -1,3 +1,4 @@
+import { setInterval } from 'node:timers';
 import type { Snowflake } from 'discord.js';
 import { Time } from './common.js';
 import { RECENT_BAN_LIFETIME } from './constants.js';

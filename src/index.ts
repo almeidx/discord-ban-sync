@@ -1,8 +1,6 @@
 import 'dotenv/config';
-
 import { env, exit } from 'node:process';
 import { Client, Events, GatewayIntentBits } from 'discord.js';
-
 import { createGuildBanAddListener } from './listeners/guildBanAdd.js';
 import { createGuildBanRemoveListener } from './listeners/guildBanRemove.js';
 import { ready } from './listeners/ready.js';
