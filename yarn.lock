@@ -550,7 +550,6 @@ __metadata:
     "@types/node": ^18.0.3
     "@typescript-eslint/eslint-plugin": ^5.30.5
     "@typescript-eslint/parser": ^5.30.5
-    discord-api-types: ^0.36.1
     discord.js: 14.0.0-dev.1657411900-f0b68d5
     dotenv: ^16.0.1
     eslint: ^8.19.0

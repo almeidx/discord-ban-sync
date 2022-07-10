@@ -12,7 +12,6 @@
     "update": "yarn upgrade-interactive"
   },
   "dependencies": {
-    "discord-api-types": "^0.36.1",
     "discord.js": "14.0.0-dev.1657411900-f0b68d5",
     "dotenv": "^16.0.1",
     "pino": "^8.1.0",
