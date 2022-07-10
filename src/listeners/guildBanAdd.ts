@@ -12,7 +12,12 @@ export function createGuildBanAddListener(banQueue: BanQueue): (banInfo: GuildBa
 
     addRecentBan(banInfo.user.id);
 
-    banQueue.queueBan(banInfo.user.id, removeGuildIdFromArray(GUILD_IDS, banInfo.guild.id));
+    banQueue.queueBan(
+      banInfo.user.id,
+      banInfo.reason,
+      banInfo.guild.name,
+      removeGuildIdFromArray(GUILD_IDS, banInfo.guild.id),
+    );
 
     info(MESSAGES.USER_BANNED(banInfo.guild.name, makeUserInfo(banInfo.user)));
   };

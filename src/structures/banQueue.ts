@@ -1,4 +1,5 @@
 import type { Client, Snowflake } from 'discord.js';
+import { ellipsis, parseDeleteMessageDays } from '../utils/common.js';
 import { error, warn } from '../utils/logger.js';
 import { MESSAGES } from '../utils/messages.js';
 
@@ -7,33 +8,38 @@ const enum BanType {
   Unban,
 }
 
+type Reason = string | null | undefined;
+
 interface BanInfo {
-  userId: Snowflake;
+  guildName: string;
   guildIds: Snowflake[];
-  type: BanType;
   ignore?: true;
+  reason: Reason;
+  type: BanType;
+  userId: Snowflake;
 }
 
 export class BanQueue {
   #queueLock = false;
   readonly #queue: BanInfo[] = [];
+  private readonly deleteMessageDays: number = parseDeleteMessageDays();
 
   public constructor(public client: Client<true>) {}
 
-  public queueBan(userId: Snowflake, guildIds: Snowflake[]): void {
+  public queueBan(userId: Snowflake, reason: Reason, guildName: string, guildIds: Snowflake[]): void {
     // If the following method returns 1, there is a ban item for this user in the queue
     if (this.checkAndInvalidateQueueItem(userId, BanType.Unban)) return;
 
-    this.#queue.push({ guildIds, userId, type: BanType.Ban });
+    this.#queue.push({ guildName, guildIds, userId, reason, type: BanType.Ban });
 
     void this.processQueue();
   }
 
-  public queueUnban(userId: Snowflake, guildIds: Snowflake[]): void {
+  public queueUnban(userId: Snowflake, reason: Reason, guildName: string, guildIds: Snowflake[]): void {
     // If the following method returns 1, there is an unban item for this user in the queue
     if (this.checkAndInvalidateQueueItem(userId, BanType.Ban)) return;
 
-    this.#queue.push({ guildIds, userId, type: BanType.Unban });
+    this.#queue.push({ guildName, guildIds, userId, reason, type: BanType.Unban });
 
     void this.processQueue();
   }
@@ -85,9 +91,12 @@ export class BanQueue {
         }
 
         if (banInfo.type === BanType.Ban) {
-          await guild.bans.create(banInfo.userId, { reason: 'BanQueue' });
+          await guild.bans.create(banInfo.userId, {
+            deleteMessageDays: this.deleteMessageDays,
+            reason: this.resolveReason(BanType.Ban, guild.name, banInfo.reason),
+          });
         } else {
-          await guild.bans.remove(banInfo.userId, 'BanQueue');
+          await guild.bans.remove(banInfo.userId, this.resolveReason(BanType.Unban, guild.name, banInfo.reason));
         }
       }
     } catch (e) {
@@ -99,5 +108,17 @@ export class BanQueue {
 
       void this.processQueue();
     }
+  }
+
+  private resolveReason(type: BanType, guildName: string, reason: Reason): string {
+    let msg: string;
+
+    if (type === BanType.Ban) {
+      if (reason) msg = MESSAGES.BAN_REASON(guildName, reason);
+      else msg = MESSAGES.BAN_NO_REASON(guildName);
+    } else if (reason) msg = MESSAGES.UNBAN_REASON(guildName, reason);
+    else msg = MESSAGES.UNBAN_NO_REASON(guildName);
+
+    return ellipsis(msg, 0, 512);
   }
 }

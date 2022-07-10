@@ -35,7 +35,7 @@ Note: If you don't have yarn installed globally, you'll have to run `corepack en
 #### Setting up the env variables
 
 - `cp .env.example .env`
-- Fill out the .env file with your Discord API token and guild ids.
+- Fill out the variables in the .env file
 
 The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,513338222810497041`
 
