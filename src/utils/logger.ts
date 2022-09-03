@@ -1,16 +1,16 @@
-import pino from 'pino';
-import type { PrettyOptions } from 'pino-pretty';
+import pino from "pino";
+import type { PrettyOptions } from "pino-pretty";
 
 const options: PrettyOptions = {
-  translateTime: 'yyyy-mm-dd HH:MM:ss',
-  ignore: 'pid,hostname',
+	translateTime: "yyyy-mm-dd HH:MM:ss",
+	ignore: "pid,hostname",
 };
 
 export const logger = pino({
-  transport: {
-    target: 'pino-pretty',
-    options,
-  },
+	transport: {
+		target: "pino-pretty",
+		options,
+	},
 });
 
 const error = logger.error.bind(logger);

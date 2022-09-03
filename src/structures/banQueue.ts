@@ -1,143 +1,150 @@
-import { Client, RESTJSONErrorCodes, Snowflake } from 'discord.js';
-import { ellipsis, isDiscordAPIError, parseDeleteMessageDays } from '../utils/common.js';
-import { error, warn } from '../utils/logger.js';
-import { MESSAGES } from '../utils/messages.js';
-import { removeRecentBan, removeRecentUnban } from '../utils/recentBans.js';
+import { RESTJSONErrorCodes, type Client, type Snowflake } from "discord.js";
+import { ellipsis, isDiscordAPIError, parseDeleteMessageDays } from "../utils/common.js";
+import { error, warn } from "../utils/logger.js";
+import { MESSAGES } from "../utils/messages.js";
+import { removeRecentBan, removeRecentUnban } from "../utils/recentBans.js";
 
 const enum BanType {
-  Ban,
-  Unban,
+	Ban,
+	Unban,
 }
 
 type Reason = string | null | undefined;
 
 interface BanInfo {
-  guildName: string;
-  guildIds: Snowflake[];
-  ignore?: true;
-  reason: Reason;
-  type: BanType;
-  userId: Snowflake;
+	guildIds: Snowflake[];
+	guildName: string;
+	ignore?: true;
+	reason: Reason;
+	type: BanType;
+	userId: Snowflake;
 }
 
 export class BanQueue {
-  #queueLock = false;
-  readonly #queue: BanInfo[] = [];
-  readonly #deleteMessageDays: number = parseDeleteMessageDays();
+	#queueLock = false;
 
-  public constructor(public client: Client<true>) {}
+	readonly #queue: BanInfo[] = [];
 
-  public queueBan(userId: Snowflake, reason: Reason, guildName: string, guildIds: Snowflake[]): void {
-    // If the following method returns 1, there is a ban item for this user in the queue
-    if (this.checkAndInvalidateQueueItem(userId, BanType.Unban)) return;
+	readonly #deleteMessageDays: number = parseDeleteMessageDays();
 
-    this.#queue.push({ guildName, guildIds, userId, reason, type: BanType.Ban });
+	public constructor(public client: Client<true>) {}
 
-    void this.processQueue();
-  }
+	public queueBan(userId: Snowflake, reason: Reason, guildName: string, guildIds: Snowflake[]): void {
+		// If the following method returns 1, there is a ban item for this user in the queue
+		if (this.checkAndInvalidateQueueItem(userId, BanType.Unban)) return;
 
-  public queueUnban(userId: Snowflake, reason: Reason, guildName: string, guildIds: Snowflake[]): void {
-    // If the following method returns 1, there is an unban item for this user in the queue
-    if (this.checkAndInvalidateQueueItem(userId, BanType.Ban)) return;
+		this.#queue.push({ guildName, guildIds, userId, reason, type: BanType.Ban });
 
-    this.#queue.push({ guildName, guildIds, userId, reason, type: BanType.Unban });
+		void this.processQueue();
+	}
 
-    void this.processQueue();
-  }
+	public queueUnban(userId: Snowflake, reason: Reason, guildName: string, guildIds: Snowflake[]): void {
+		// If the following method returns 1, there is an unban item for this user in the queue
+		if (this.checkAndInvalidateQueueItem(userId, BanType.Ban)) return;
 
-  /**
-   * Invalidates a queue item, if it exists
-   * @param userId The id of the user that is being actioned on
-   * @param banType The opposite banType than the one that is being enqueued
-   * @returns `1` if there is an opposite of `banType` item for this user, `0` otherwise
-   */
-  private checkAndInvalidateQueueItem(userId: Snowflake, banType: BanType): number {
-    const existingQueueItem = this.#queue.find((info) => info.userId === userId);
-    if (existingQueueItem) {
-      // There is a <banType> for this user in the queue, invalidate it
-      if (existingQueueItem.type === banType) {
-        existingQueueItem.ignore = true;
-        return 0;
-      }
+		this.#queue.push({ guildName, guildIds, userId, reason, type: BanType.Unban });
 
-      // There is a different ban type for this user in the queue
-      return 1;
-    }
+		void this.processQueue();
+	}
 
-    // There is no existing item for this user in the queue
-    return 0;
-  }
+	/**
+	 * Invalidates a queue item, if it exists
+	 *
+	 * @param userId - The id of the user that is being actioned on
+	 * @param banType - The opposite banType than the one that is being enqueued
+	 * @returns `1` if there is an opposite of `banType` item for this user, `0` otherwise
+	 */
+	private checkAndInvalidateQueueItem(userId: Snowflake, banType: BanType): number {
+		const existingQueueItem = this.#queue.find((info) => info.userId === userId);
+		if (existingQueueItem) {
+			// There is a <banType> for this user in the queue, invalidate it
+			if (existingQueueItem.type === banType) {
+				existingQueueItem.ignore = true;
+				return 0;
+			}
 
-  private async processQueue(): Promise<void> {
-    if (this.#queueLock || this.#queue.length === 0) {
-      return;
-    }
+			// There is a different ban type for this user in the queue
+			return 1;
+		}
 
-    this.#queueLock = true;
+		// There is no existing item for this user in the queue
+		return 0;
+	}
 
-    // This will always exist because of the length check at the beginning
-    const banInfo = this.#queue.shift()!;
+	private async processQueue(): Promise<void> {
+		if (this.#queueLock || this.#queue.length === 0) {
+			return;
+		}
 
-    if (banInfo.ignore) {
-      this.#queueLock = false;
-      return void this.processQueue();
-    }
+		this.#queueLock = true;
 
-    try {
-      const reason = this.resolveReason(banInfo.type, banInfo.guildName, banInfo.reason);
+		// This will always exist because of the length check at the beginning
+		const banInfo = this.#queue.shift()!;
 
-      for (const guildId of banInfo.guildIds) {
-        const guild = this.client.guilds.cache.get(guildId);
-        if (!guild) {
-          warn(MESSAGES.GUILD_NOT_FOUND(banInfo.userId, guildId));
-          continue;
-        }
+		if (banInfo.ignore) {
+			this.#queueLock = false;
+			void this.processQueue();
+			return;
+		}
 
-        if (banInfo.type === BanType.Ban) {
-          await guild.bans.create(banInfo.userId, { deleteMessageDays: this.#deleteMessageDays, reason });
-        } else {
-          try {
-            await guild.bans.remove(banInfo.userId, reason);
-          } catch (err) {
-            if (isDiscordAPIError(err) && err.code === RESTJSONErrorCodes.UnknownBan) {
-              // User was not banned in this guild, ignore
-              continue;
-            }
+		try {
+			const reason = this.resolveReason(banInfo.type, banInfo.guildName, banInfo.reason);
 
-            throw err;
-          }
-        }
-      }
-    } catch (err) {
-      if (isDiscordAPIError(err) && err.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded) {
-        // TODO: Disable ban queue until the day is over/after one day has passed
+			for (const guildId of banInfo.guildIds) {
+				const guild = this.client.guilds.cache.get(guildId);
+				if (!guild) {
+					warn(MESSAGES.GUILD_NOT_FOUND(banInfo.userId, guildId));
+					continue;
+				}
 
-        warn(MESSAGES.MAX_NON_MEMBER_BANS_REACHED);
-      } else {
-        error(err);
-      }
-    } finally {
-      if (banInfo.type === BanType.Ban) {
-        removeRecentBan(banInfo.userId);
-      } else {
-        removeRecentUnban(banInfo.userId);
-      }
+				if (banInfo.type === BanType.Ban) {
+					await guild.bans.create(banInfo.userId, { deleteMessageDays: this.#deleteMessageDays, reason });
+				} else {
+					try {
+						await guild.bans.remove(banInfo.userId, reason);
+					} catch (error_) {
+						if (isDiscordAPIError(error_) && error_.code === RESTJSONErrorCodes.UnknownBan) {
+							// User was not banned in this guild, ignore
+							continue;
+						}
 
-      this.#queueLock = false;
+						throw error_;
+					}
+				}
+			}
+		} catch (error_) {
+			if (
+				isDiscordAPIError(error_) &&
+				error_.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded
+			) {
+				// TODO: Disable ban queue until the day is over/after one day has passed
 
-      void this.processQueue();
-    }
-  }
+				warn(MESSAGES.MAX_NON_MEMBER_BANS_REACHED);
+			} else {
+				error(error_);
+			}
+		} finally {
+			if (banInfo.type === BanType.Ban) {
+				removeRecentBan(banInfo.userId);
+			} else {
+				removeRecentUnban(banInfo.userId);
+			}
 
-  private resolveReason(type: BanType, guildName: string, reason: Reason): string {
-    let msg: string;
+			this.#queueLock = false;
 
-    if (type === BanType.Ban) {
-      if (reason) msg = MESSAGES.BAN_REASON(guildName, reason);
-      else msg = MESSAGES.BAN_NO_REASON(guildName);
-    } else if (reason) msg = MESSAGES.UNBAN_REASON(guildName, reason);
-    else msg = MESSAGES.UNBAN_NO_REASON(guildName);
+			void this.processQueue();
+		}
+	}
 
-    return ellipsis(msg, 0, 512);
-  }
+	private resolveReason(type: BanType, guildName: string, reason: Reason): string {
+		let msg: string;
+
+		if (type === BanType.Ban) {
+			if (reason) msg = MESSAGES.BAN_REASON(guildName, reason);
+			else msg = MESSAGES.BAN_NO_REASON(guildName);
+		} else if (reason) msg = MESSAGES.UNBAN_REASON(guildName, reason);
+		else msg = MESSAGES.UNBAN_NO_REASON(guildName);
+
+		return ellipsis(msg, 0, 512);
+	}
 }

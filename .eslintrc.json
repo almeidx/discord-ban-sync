@@ -1,11 +1,15 @@
 {
-  "root": true,
-  "extends": "marine/prettier/node",
-  "parserOptions": {
-    "project": "./tsconfig.eslint.json"
-  },
-  "ignorePatterns": ["**/dist/*"],
-  "rules": {
-    "no-implicit-coercion": 0
-  }
+	"root": true,
+	"extends": ["neon/common", "neon/node", "neon/module", "neon/typescript", "neon/prettier"],
+	"ignorePatterns": ["**/dist/*", "**/node_modules/*", ".yarn/*"],
+	"parserOptions": {
+		"project": "./tsconfig.eslint.json"
+	},
+	"rules": {
+		"@typescript-eslint/consistent-type-definitions": [2, "interface"],
+		"default-case": 0,
+		"no-duplicate-imports": 2,
+		"no-warning-comments": 0,
+		"prefer-named-capture-group": 0
+	}
 }
