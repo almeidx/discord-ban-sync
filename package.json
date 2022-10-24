@@ -18,7 +18,7 @@
 		"tslib": "^2.4.0"
 	},
 	"devDependencies": {
-		"@types/node": "^16.11.68",
+		"@types/node": "^16.18.0",
 		"eslint": "^8.26.0",
 		"eslint-config-neon": "^0.1.39",
 		"prettier": "^2.7.1",
