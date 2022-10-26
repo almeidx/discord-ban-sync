@@ -22,7 +22,7 @@ This repository houses a bot that automatically synchronizes bans between multip
 
 ### Local setup
 
-This setup assumes you have [Git], and [Node.js] setup on your machine. This project requires [Node.js] version 16 or higher, and uses the [Yarn 3] package manager, so you should have basic knowledge about how to use them.
+This setup assumes you have [Git], and [Node.js] setup on your machine. This project requires [Node.js] version 18 or higher, and uses the [Yarn 3] package manager, so you should have basic knowledge about how to use them.
 
 #### Cloning repository
 
@@ -60,9 +60,7 @@ The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,5133
 
 [git]: https://git-scm.com/
 [node.js]: https://nodejs.org
-[vercel]: https://vercel.com
 [yarn 3]: https://yarnpkg.com
-[ecosystem.config]: https://github.com/almeidx/discord-ban-sync/blob/main/ecosystem.config.js
 [apache 2.0]: https://github.com/almeidx/discord-ban-sync/blob/main/LICENSE
 [almeidx]: https://almeidx.dev
 [@almeidx]: https://github.com/almeidx
