@@ -19,7 +19,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^18.11.6",
-		"eslint": "^8.26.0",
+		"eslint": "^8.27.0",
 		"eslint-config-neon": "^0.1.39",
 		"prettier": "^2.7.1",
 		"rimraf": "^3.0.2",
