@@ -5,10 +5,29 @@
 	"type": "module",
 	"scripts": {
 		"build": "rimraf dist && tsc",
+		"fmt": "yarn format",
 		"format": "prettier --write . && eslint src --ext ts --fix",
 		"lint": "prettier --check . && eslint src --ext ts",
 		"start": "yarn build && node --enable-source-maps dist/index.js",
 		"update": "yarn upgrade-interactive"
+	},
+	"resolutions": {
+		"@angular-eslint/eslint-plugin": "npm:@almeidx/empty@1.0.1",
+		"@angular-eslint/eslint-plugin-template": "npm:@almeidx/empty@1.0.1",
+		"@angular-eslint/template-parser": "npm:@almeidx/empty@1.0.1",
+		"@next/eslint-plugin-next": "npm:@almeidx/empty@1.0.1",
+		"astro-eslint-parser": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-astro": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-cypress": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-jest": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-jsx-a11y": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-react": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-react-hooks": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-rxjs": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-rxjs-angular": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-svelte3": "npm:@almeidx/empty@1.0.1",
+		"eslint-plugin-vue": "npm:@almeidx/empty@1.0.1",
+		"vue-eslint-parser": "npm:@almeidx/empty@1.0.1"
 	},
 	"dependencies": {
 		"discord.js": "14.6.0",
