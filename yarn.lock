@@ -825,7 +825,7 @@ __metadata:
   resolution: "discord-ban-sync@workspace:."
   dependencies:
     "@types/node": ^18.11.9
-    discord.js: 14.7.0
+    discord.js: 14.7.1
     dotenv: ^16.0.3
     eslint: ^8.28.0
     eslint-config-neon: ^0.1.40
@@ -838,9 +838,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"discord.js@npm:14.7.0":
-  version: 14.7.0
-  resolution: "discord.js@npm:14.7.0"
+"discord.js@npm:14.7.1":
+  version: 14.7.1
+  resolution: "discord.js@npm:14.7.1"
   dependencies:
     "@discordjs/builders": ^1.4.0
     "@discordjs/collection": ^1.3.0
@@ -854,7 +854,7 @@ __metadata:
     tslib: ^2.4.1
     undici: ^5.13.0
     ws: ^8.11.0
-  checksum: c7f994ab19b7710ff95f959b6e189bab03458386da3702aca95b732b245c60965371f9572d11dd7c6c8fb5442cf88bd8e9d7e5604e5a4beb44d409247383464e
+  checksum: fa861275b1f5360ef1b06cd514014ebd4e3f384655834dd1f73fd9f715bee643500f9d837c52f496d306825bc9c3d6c94e67463d91326e3750a28db765926ad6
   languageName: node
   linkType: hard
 
