@@ -32,7 +32,7 @@
 	"dependencies": {
 		"discord.js": "14.7.1",
 		"dotenv": "^16.0.3",
-		"pino": "^8.10.0",
+		"pino": "^8.11.0",
 		"pino-pretty": "^9.3.0",
 		"tslib": "^2.5.0"
 	},
