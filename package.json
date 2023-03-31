@@ -45,7 +45,7 @@
 		"eslint-config-neon": "^0.1.41",
 		"prettier": "^2.8.7",
 		"rimraf": "^4.4.1",
-		"typescript": "~5.0.2"
+		"typescript": "~5.0.3"
 	},
 	"packageManager": "yarn@3.5.0"
 }
