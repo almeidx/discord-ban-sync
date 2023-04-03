@@ -40,7 +40,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^18.15.11",
-		"esbuild": "^0.17.14",
+		"esbuild": "^0.17.15",
 		"eslint": "^8.37.0",
 		"eslint-config-neon": "^0.1.41",
 		"prettier": "^2.8.7",
