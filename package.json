@@ -43,7 +43,7 @@
 		"esbuild": "^0.17.17",
 		"eslint": "^8.38.0",
 		"eslint-config-neon": "^0.1.42",
-		"prettier": "^2.8.7",
+		"prettier": "^2.8.8",
 		"rimraf": "^5.0.0",
 		"typescript": "~5.0.4"
 	},
