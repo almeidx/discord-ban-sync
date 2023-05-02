@@ -1077,7 +1077,7 @@ __metadata:
     esbuild: ^0.17.18
     eslint: ^8.39.0
     eslint-config-neon: ^0.1.42
-    pino: ^8.11.0
+    pino: ^8.12.0
     pino-pretty: ^10.0.0
     prettier: ^2.8.8
     rimraf: ^5.0.0
@@ -2846,9 +2846,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^8.11.0":
-  version: 8.11.0
-  resolution: "pino@npm:8.11.0"
+"pino@npm:^8.12.0":
+  version: 8.12.0
+  resolution: "pino@npm:8.12.0"
   dependencies:
     atomic-sleep: ^1.0.0
     fast-redact: ^3.1.1
@@ -2863,7 +2863,7 @@ __metadata:
     thread-stream: ^2.0.0
   bin:
     pino: bin.js
-  checksum: 1bcc2b9b448ec9ccef4ea189d5db7d1e0e085f6cd4d7395d087998d90186850ab176edf32a179562337a557aa51eb551ff6318a40af7cdb5963b168f87d35aa8
+  checksum: 22cc6ad954449a53061f8abaf371f5c43f1f46711e375a84c077adf384da7154743ee79d6446b33339afafcb008064530550e01c32bc760bf7c2ee4536dc0633
   languageName: node
   linkType: hard
 
