@@ -86,14 +86,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discordjs/util@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@discordjs/util@npm:0.3.0"
-  checksum: e83f28b1b1f22178937ff269901dd31fbfbb64d9298f72fab6ec009897f3d6d2a32e22c3424634ed377cfe47e9228e0fc5bd74297403f7132c6e497ad9dbc1c6
-  languageName: node
-  linkType: hard
-
-"@discordjs/util@npm:^0.3.1":
+"@discordjs/util@npm:^0.3.0, @discordjs/util@npm:^0.3.1":
   version: 0.3.1
   resolution: "@discordjs/util@npm:0.3.1"
   checksum: afd53427bc25c84e05cd34d6daf355cab14629a5f340d33528ea18d3a1177e777584bc5847cfcb7711c7387252c34917d749a0b1a91a99d2ce572878208212df
