@@ -11,6 +11,7 @@
 		"format": "prettier --write . && eslint src --ext ts --fix",
 		"lint": "prettier --check . && eslint src --ext ts",
 		"start": "yarn build && node --enable-source-maps dist/index.js",
+		"start:env": "yarn build && env-cmd node --enable-source-maps dist/index.js",
 		"update": "yarn upgrade-interactive"
 	},
 	"resolutions": {
@@ -40,6 +41,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^18.16.16",
+		"env-cmd": "^10.1.0",
 		"esbuild": "^0.17.19",
 		"eslint": "^8.41.0",
 		"eslint-config-neon": "^0.1.47",

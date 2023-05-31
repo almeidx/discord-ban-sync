@@ -7,7 +7,7 @@
   - [Overview](#overview)
     - [Local setup](#local-setup)
       - [Cloning repository](#cloning-repository)
-      - [Setting up the env variables](#setting-up-the-env-variables)
+      - [Setting up the env variables locally](#setting-up-the-env-variables-locally)
       - [Running the bot locally](#running-the-bot-locally)
     - [Author](#author)
 
@@ -31,7 +31,7 @@ This setup assumes you have [Git], and [Node.js] setup on your machine. This pro
 
 Note: If you don't have yarn installed globally, you'll have to run `corepack enable`.
 
-#### Setting up the env variables
+#### Setting up the env variables locally
 
 - `cp .env.example .env`
 - Fill out the variables in the .env file
@@ -40,7 +40,11 @@ The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,5133
 
 #### Running the bot locally
 
-The .env file should be loaded in your environment. You can use [env-cmd](https://npmjs.com/env-cmd) or similar to load them if.
+If your environment variables are stored on the .env file, you can use:
+
+- `yarn start:env`
+
+Otherwise, use:
 
 - `yarn start`
 

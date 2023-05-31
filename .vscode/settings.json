@@ -1,6 +1,6 @@
 {
 	"typescript.tsdk": ".yarn/sdks/typescript/lib",
-	"cSpell.words": ["RESTJSON"],
+	"cSpell.words": ["nodir", "outdir", "RESTJSON"],
 	"search.exclude": {
 		"**/.yarn": true,
 		"**/.pnp.*": true
