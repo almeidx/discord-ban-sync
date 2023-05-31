@@ -1,4 +1,11 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"cSpell.words": ["RESTJSON"]
+	"typescript.tsdk": ".yarn/sdks/typescript/lib",
+	"cSpell.words": ["RESTJSON"],
+	"search.exclude": {
+		"**/.yarn": true,
+		"**/.pnp.*": true
+	},
+	"eslint.nodePath": ".yarn/sdks",
+	"prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+	"typescript.enablePromptUseWorkspaceTsdk": true
 }

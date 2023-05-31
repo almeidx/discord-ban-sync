@@ -9,7 +9,6 @@
       - [Cloning repository](#cloning-repository)
       - [Setting up the env variables](#setting-up-the-env-variables)
       - [Running the bot locally](#running-the-bot-locally)
-    - [Deployment with PM2](#deployment-with-pm2)
     - [Author](#author)
 
 ---
@@ -41,14 +40,9 @@ The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,5133
 
 #### Running the bot locally
 
+The .env file should be loaded in your environment. You can use [env-cmd](https://npmjs.com/env-cmd) or similar to load them if.
+
 - `yarn start`
-
----
-
-### Deployment with PM2
-
-- `yarn build`
-- `pm2 start ecosystem.config.cjs`
 
 ---
 
