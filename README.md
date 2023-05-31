@@ -42,10 +42,12 @@ The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,5133
 
 If your environment variables are stored on the .env file, you can use:
 
+- `pnpm build`
 - `pnpm start:env`
 
 Otherwise, use:
 
+- `pnpm build`
 - `pnpm start`
 
 ---

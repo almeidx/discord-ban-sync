@@ -10,8 +10,8 @@
 		"fmt": "pnpm format",
 		"format": "prettier --write . && eslint src --ext ts --fix",
 		"lint": "prettier --check . && eslint src --ext ts",
-		"start": "pnpm build && node --enable-source-maps dist/index.js",
-		"start:env": "pnpm build && env-cmd node --enable-source-maps dist/index.js"
+		"start": "node --enable-source-maps dist/index.js",
+		"start:env": "env-cmd node --enable-source-maps dist/index.js"
 	},
 	"resolutions": {
 		"@angular-eslint/eslint-plugin": "npm:@almeidx/empty@1.0.1",
