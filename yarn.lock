@@ -1113,7 +1113,7 @@ __metadata:
   dependencies:
     "@types/node": ^18.16.3
     discord.js: 14.11.0
-    dotenv: ^16.1.0
+    dotenv: ^16.1.2
     esbuild: ^0.17.19
     eslint: ^8.41.0
     eslint-config-neon: ^0.1.47
@@ -1166,10 +1166,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.1.0":
-  version: 16.1.0
-  resolution: "dotenv@npm:16.1.0"
-  checksum: 5c193d6405663faefbacd58bc9cadc4a6af02317a0fa67dd1555cf909388f0f498f69d441eebd1e2ed4d3599d19f8e2036428154d6f84f7b43f5996179a6f500
+"dotenv@npm:^16.1.2":
+  version: 16.1.2
+  resolution: "dotenv@npm:16.1.2"
+  checksum: d06d351fab4d7abe61a469ac8d0c9fb858f14fa0cb4fcb8f61cc8b213156d47df164c62965240f1cdb82b7b4a0164f1a62a2bab8b7a496a8c16690c72ea374f5
   languageName: node
   linkType: hard
 
