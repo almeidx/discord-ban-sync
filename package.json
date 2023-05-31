@@ -4,15 +4,14 @@
 	"author": "Almeida <almeidx@pm.me> (almeidx.dev)",
 	"type": "module",
 	"scripts": {
-		"build": "yarn build:check && yarn build:write",
+		"build": "pnpm build:check && pnpm build:write",
 		"build:check": "tsc --noEmit",
 		"build:write": "rimraf dist && esbuild $(glob 'src/**/*' --nodir) --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
-		"fmt": "yarn format",
+		"fmt": "pnpm format",
 		"format": "prettier --write . && eslint src --ext ts --fix",
 		"lint": "prettier --check . && eslint src --ext ts",
-		"start": "yarn build && node --enable-source-maps dist/index.js",
-		"start:env": "yarn build && env-cmd node --enable-source-maps dist/index.js",
-		"update": "yarn upgrade-interactive"
+		"start": "pnpm build && node --enable-source-maps dist/index.js",
+		"start:env": "pnpm build && env-cmd node --enable-source-maps dist/index.js"
 	},
 	"resolutions": {
 		"@angular-eslint/eslint-plugin": "npm:@almeidx/empty@1.0.1",
@@ -50,5 +49,37 @@
 		"rimraf": "^5.0.1",
 		"typescript": "~5.0.4"
 	},
-	"packageManager": "yarn@3.5.1"
+	"packageManager": "pnpm@8.6.0",
+	"prettier": {
+		"printWidth": 120,
+		"useTabs": true,
+		"trailingComma": "all"
+	},
+	"eslintConfig": {
+		"extends": [
+			"neon/common",
+			"neon/node",
+			"neon/module",
+			"neon/typescript",
+			"neon/prettier"
+		],
+		"ignorePatterns": [
+			"dist/*",
+			"node_modules/*"
+		],
+		"parserOptions": {
+			"project": "./tsconfig.eslint.json"
+		},
+		"root": true,
+		"rules": {
+			"@typescript-eslint/consistent-type-definitions": [
+				2,
+				"interface"
+			],
+			"default-case": 0,
+			"no-duplicate-imports": 2,
+			"no-warning-comments": 0,
+			"prefer-named-capture-group": 0
+		}
+	}
 }

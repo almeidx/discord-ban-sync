@@ -21,15 +21,15 @@ This repository houses a bot that automatically synchronizes bans between multip
 
 ### Local setup
 
-This setup assumes you have [Git], and [Node.js] setup on your machine. This project requires [Node.js] version 18 or higher, and uses the [Yarn 3] package manager, so you should have basic knowledge about how to use them.
+This setup assumes you have [Git], and [Node.js] setup on your machine. This project requires [Node.js] version 18 or higher, and uses the [pnpm] package manager, so you should have basic knowledge about how to use them.
 
 #### Cloning repository
 
 - `git clone git@github.com:almeidx/discord-ban-sync.git`
 - `cd discord-ban-sync`
-- `yarn`
+- `pnpm i`
 
-Note: If you don't have yarn installed globally, you'll have to run `corepack enable`.
+Note: If you don't have corepack enabled, you can do it with `corepack enable`.
 
 #### Setting up the env variables locally
 
@@ -42,11 +42,11 @@ The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,5133
 
 If your environment variables are stored on the .env file, you can use:
 
-- `yarn start:env`
+- `pnpm start:env`
 
 Otherwise, use:
 
-- `yarn start`
+- `pnpm start`
 
 ---
 
@@ -58,7 +58,7 @@ Otherwise, use:
 
 [git]: https://git-scm.com/
 [node.js]: https://nodejs.org
-[yarn 3]: https://yarnpkg.com
+[pnpm]: https://pnpm.io/
 [apache 2.0]: https://github.com/almeidx/discord-ban-sync/blob/main/LICENSE
 [almeidx]: https://almeidx.dev
 [@almeidx]: https://github.com/almeidx
