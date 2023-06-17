@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/prefer-literal-enum-member */
+
 import { env } from "node:process";
-import { DiscordAPIError, type Snowflake, type User } from "discord.js";
+import { DiscordAPIError, type User } from "discord.js";
 import { DEFAULT_DELETE_MESSAGE_DAYS, ELLIPSIS_CHAR } from "./constants.js";
+
+export const enum Time {
+	Second = 1_000,
+	Minute = Second * 1_000,
+	Hour = Minute * 60,
+	Day = Hour * 24,
+}
 
 export function makeUserInfo(user: User): string {
 	return `${user.tag} (${user.id})`;
-}
-
-export function removeGuildIdFromArray(array: Snowflake[], item: Snowflake): Snowflake[] {
-	const index = array.indexOf(item);
-	if (index === -1) return array;
-	array.splice(index, 1);
-	return array;
 }
 
 export function ellipsis(str: string, start: number, maxLength: number): string {

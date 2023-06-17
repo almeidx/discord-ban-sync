@@ -1,7 +1,16 @@
-import type { Client } from "discord.js";
+import type { Client, RESTPostAPIApplicationCommandsJSONBody } from "discord.js";
 import { info } from "../utils/logger.js";
-import { MESSAGES } from "../utils/messages.js";
+import { READY } from "../utils/messages.js";
 
-export function ready(client: Client<true>) {
-	info(MESSAGES.READY(client.user.tag));
+export async function ready(client: Client<true>): Promise<void> {
+	info(READY(client.user.tag));
+
+	const commands = [
+		{
+			name: "ping",
+			description: "Checks the bots ping to the Discord servers",
+		},
+	] satisfies RESTPostAPIApplicationCommandsJSONBody[];
+
+	await client.application.commands.set(commands);
 }

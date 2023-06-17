@@ -13,9 +13,7 @@ export const logger = pino({
 	},
 });
 
-const error = logger.error.bind(logger);
-const fatal = logger.fatal.bind(logger);
-const info = logger.info.bind(logger);
-const warn = logger.warn.bind(logger);
-
-export { error, fatal, info, warn };
+export const error = logger.error.bind(logger);
+export const fatal = logger.fatal.bind(logger);
+export const info = logger.info.bind(logger);
+export const warn = logger.warn.bind(logger);

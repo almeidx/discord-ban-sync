@@ -2,16 +2,17 @@ import { env, exit } from "node:process";
 import { Client, Events, GatewayIntentBits, Options } from "discord.js";
 import { createGuildBanAddListener } from "./listeners/guildBanAdd.js";
 import { createGuildBanRemoveListener } from "./listeners/guildBanRemove.js";
+import { interactionCreate } from "./listeners/interactionCreate.js";
 import { ready } from "./listeners/ready.js";
 import { BanQueue } from "./structures/banQueue.js";
 import { SWEEPER_INTERVAL } from "./utils/constants.js";
 import { fatal } from "./utils/logger.js";
-import { MESSAGES } from "./utils/messages.js";
+import { ENV_VAR_MISSING } from "./utils/messages.js";
 
-const REQUIRED_ENV_VARS: string[] = ["DISCORD_TOKEN", "GUILD_IDS"];
+const REQUIRED_ENV_VARS = ["DISCORD_TOKEN", "GUILD_IDS"] satisfies string[];
 const missingEnvVar = REQUIRED_ENV_VARS.find((envVar) => !env[envVar]);
 if (missingEnvVar) {
-	fatal(MESSAGES.ENV_VAR_MISSING(missingEnvVar));
+	fatal(ENV_VAR_MISSING(missingEnvVar));
 	exit(1);
 }
 
@@ -20,14 +21,19 @@ const sweeperFilter = () => () => true;
 
 const client = new Client({
 	makeCache: Options.cacheWithLimits({
-		ApplicationCommandManager: 0,
-		BaseGuildEmojiManager: 0,
 		GuildBanManager: 10,
-		GuildEmojiManager: 0,
-		GuildInviteManager: 0,
 		GuildMemberManager: 10,
+		UserManager: 10,
+
+		ApplicationCommandManager: 0,
+		AutoModerationRuleManager: 0,
+		BaseGuildEmojiManager: 0,
+		GuildEmojiManager: 0,
+		GuildForumThreadManager: 0,
+		GuildInviteManager: 0,
 		GuildScheduledEventManager: 0,
 		GuildStickerManager: 0,
+		GuildTextThreadManager: 0,
 		MessageManager: 0,
 		PresenceManager: 0,
 		ReactionManager: 0,
@@ -35,16 +41,15 @@ const client = new Client({
 		StageInstanceManager: 0,
 		ThreadManager: 0,
 		ThreadMemberManager: 0,
-		UserManager: 10,
 		VoiceStateManager: 0,
 
-		// @ts-expect-error: Untyped managers (but supported)
+		// @ts-expect-error: Untyped (but working) managers
 		ChannelManager: 0,
 		GuildChannelManager: 0,
 		PermissionOverwriteManager: 0,
 		RoleManager: 0,
 	}),
-	intents: GatewayIntentBits.Guilds | GatewayIntentBits.GuildBans,
+	intents: GatewayIntentBits.Guilds | GatewayIntentBits.GuildModeration,
 	sweepers: {
 		bans: {
 			filter: sweeperFilter,
@@ -66,6 +71,7 @@ const banQueue = new BanQueue(client);
 client
 	.on(Events.ClientReady, ready)
 	.on(Events.GuildBanAdd, createGuildBanAddListener(banQueue))
-	.on(Events.GuildBanRemove, createGuildBanRemoveListener(banQueue));
+	.on(Events.GuildBanRemove, createGuildBanRemoveListener(banQueue))
+	.on(Events.InteractionCreate, interactionCreate);
 
 await client.login();

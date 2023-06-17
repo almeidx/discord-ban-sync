@@ -50,6 +50,8 @@ Otherwise, use:
 - `pnpm build`
 - `pnpm start`
 
+To check if the bot is working, you can run the `/ping` slash command.
+
 ---
 
 ### Author
