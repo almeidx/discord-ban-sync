@@ -8,10 +8,8 @@ import { BanQueue } from "./structures/banQueue.js";
 import { fatal } from "./utils/logger.js";
 import { ENV_VAR_MISSING } from "./utils/messages.js";
 
-const REQUIRED_ENV_VARS = ["DISCORD_TOKEN", "GUILD_IDS"] satisfies string[];
-const missingEnvVar = REQUIRED_ENV_VARS.find((envVar) => !env[envVar]);
-if (missingEnvVar) {
-	fatal(ENV_VAR_MISSING(missingEnvVar));
+if (!env.DISCORD_TOKEN) {
+	fatal(ENV_VAR_MISSING("DISCORD_TOKEN"));
 	exit(1);
 }
 

@@ -1,7 +1,14 @@
-import { env } from "node:process";
+import { env, exit } from "node:process";
 import type { Snowflake } from "discord.js";
+import { fatal } from "./logger.js";
+import { ENV_VAR_MISSING } from "./messages.js";
 
-export const GUILD_IDS: Snowflake[] = env.GUILD_IDS!.replaceAll(" ", "").split(",");
+if (!env.GUILD_IDS) {
+	fatal(ENV_VAR_MISSING("GUILD_IDS"));
+	exit(1);
+}
+
+export const GUILD_IDS: Snowflake[] = env.GUILD_IDS.replaceAll(" ", "").split(",");
 
 export const ELLIPSIS_CHAR = "…";
 
