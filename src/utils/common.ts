@@ -4,7 +4,7 @@ import { env } from "node:process";
 import { DiscordAPIError, type User } from "discord.js";
 import { DEFAULT_DELETE_MESSAGE_DAYS, ELLIPSIS_CHAR } from "./constants.js";
 
-export const enum Time {
+export enum Time {
 	Second = 1_000,
 	Minute = Second * 1_000,
 	Hour = Minute * 60,
