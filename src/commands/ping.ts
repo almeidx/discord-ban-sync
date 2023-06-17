@@ -1,4 +1,4 @@
-import ms from "@almeidx/ms";
+import { ms } from "@almeidx/ms";
 import type { ChatInputCommandInteraction } from "discord.js";
 
 export async function pingCommandInteraction(interaction: ChatInputCommandInteraction<"cached">): Promise<void> {
