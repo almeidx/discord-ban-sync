@@ -5,7 +5,6 @@ import { createGuildBanRemoveListener } from "./listeners/guildBanRemove.js";
 import { interactionCreate } from "./listeners/interactionCreate.js";
 import { ready } from "./listeners/ready.js";
 import { BanQueue } from "./structures/banQueue.js";
-import { SWEEPER_INTERVAL } from "./utils/constants.js";
 import { fatal } from "./utils/logger.js";
 import { ENV_VAR_MISSING } from "./utils/messages.js";
 
@@ -18,6 +17,7 @@ if (missingEnvVar) {
 
 // eslint-disable-next-line unicorn/consistent-function-scoping
 const sweeperFilter = () => () => true;
+const sweeperInterval = 60 * 60; // 1 hour in seconds
 
 const client = new Client({
 	makeCache: Options.cacheWithLimits({
@@ -53,15 +53,15 @@ const client = new Client({
 	sweepers: {
 		bans: {
 			filter: sweeperFilter,
-			interval: SWEEPER_INTERVAL,
+			interval: sweeperInterval,
 		},
 		guildMembers: {
 			filter: sweeperFilter,
-			interval: SWEEPER_INTERVAL,
+			interval: sweeperInterval,
 		},
 		users: {
 			filter: sweeperFilter,
-			interval: SWEEPER_INTERVAL,
+			interval: sweeperInterval,
 		},
 	},
 });
