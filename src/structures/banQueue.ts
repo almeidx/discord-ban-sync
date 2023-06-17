@@ -1,7 +1,7 @@
 import { RESTJSONErrorCodes, type Client, type Guild, type GuildBan, type Snowflake } from "discord.js";
 import { Time, ellipsis, isDiscordAPIError, parseDeleteMessageDays } from "../utils/common.js";
 import { GUILD_IDS } from "../utils/constants.js";
-import { error, warn } from "../utils/logger.js";
+import { error, info, warn } from "../utils/logger.js";
 import {
 	BAN_NO_REASON,
 	BAN_REASON,
@@ -55,6 +55,8 @@ export class BanQueue {
 		// This will always exist because of the length check at the beginning
 		const banInfo = this.#queue.shift()!;
 
+		let actionsTaken = 0;
+
 		try {
 			const reason = this.#resolveReason(banInfo);
 
@@ -71,9 +73,11 @@ export class BanQueue {
 				}
 
 				if (banInfo.type === BanType.Ban) {
-					await this.#banUser(guild, banInfo.userId, reason);
+					const success = await this.#banUser(guild, banInfo.userId, reason);
+					if (success) actionsTaken++;
 				} else {
-					await this.#unbanUser(guild, banInfo.userId, reason);
+					const success = await this.#unbanUser(guild, banInfo.userId, reason);
+					if (success) actionsTaken++;
 				}
 			}
 		} catch (error_) {
@@ -84,6 +88,8 @@ export class BanQueue {
 			} else {
 				removeRecentUnban(banInfo.userId);
 			}
+
+			info(`Processed ${actionsTaken} actions for ${banInfo.userId}`);
 
 			this.#queueLock = false;
 
@@ -109,9 +115,10 @@ export class BanQueue {
 		return ellipsis(msg, 0, 512);
 	}
 
-	async #banUser(guild: Guild, userId: Snowflake, reason: string): Promise<void> {
+	async #banUser(guild: Guild, userId: Snowflake, reason: string): Promise<boolean> {
 		try {
 			await guild.bans.create(userId, { deleteMessageSeconds: this.#deleteMessageDays * Time.Day, reason });
+			return true;
 		} catch (error_) {
 			if (
 				isDiscordAPIError(error_) &&
@@ -120,20 +127,21 @@ export class BanQueue {
 				// TODO: Disable ban queue in this guild until the day is over/after one day has passed
 
 				warn(MAX_NON_MEMBER_BANS_REACHED(guild.name));
-				return;
+				return false;
 			}
 
 			throw error_;
 		}
 	}
 
-	async #unbanUser(guild: Guild, userId: Snowflake, reason: string): Promise<void> {
+	async #unbanUser(guild: Guild, userId: Snowflake, reason: string): Promise<boolean> {
 		try {
 			await guild.bans.remove(userId, reason);
+			return true;
 		} catch (error_) {
 			if (isDiscordAPIError(error_) && error_.code === RESTJSONErrorCodes.UnknownBan) {
 				// User was not banned in this guild, ignore
-				return;
+				return false;
 			}
 
 			throw error_;

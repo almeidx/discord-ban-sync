@@ -12,8 +12,8 @@ export function createGuildBanAddListener(banQueue: BanQueue): (banInfo: GuildBa
 
 		addRecentBan(banInfo.user.id);
 
-		banQueue.queueBan(banInfo);
-
 		info(USER_BANNED(banInfo.guild.name, makeUserInfo(banInfo.user)));
+
+		banQueue.queueBan(banInfo);
 	};
 }

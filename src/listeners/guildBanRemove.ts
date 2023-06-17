@@ -12,8 +12,8 @@ export function createGuildBanRemoveListener(banQueue: BanQueue): (banInfo: Guil
 
 		addRecentUnban(banInfo.user.id);
 
-		banQueue.queueUnban(banInfo);
-
 		info(USER_UNBANNED(banInfo.guild.name, makeUserInfo(banInfo.user)));
+
+		banQueue.queueUnban(banInfo);
 	};
 }

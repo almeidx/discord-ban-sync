@@ -1,5 +1,6 @@
 import { env, exit } from "node:process";
 import { Client, Events, GatewayIntentBits, Options } from "discord.js";
+import { errorListener } from "./listeners/error.js";
 import { createGuildBanAddListener } from "./listeners/guildBanAdd.js";
 import { createGuildBanRemoveListener } from "./listeners/guildBanRemove.js";
 import { interactionCreate } from "./listeners/interactionCreate.js";
@@ -70,6 +71,7 @@ client
 	.on(Events.ClientReady, ready)
 	.on(Events.GuildBanAdd, createGuildBanAddListener(banQueue))
 	.on(Events.GuildBanRemove, createGuildBanRemoveListener(banQueue))
-	.on(Events.InteractionCreate, interactionCreate);
+	.on(Events.InteractionCreate, interactionCreate)
+	.on(Events.Error, errorListener);
 
 await client.login();
