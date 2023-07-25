@@ -37,7 +37,7 @@
 		"discord.js": "14.11.0",
 		"pino": "^8.14.1",
 		"pino-pretty": "^10.1.0",
-		"tslib": "^2.6.0"
+		"tslib": "^2.6.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20.4.4",
