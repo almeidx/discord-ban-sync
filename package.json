@@ -35,7 +35,7 @@
 	"dependencies": {
 		"@almeidx/ms": "^1.2.1",
 		"discord.js": "14.11.0",
-		"pino": "^8.14.1",
+		"pino": "^8.14.2",
 		"pino-pretty": "^10.2.0",
 		"tslib": "^2.6.1"
 	},
