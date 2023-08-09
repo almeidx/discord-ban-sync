@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "pnpm build:check && pnpm build:write",
 		"build:check": "tsc --noEmit",
-		"build:write": "rimraf dist && esbuild $(glob 'src/**/*' --nodir) --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
+		"build:write": "rimraf dist && esbuild 'src/**/*.ts' --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
 		"fmt": "pnpm format",
 		"format": "prettier --write . && eslint src --ext ts --fix",
 		"lint": "prettier --check . && eslint src --ext ts",
@@ -40,12 +40,11 @@
 		"tslib": "^2.6.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20.4.8",
+		"@types/node": "^20.4.9",
 		"env-cmd": "^10.1.0",
-		"esbuild": "^0.18.19",
+		"esbuild": "^0.19.0",
 		"eslint": "^8.46.0",
 		"eslint-config-neon": "^0.1.47",
-		"glob": "^10.3.3",
 		"prettier": "^3.0.1",
 		"rimraf": "^5.0.1",
 		"typescript": "~5.1.6"
