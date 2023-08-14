@@ -40,7 +40,7 @@
 		"tslib": "^2.6.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20.4.9",
+		"@types/node": "^20.5.0",
 		"env-cmd": "^10.1.0",
 		"esbuild": "^0.19.1",
 		"eslint": "^8.47.0",
