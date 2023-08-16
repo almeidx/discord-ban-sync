@@ -1,10 +1,21 @@
-import type { Interaction } from "discord.js";
-import { pingCommandInteraction } from "../commands/ping.js";
+import { GatewayDispatchEvents, InteractionType, type Client } from "@discordjs/core";
+import { isChatInputApplicationCommandInteraction, isGuildInteraction } from "discord-api-types/utils/v10";
+import { pingCommandInteraction } from "#commands/ping.js";
+import { GUILD_IDS } from "#utils/env.js";
 
-export async function interactionCreate(interaction: Interaction): Promise<void> {
-	if (!interaction.inCachedGuild()) return;
+export function registerInteractionCreateListener(client: Client) {
+	client.on(GatewayDispatchEvents.InteractionCreate, async ({ api, data }) => {
+		if (
+			!isGuildInteraction(data) ||
+			!GUILD_IDS.includes(data.guild_id) ||
+			data.type !== InteractionType.ApplicationCommand ||
+			!isChatInputApplicationCommandInteraction(data)
+		) {
+			return;
+		}
 
-	if (interaction.isChatInputCommand() && interaction.commandName === "ping") {
-		await pingCommandInteraction(interaction);
-	}
+		if (data.data.name === "ping") {
+			await pingCommandInteraction(api, data);
+		}
+	});
 }

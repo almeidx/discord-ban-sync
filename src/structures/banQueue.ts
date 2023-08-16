@@ -1,16 +1,16 @@
-import { RESTJSONErrorCodes, type Client, type Guild, type GuildBan, type Snowflake } from "discord.js";
-import { Time, ellipsis, isDiscordAPIError, parseDeleteMessageDays } from "../utils/common.js";
-import { GUILD_IDS } from "../utils/constants.js";
-import { error, info, warn } from "../utils/logger.js";
+import { RESTJSONErrorCodes, type API, type Snowflake } from "@discordjs/core";
+import { DiscordAPIError } from "@discordjs/rest";
+import { ellipsis, getGuildIdentifier } from "#utils/common.js";
+import { DELETE_MESSAGE_SECONDS, GUILD_IDS } from "#utils/env.js";
+import { error, info, warn } from "#utils/logger.js";
 import {
 	BAN_NO_REASON,
 	BAN_REASON,
-	GUILD_NOT_FOUND,
 	MAX_NON_MEMBER_BANS_REACHED,
 	UNBAN_NO_REASON,
 	UNBAN_REASON,
-} from "../utils/messages.js";
-import { removeRecentBan, removeRecentUnban } from "../utils/recentBans.js";
+} from "#utils/messages.js";
+import { removeRecentBan, removeRecentUnban } from "#utils/recentBans.js";
 
 const enum BanType {
 	Ban,
@@ -18,8 +18,8 @@ const enum BanType {
 }
 
 interface BanInfo {
-	guild: Guild;
-	reason: GuildBan["reason"];
+	guildId: Snowflake;
+	reason: string | null | undefined;
 	type: BanType;
 	userId: Snowflake;
 }
@@ -29,18 +29,16 @@ export class BanQueue {
 
 	readonly #queue: BanInfo[] = [];
 
-	readonly #deleteMessageDays: number = parseDeleteMessageDays();
+	public constructor(private readonly api: API) {}
 
-	public constructor(private readonly client: Client<true>) {}
-
-	public queueBan({ guild, reason, user }: GuildBan): void {
-		this.#queue.push({ guild, reason, userId: user.id, type: BanType.Ban });
+	public queueBan(guildId: Snowflake, userId: Snowflake, reason: string | null | undefined): void {
+		this.#queue.push({ guildId, userId, reason, type: BanType.Ban });
 
 		void this.#processQueue();
 	}
 
-	public queueUnban({ guild, reason, user }: GuildBan): void {
-		this.#queue.push({ guild, reason, userId: user.id, type: BanType.Unban });
+	public queueUnban(guildId: Snowflake, userId: Snowflake, reason: string | null | undefined): void {
+		this.#queue.push({ guildId, userId, reason, type: BanType.Unban });
 
 		void this.#processQueue();
 	}
@@ -54,29 +52,22 @@ export class BanQueue {
 
 		// This will always exist because of the length check at the beginning
 		const banInfo = this.#queue.shift()!;
+		const reason = this.#resolveReason(banInfo);
 
 		let actionsTaken = 0;
 
 		try {
-			const reason = this.#resolveReason(banInfo);
-
 			for (const guildId of GUILD_IDS) {
 				// Skip the guild where the ban/unban happened
-				if (guildId === banInfo.guild.id) {
-					continue;
-				}
-
-				const guild = this.client.guilds.cache.get(guildId);
-				if (!guild) {
-					warn(GUILD_NOT_FOUND(banInfo.userId, guildId));
+				if (guildId === banInfo.guildId) {
 					continue;
 				}
 
 				if (banInfo.type === BanType.Ban) {
-					const success = await this.#banUser(guild, banInfo.userId, reason);
+					const success = await this.#banUser(guildId, banInfo.userId, reason);
 					if (success) actionsTaken++;
 				} else {
-					const success = await this.#unbanUser(guild, banInfo.userId, reason);
+					const success = await this.#unbanUser(guildId, banInfo.userId, reason);
 					if (success) actionsTaken++;
 				}
 			}
@@ -97,36 +88,39 @@ export class BanQueue {
 		}
 	}
 
-	#resolveReason({ guild, reason, type }: BanInfo): string {
+	#resolveReason({ guildId, reason, type }: BanInfo): string {
 		let msg: string;
+
+		const guildIdentifier = getGuildIdentifier(guildId);
 
 		if (type === BanType.Ban) {
 			if (reason) {
-				msg = BAN_REASON(guild.name, reason);
+				msg = BAN_REASON(guildIdentifier, reason);
 			} else {
-				msg = BAN_NO_REASON(guild.name);
+				msg = BAN_NO_REASON(guildIdentifier);
 			}
 		} else if (reason) {
-			msg = UNBAN_REASON(guild.name, reason);
+			msg = UNBAN_REASON(guildIdentifier, reason);
 		} else {
-			msg = UNBAN_NO_REASON(guild.name);
+			msg = UNBAN_NO_REASON(guildIdentifier);
 		}
 
 		return ellipsis(msg, 0, 512);
 	}
 
-	async #banUser(guild: Guild, userId: Snowflake, reason: string): Promise<boolean> {
+	async #banUser(guildId: Snowflake, userId: Snowflake, reason: string): Promise<boolean> {
 		try {
-			await guild.bans.create(userId, { deleteMessageSeconds: this.#deleteMessageDays * Time.Day, reason });
+			await this.api.guilds.banUser(guildId, userId, { delete_message_seconds: DELETE_MESSAGE_SECONDS }, { reason });
+
 			return true;
 		} catch (error_) {
 			if (
-				isDiscordAPIError(error_) &&
+				error_ instanceof DiscordAPIError &&
 				error_.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded
 			) {
 				// TODO: Disable ban queue in this guild until the day is over/after one day has passed
 
-				warn(MAX_NON_MEMBER_BANS_REACHED(guild.name));
+				warn(MAX_NON_MEMBER_BANS_REACHED(getGuildIdentifier(guildId)));
 				return false;
 			}
 
@@ -134,12 +128,13 @@ export class BanQueue {
 		}
 	}
 
-	async #unbanUser(guild: Guild, userId: Snowflake, reason: string): Promise<boolean> {
+	async #unbanUser(guildId: Snowflake, userId: Snowflake, reason: string): Promise<boolean> {
 		try {
-			await guild.bans.remove(userId, reason);
+			await this.api.guilds.unbanUser(guildId, userId, { reason });
+
 			return true;
 		} catch (error_) {
-			if (isDiscordAPIError(error_) && error_.code === RESTJSONErrorCodes.UnknownBan) {
+			if (error_ instanceof DiscordAPIError && error_.code === RESTJSONErrorCodes.UnknownBan) {
 				// User was not banned in this guild, ignore
 				return false;
 			}

@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/prefer-literal-enum-member */
-
-import { env } from "node:process";
-import { DiscordAPIError, type User } from "discord.js";
-import { DEFAULT_DELETE_MESSAGE_DAYS, ELLIPSIS_CHAR } from "./constants.js";
+import type { APIUser, Snowflake } from "@discordjs/core";
+import { guilds } from "#utils/guilds.js";
 
 export enum Time {
 	Second = 1_000,
@@ -11,25 +8,45 @@ export enum Time {
 	Day = Hour * 24,
 }
 
-export function makeUserInfo(user: User): string {
-	return `${user.tag} (${user.id})`;
+/**
+ * Returns a string representation of a user's information.
+ *
+ * @param user - The user object containing the discriminator, id, and username
+ * @returns A string in the format of "username#discriminator (id)"
+ * or "\@username (id)" if the user is on the new username system
+ */
+export function makeUserInfo(user: Pick<APIUser, "discriminator" | "id" | "username">): string {
+	const userTag = user.discriminator === "0" ? `@${user.username}` : `${user.username}#${user.discriminator}`;
+	return `${userTag} (${user.id})`;
 }
 
+/**
+ * Returns a string with ellipsis if it exceeds the maximum length.
+ *
+ * @param str - The string to truncate
+ * @param start - The starting index to truncate from
+ * @param maxLength - The maximum length of the truncated string
+ */
 export function ellipsis(str: string, start: number, maxLength: number): string {
-	const end = str.length > maxLength ? maxLength - ELLIPSIS_CHAR.length : maxLength;
-	if (end <= 0) return ELLIPSIS_CHAR;
-	return `${str.slice(start, end)}${str.length > maxLength ? ELLIPSIS_CHAR : ""}`;
+	const end = str.length > maxLength ? maxLength - 1 : maxLength;
+	if (end <= 0) return "…";
+	return `${str.slice(start, end)}${str.length > maxLength ? "…" : ""}`;
 }
 
-export function parseDeleteMessageDays(): number {
-	if (!env.DELETE_MESSAGE_DAYS) return DEFAULT_DELETE_MESSAGE_DAYS;
-
-	const days = Number.parseInt(env.DELETE_MESSAGE_DAYS, 10);
-	if (Number.isNaN(days)) return DEFAULT_DELETE_MESSAGE_DAYS;
-
-	return Math.max(0, Math.min(7, days));
+/**
+ * Converts a Discord snowflake id to a Unix timestamp in milliseconds.
+ *
+ * @param snowflake - The Discord snowflake id to convert
+ */
+export function getTimestampFromSnowflake(snowflake: Snowflake): number {
+	return Number(BigInt(snowflake) / 4_194_304n + 1_420_070_400_000n);
 }
 
-export function isDiscordAPIError(error: unknown): error is DiscordAPIError {
-	return error instanceof DiscordAPIError;
+/**
+ * Returns the guild name if the guild is cached, otherwise returns the guild id.
+ *
+ * @param guildId - The guild id to get the identifier for
+ */
+export function getGuildIdentifier(guildId: Snowflake) {
+	return guilds.get(guildId) ?? guildId;
 }

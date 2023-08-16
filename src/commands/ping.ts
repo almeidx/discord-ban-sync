@@ -1,13 +1,18 @@
-import { ms } from "@almeidx/ms";
-import type { ChatInputCommandInteraction } from "discord.js";
+import { MessageFlags, type API, type APIChatInputApplicationCommandGuildInteraction } from "@discordjs/core";
+import ms from "pretty-ms";
+import { getTimestampFromSnowflake } from "#utils/common.js";
 
-export async function pingCommandInteraction(interaction: ChatInputCommandInteraction<"cached">): Promise<void> {
-	const message = await interaction.deferReply({ ephemeral: true, fetchReply: true });
+export async function pingCommandInteraction(
+	api: API,
+	interaction: APIChatInputApplicationCommandGuildInteraction,
+): Promise<void> {
+	await api.interactions.defer(interaction.id, interaction.token, { flags: MessageFlags.Ephemeral });
 
-	const heartbeat = ms(interaction.client.ws.ping);
-	const latency = ms(message.createdTimestamp - interaction.createdTimestamp);
+	const reply = await api.interactions.getOriginalReply(interaction.application_id, interaction.token);
 
-	await interaction.editReply({
-		content: `Heartbeat: **${heartbeat}**\nLatency: **${latency}**`,
+	const latency = ms(getTimestampFromSnowflake(reply.id) - getTimestampFromSnowflake(interaction.id));
+
+	await api.interactions.editReply(interaction.application_id, interaction.token, {
+		content: `Latency: **${latency}**`,
 	});
 }

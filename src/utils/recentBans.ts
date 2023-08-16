@@ -1,4 +1,4 @@
-import type { Snowflake } from "discord.js";
+import type { Snowflake } from "@discordjs/core";
 
 const recentBans = new Set<Snowflake>();
 const recentUnbans = new Set<Snowflake>();

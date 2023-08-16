@@ -36,6 +36,13 @@
 		"lib": ["ESNext"],
 		"target": "ES2022",
 		"skipLibCheck": true,
-		"useDefineForClassFields": true
+		"useDefineForClassFields": true,
+
+		"paths": {
+			"#commands/*": ["./src/commands/*"],
+			"#listeners/*": ["./src/listeners/*"],
+			"#structures/*": ["./src/structures/*"],
+			"#utils/*": ["./src/utils/*"]
+		}
 	}
 }

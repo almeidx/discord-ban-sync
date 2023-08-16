@@ -5,6 +5,11 @@ updates:
     directory: /
     schedule:
       interval: daily
+    groups:
+      discordjs:
+        patterns:
+          - discord-api-types
+          - "@discordjs/*"
 
   - package-ecosystem: github-actions
     directory: /

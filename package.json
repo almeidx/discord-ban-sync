@@ -6,12 +6,18 @@
 	"scripts": {
 		"build": "pnpm build:check && pnpm build:write",
 		"build:check": "tsc --noEmit",
-		"build:write": "rimraf dist && esbuild 'src/**/*.ts' --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
+		"build:write": "rimraf dist && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
 		"fmt": "pnpm format",
 		"format": "prettier --write . && eslint src --ext ts --fix",
 		"lint": "prettier --check . && eslint src --ext ts",
 		"start": "node --enable-source-maps dist/index.js",
 		"start:env": "env-cmd node --enable-source-maps dist/index.js"
+	},
+	"imports": {
+		"#commands/*": "./dist/commands/*",
+		"#listeners/*": "./dist/listeners/*",
+		"#structures/*": "./dist/structures/*",
+		"#utils/*": "./dist/utils/*"
 	},
 	"resolutions": {
 		"@angular-eslint/eslint-plugin": "npm:@almeidx/empty@1.0.1",
@@ -33,10 +39,13 @@
 		"vue-eslint-parser": "npm:@almeidx/empty@1.0.1"
 	},
 	"dependencies": {
-		"@almeidx/ms": "^1.2.1",
-		"discord.js": "14.12.1",
+		"@discordjs/core": "^1.0.0",
+		"@discordjs/rest": "^2.0.0",
+		"@discordjs/ws": "^1.0.0",
+		"discord-api-types": "^0.37.53",
 		"pino": "^8.15.0",
 		"pino-pretty": "^10.2.0",
+		"pretty-ms": "^8.0.0",
 		"tslib": "^2.6.1"
 	},
 	"devDependencies": {
@@ -49,7 +58,7 @@
 		"rimraf": "^5.0.1",
 		"typescript": "~5.1.6"
 	},
-	"packageManager": "pnpm@8.6.0",
+	"packageManager": "pnpm@8.6.12",
 	"prettier": {
 		"printWidth": 120,
 		"useTabs": true

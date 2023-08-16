@@ -1,0 +1,5 @@
+{
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.preferences.includePackageJsonAutoImports": "on"
+}

@@ -1,77 +1,31 @@
-import { env, exit } from "node:process";
-import { Client, Events, GatewayIntentBits, Options } from "discord.js";
-import { errorListener } from "./listeners/error.js";
-import { createGuildBanAddListener } from "./listeners/guildBanAdd.js";
-import { createGuildBanRemoveListener } from "./listeners/guildBanRemove.js";
-import { interactionCreate } from "./listeners/interactionCreate.js";
-import { ready } from "./listeners/ready.js";
-import { BanQueue } from "./structures/banQueue.js";
-import { fatal } from "./utils/logger.js";
-import { ENV_VAR_MISSING } from "./utils/messages.js";
+import { Client, GatewayIntentBits } from "@discordjs/core";
+import { REST } from "@discordjs/rest";
+import { WebSocketManager } from "@discordjs/ws";
+import { registerGuildBanAddListener } from "#listeners/guildBanAdd.js";
+import { registerGuildBanRemoveListener } from "#listeners/guildBanRemove.js";
+import { registerGuildCreateListener } from "#listeners/guildCreate.js";
+import { registerGuildDeleteListener } from "#listeners/guildDelete.js";
+import { registerInteractionCreateListener } from "#listeners/interactionCreate.js";
+import { registerReadyListener } from "#listeners/ready.js";
+import { BanQueue } from "#structures/banQueue.js";
+import { DISCORD_TOKEN } from "#utils/env.js";
 
-if (!env.DISCORD_TOKEN) {
-	fatal(ENV_VAR_MISSING("DISCORD_TOKEN"));
-	exit(1);
-}
-
-// eslint-disable-next-line unicorn/consistent-function-scoping
-const sweeperFilter = () => () => true;
-const sweeperInterval = 60 * 60; // 1 hour in seconds
-
-const client = new Client({
-	makeCache: Options.cacheWithLimits({
-		GuildBanManager: 10,
-		GuildMemberManager: 10,
-		UserManager: 10,
-
-		ApplicationCommandManager: 0,
-		AutoModerationRuleManager: 0,
-		BaseGuildEmojiManager: 0,
-		GuildEmojiManager: 0,
-		GuildForumThreadManager: 0,
-		GuildInviteManager: 0,
-		GuildScheduledEventManager: 0,
-		GuildStickerManager: 0,
-		GuildTextThreadManager: 0,
-		MessageManager: 0,
-		PresenceManager: 0,
-		ReactionManager: 0,
-		ReactionUserManager: 0,
-		StageInstanceManager: 0,
-		ThreadManager: 0,
-		ThreadMemberManager: 0,
-		VoiceStateManager: 0,
-
-		// @ts-expect-error: Untyped (but working) managers
-		ChannelManager: 0,
-		GuildChannelManager: 0,
-		PermissionOverwriteManager: 0,
-		RoleManager: 0,
-	}),
+const rest = new REST().setToken(DISCORD_TOKEN);
+const gateway = new WebSocketManager({
+	rest,
 	intents: GatewayIntentBits.Guilds | GatewayIntentBits.GuildModeration,
-	sweepers: {
-		bans: {
-			filter: sweeperFilter,
-			interval: sweeperInterval,
-		},
-		guildMembers: {
-			filter: sweeperFilter,
-			interval: sweeperInterval,
-		},
-		users: {
-			filter: sweeperFilter,
-			interval: sweeperInterval,
-		},
-	},
+	token: DISCORD_TOKEN,
 });
 
-const banQueue = new BanQueue(client);
+const client = new Client({ gateway, rest });
 
-client
-	.on(Events.ClientReady, ready)
-	.on(Events.GuildBanAdd, createGuildBanAddListener(banQueue))
-	.on(Events.GuildBanRemove, createGuildBanRemoveListener(banQueue))
-	.on(Events.InteractionCreate, interactionCreate)
-	.on(Events.Error, errorListener);
+const banQueue = new BanQueue(client.api);
 
-await client.login();
+registerReadyListener(client);
+registerGuildCreateListener(client);
+registerGuildDeleteListener(client);
+registerGuildBanAddListener(client, banQueue);
+registerGuildBanRemoveListener(client, banQueue);
+registerInteractionCreateListener(client);
+
+await gateway.connect();
