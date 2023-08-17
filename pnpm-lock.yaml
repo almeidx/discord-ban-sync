@@ -37,8 +37,8 @@ dependencies:
     specifier: ^2.0.20
     version: 2.0.20
   discord-api-types:
-    specifier: ^0.37.53
-    version: 0.37.53
+    specifier: ^0.37.54
+    version: 0.37.54
   pretty-ms:
     specifier: ^8.0.0
     version: 8.0.0
@@ -118,7 +118,7 @@ packages:
       '@discordjs/ws': 1.0.0
       '@sapphire/snowflake': 3.5.1
       '@vladfrangu/async_event_emitter': 2.2.2
-      discord-api-types: 0.37.53
+      discord-api-types: 0.37.54
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -133,7 +133,7 @@ packages:
       '@sapphire/async-queue': 1.5.0
       '@sapphire/snowflake': 3.5.1
       '@vladfrangu/async_event_emitter': 2.2.2
-      discord-api-types: 0.37.53
+      discord-api-types: 0.37.54
       magic-bytes.js: 1.0.15
       tslib: 2.6.1
       undici: 5.22.1
@@ -154,7 +154,7 @@ packages:
       '@sapphire/async-queue': 1.5.0
       '@types/ws': 8.5.5
       '@vladfrangu/async_event_emitter': 2.2.2
-      discord-api-types: 0.37.53
+      discord-api-types: 0.37.54
       tslib: 2.6.1
       ws: 8.13.0
     transitivePeerDependencies:
@@ -940,8 +940,8 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /discord-api-types@0.37.53:
-    resolution: {integrity: sha512-N6uUgv50OyP981Mfxrrt0uxcqiaNr0BDaQIoqfk+3zM2JpZtwU9v7ce1uaFAP53b2xSDvcbrk80Kneui6XJgGg==}
+  /discord-api-types@0.37.54:
+    resolution: {integrity: sha512-xNO6yzEMfpVSVUa6lOOzgLDy3Gyd8yuBAozGQdjpW9VjRq2Ccboz4FhTrd5v4Hw7pbkCKwnHvddjIYrX0INkUQ==}
     dev: false
 
   /doctrine@2.1.0:
