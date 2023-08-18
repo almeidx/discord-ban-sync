@@ -8,8 +8,8 @@
 		"build:check": "tsc --noEmit",
 		"build:write": "rimraf dist && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
 		"fmt": "pnpm format",
-		"format": "prettier --write . && eslint src --ext ts --fix",
-		"lint": "prettier --check . && eslint src --ext ts",
+		"format": "dprint fmt && denolint",
+		"lint": "dprint check && denolint --check-only",
 		"start": "node --enable-source-maps dist/index.js",
 		"start:env": "env-cmd node --enable-source-maps dist/index.js"
 	},
@@ -19,75 +19,23 @@
 		"#structures/*": "./dist/structures/*",
 		"#utils/*": "./dist/utils/*"
 	},
-	"resolutions": {
-		"@angular-eslint/eslint-plugin": "npm:@almeidx/empty@1.0.1",
-		"@angular-eslint/eslint-plugin-template": "npm:@almeidx/empty@1.0.1",
-		"@angular-eslint/template-parser": "npm:@almeidx/empty@1.0.1",
-		"@next/eslint-plugin-next": "npm:@almeidx/empty@1.0.1",
-		"astro-eslint-parser": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-astro": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-cypress": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-jest": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-jsx-a11y": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-mdx": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-react": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-react-hooks": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-rxjs": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-rxjs-angular": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-svelte3": "npm:@almeidx/empty@1.0.1",
-		"eslint-plugin-vue": "npm:@almeidx/empty@1.0.1",
-		"vue-eslint-parser": "npm:@almeidx/empty@1.0.1"
-	},
 	"dependencies": {
-		"@discordjs/core": "^1.0.0",
-		"@discordjs/rest": "^2.0.0",
-		"@discordjs/ws": "^1.0.0",
+		"@discordjs/core": "^1.0.1",
+		"@discordjs/rest": "^2.0.1",
+		"@discordjs/ws": "^1.0.1",
 		"colorette": "^2.0.20",
 		"discord-api-types": "^0.37.54",
 		"pretty-ms": "^8.0.0",
 		"tslib": "^2.6.1"
 	},
 	"devDependencies": {
+		"@node-rs/deno-lint": "^1.17.3",
 		"@types/node": "^20.5.0",
+		"dprint": "^0.40.2",
 		"env-cmd": "^10.1.0",
 		"esbuild": "^0.19.2",
-		"eslint": "^8.47.0",
-		"eslint-config-neon": "^0.1.47",
-		"prettier": "^3.0.2",
 		"rimraf": "^5.0.1",
 		"typescript": "~5.1.6"
 	},
-	"packageManager": "pnpm@8.6.12",
-	"prettier": {
-		"printWidth": 120,
-		"useTabs": true
-	},
-	"eslintConfig": {
-		"extends": [
-			"neon/common",
-			"neon/node",
-			"neon/module",
-			"neon/typescript",
-			"neon/prettier"
-		],
-		"ignorePatterns": [
-			"dist/*",
-			"node_modules/*"
-		],
-		"parserOptions": {
-			"project": "./tsconfig.eslint.json"
-		},
-		"root": true,
-		"rules": {
-			"@typescript-eslint/consistent-type-definitions": [
-				2,
-				"interface"
-			],
-			"@typescript-eslint/prefer-literal-enum-member": 0,
-			"default-case": 0,
-			"no-duplicate-imports": 2,
-			"no-warning-comments": 0,
-			"prefer-named-capture-group": 0
-		}
-	}
+	"packageManager": "pnpm@8.6.12"
 }

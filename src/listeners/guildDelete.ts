@@ -1,5 +1,5 @@
-import { GatewayDispatchEvents, type Client } from "@discordjs/core";
 import { guilds } from "#utils/guilds.js";
+import { type Client, GatewayDispatchEvents } from "@discordjs/core";
 
 export function registerGuildDeleteListener(client: Client) {
 	client.on(GatewayDispatchEvents.GuildDelete, ({ data }) => {

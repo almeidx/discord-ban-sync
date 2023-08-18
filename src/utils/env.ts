@@ -21,9 +21,9 @@ export const DELETE_MESSAGE_SECONDS = Number(
 );
 
 if (
-	Number.isNaN(DELETE_MESSAGE_SECONDS) ||
-	DELETE_MESSAGE_SECONDS > 604_800 || // 7 days
-	DELETE_MESSAGE_SECONDS < 0
+	Number.isNaN(DELETE_MESSAGE_SECONDS)
+	|| DELETE_MESSAGE_SECONDS > 604_800 // 7 days
+	|| DELETE_MESSAGE_SECONDS < 0
 ) {
 	throw new TypeError("DELETE_MESSAGE_SECONDS must be less than or equal to 7 days");
 }
