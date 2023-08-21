@@ -24,8 +24,8 @@ dependencies:
     specifier: ^8.0.0
     version: 8.0.0
   tslib:
-    specifier: ^2.6.1
-    version: 2.6.1
+    specifier: ^2.6.2
+    version: 2.6.2
 
 devDependencies:
   '@node-rs/deno-lint':
@@ -83,7 +83,7 @@ packages:
       '@vladfrangu/async_event_emitter': 2.2.2
       discord-api-types: 0.37.50
       magic-bytes.js: 1.0.15
-      tslib: 2.6.1
+      tslib: 2.6.2
       undici: 5.22.1
     dev: false
 
@@ -103,7 +103,7 @@ packages:
       '@types/ws': 8.5.5
       '@vladfrangu/async_event_emitter': 2.2.2
       discord-api-types: 0.37.50
-      tslib: 2.6.1
+      tslib: 2.6.2
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
@@ -833,8 +833,8 @@ packages:
       ansi-regex: 6.0.1
     dev: true
 
-  /tslib@2.6.1:
-    resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
+  /tslib@2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: false
 
   /typanion@3.14.0:
