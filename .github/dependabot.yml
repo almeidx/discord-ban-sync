@@ -6,6 +6,10 @@ updates:
     schedule:
       interval: daily
     groups:
+      non-major:
+        update-types:
+          - minor
+          - patch
       discordjs:
         patterns:
           - discord-api-types
