@@ -24,7 +24,6 @@
 		"@discordjs/rest": "^2.0.1",
 		"@discordjs/ws": "^1.0.1",
 		"colorette": "^2.0.20",
-		"discord-api-types": "^0.37.54",
 		"pretty-ms": "^8.0.0",
 		"tslib": "^2.6.2"
 	},

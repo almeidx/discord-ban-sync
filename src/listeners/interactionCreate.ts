@@ -5,16 +5,16 @@ import {
 	type Client,
 	GatewayDispatchEvents,
 	InteractionType,
+	Utils,
 } from "@discordjs/core";
-import { isChatInputApplicationCommandInteraction } from "discord-api-types/utils/v10";
 
 export function registerInteractionCreateListener(client: Client) {
 	client.on(GatewayDispatchEvents.InteractionCreate, async ({ api, data }) => {
 		if (
-			!data.guild_id
+			!Utils.isGuildInteraction(data)
 			|| !GUILD_IDS.includes(data.guild_id)
 			|| data.type !== InteractionType.ApplicationCommand
-			|| !isChatInputApplicationCommandInteraction(data)
+			|| !Utils.isChatInputApplicationCommandInteraction(data)
 		) {
 			return;
 		}

@@ -17,9 +17,6 @@ dependencies:
   colorette:
     specifier: ^2.0.20
     version: 2.0.20
-  discord-api-types:
-    specifier: ^0.37.54
-    version: 0.37.54
   pretty-ms:
     specifier: ^8.0.0
     version: 8.0.0
@@ -617,10 +614,6 @@ packages:
 
   /discord-api-types@0.37.50:
     resolution: {integrity: sha512-X4CDiMnDbA3s3RaUXWXmgAIbY1uxab3fqe3qwzg5XutR3wjqi7M3IkgQbsIBzpqBN2YWr/Qdv7JrFRqSgb4TFg==}
-    dev: false
-
-  /discord-api-types@0.37.54:
-    resolution: {integrity: sha512-xNO6yzEMfpVSVUa6lOOzgLDy3Gyd8yuBAozGQdjpW9VjRq2Ccboz4FhTrd5v4Hw7pbkCKwnHvddjIYrX0INkUQ==}
     dev: false
 
   /dprint@0.40.2:
