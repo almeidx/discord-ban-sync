@@ -26,7 +26,7 @@
 		"colorette": "^2.0.20",
 		"discord-api-types": "^0.37.54",
 		"pretty-ms": "^8.0.0",
-		"tslib": "^2.6.1"
+		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
 		"@node-rs/deno-lint": "^1.17.3",
