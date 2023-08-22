@@ -29,7 +29,7 @@
 	},
 	"devDependencies": {
 		"@node-rs/deno-lint": "^1.17.3",
-		"@types/node": "^20.5.1",
+		"@types/node": "^20.5.2",
 		"dprint": "^0.40.2",
 		"env-cmd": "^10.1.0",
 		"esbuild": "^0.19.2",
