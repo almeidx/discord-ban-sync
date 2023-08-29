@@ -8,8 +8,8 @@
 		"build:check": "tsc --noEmit",
 		"build:write": "rimraf dist && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
 		"fmt": "pnpm format",
-		"format": "dprint fmt && rome check --apply .",
-		"lint": "dprint check && rome check .",
+		"format": "dprint fmt && biome check --apply .",
+		"lint": "dprint check && biome check .",
 		"start": "node --enable-source-maps dist/index.js",
 		"start:env": "env-cmd node --enable-source-maps dist/index.js"
 	},
@@ -28,13 +28,13 @@
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.0.0",
 		"@types/node": "^20.5.7",
 		"dprint": "^0.40.2",
 		"env-cmd": "^10.1.0",
 		"esbuild": "^0.19.2",
 		"rimraf": "^5.0.1",
-		"rome": "^12.1.3",
 		"typescript": "~5.2.2"
 	},
-	"packageManager": "pnpm@8.6.12"
+	"packageManager": "pnpm@8.7.0"
 }
