@@ -29,9 +29,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.1.2",
-		"@types/node": "^20.5.9",
+		"@types/node": "^20.6.0",
 		"dotenv": "^16.3.1",
-		"dprint": "^0.40.2",
+		"dprint": "^0.41.0",
 		"esbuild": "^0.19.2",
 		"rimraf": "^5.0.1",
 		"typescript": "~5.2.2"
