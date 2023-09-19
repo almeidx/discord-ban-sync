@@ -3,21 +3,21 @@
 	"private": true,
 	"author": "Almeida <almeidx@pm.me> (almeidx.dev)",
 	"type": "module",
-	"scripts": {
-		"build": "pnpm build:check && pnpm build:write",
-		"build:check": "tsc --noEmit",
-		"build:write": "rimraf dist && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node18 --format=esm --sourcemap",
-		"fmt": "pnpm format",
-		"format": "dprint fmt && biome check --apply .",
-		"lint": "dprint check && biome check .",
-		"start": "node --enable-source-maps dist/index.js",
-		"start:env": "node -r dotenv/config --enable-source-maps dist/index.js"
-	},
 	"imports": {
 		"#commands/*": "./dist/commands/*",
 		"#listeners/*": "./dist/listeners/*",
 		"#structures/*": "./dist/structures/*",
 		"#utils/*": "./dist/utils/*"
+	},
+	"scripts": {
+		"build": "pnpm build:check && pnpm build:write",
+		"build:check": "tsc --noEmit",
+		"build:write": "rimraf dist && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node20 --format=esm --sourcemap",
+		"fmt": "pnpm format",
+		"format": "dprint fmt && biome check --apply .",
+		"lint": "dprint check && biome check .",
+		"start": "node --enable-source-maps dist/index.js",
+		"start:env": "node --enable-source-maps --env-file=.env dist/index.js"
 	},
 	"dependencies": {
 		"@discordjs/core": "^1.0.1",
@@ -30,11 +30,13 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.2.2",
 		"@types/node": "^20.6.2",
-		"dotenv": "^16.3.1",
 		"dprint": "^0.41.0",
 		"esbuild": "^0.19.3",
 		"rimraf": "^5.0.1",
 		"typescript": "~5.2.2"
 	},
-	"packageManager": "pnpm@8.7.0"
+	"packageManager": "pnpm@8.7.6+sha256.c95869d443ed8fd6b7bb164bb8e89b56cabdc24f3c79b87ef68d8ae1c6b1d0e2",
+	"engines": {
+		"node": "20"
+	}
 }
