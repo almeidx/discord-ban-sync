@@ -30,7 +30,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.2.2",
-		"@types/node": "^20.8.2",
+		"@types/node": "^20.8.4",
 		"dprint": "^0.41.0",
 		"esbuild": "^0.19.4",
 		"typescript": "~5.2.2"
