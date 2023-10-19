@@ -1,10 +1,10 @@
-import { AuditLogEvent, type Client, GatewayDispatchEvents } from "@discordjs/core";
 import type { BanQueue } from "#structures/banQueue.js";
 import { getGuildIdentifier, makeUserInfo } from "#utils/common.js";
 import { GUILD_IDS } from "#utils/env.js";
 import { info } from "#utils/logger.js";
 import { USER_UNBANNED } from "#utils/messages.js";
 import { addRecentUnban, recentlyUnbanned } from "#utils/recentBans.js";
+import { AuditLogEvent, type Client, GatewayDispatchEvents } from "@discordjs/core";
 
 export function registerGuildBanRemoveListener(client: Client, banQueue: BanQueue) {
 	client.on(GatewayDispatchEvents.GuildBanRemove, async ({ api, data }) => {
