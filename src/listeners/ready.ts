@@ -1,6 +1,6 @@
+import { type Client, GatewayDispatchEvents, type RESTPostAPIApplicationCommandsJSONBody } from "@discordjs/core";
 import { info } from "#utils/logger.js";
 import { READY } from "#utils/messages.js";
-import { type Client, GatewayDispatchEvents, type RESTPostAPIApplicationCommandsJSONBody } from "@discordjs/core";
 
 export function registerReadyListener(client: Client) {
 	client.on(GatewayDispatchEvents.Ready, async ({ api, data }) => {

@@ -1,3 +1,5 @@
+import { type API, RESTJSONErrorCodes, type Snowflake } from "@discordjs/core";
+import { DiscordAPIError } from "@discordjs/rest";
 import { ellipsis, getGuildIdentifier } from "#utils/common.js";
 import { DELETE_MESSAGE_SECONDS, GUILD_IDS } from "#utils/env.js";
 import { error, info, warn } from "#utils/logger.js";
@@ -9,8 +11,6 @@ import {
 	UNBAN_REASON,
 } from "#utils/messages.js";
 import { removeRecentBan, removeRecentUnban } from "#utils/recentBans.js";
-import { type API, RESTJSONErrorCodes, type Snowflake } from "@discordjs/core";
-import { DiscordAPIError } from "@discordjs/rest";
 
 const enum BanType {
 	Ban,
