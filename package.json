@@ -21,8 +21,8 @@
 		"start:env": "node --enable-source-maps --env-file=.env dist/index.js"
 	},
 	"dependencies": {
-		"@discordjs/core": "^1.1.0",
-		"@discordjs/rest": "^2.1.0",
+		"@discordjs/core": "^1.1.1",
+		"@discordjs/rest": "^2.2.0",
 		"@discordjs/ws": "^1.0.2",
 		"colorette": "^2.0.20",
 		"pretty-ms": "^8.0.0",
