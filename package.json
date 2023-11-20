@@ -30,9 +30,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.3.3",
-		"@types/node": "^20.9.1",
-		"dprint": "^0.42.5",
-		"esbuild": "^0.19.5",
+		"@types/node": "^20.9.2",
+		"dprint": "^0.43.0",
+		"esbuild": "^0.19.6",
 		"typescript": "~5.2.2"
 	},
 	"packageManager": "pnpm@8.9.2+sha256.8d62573d93061f2722b7b48c9739e96cd4603c3ab153bc81c619dcb9861a214e",
