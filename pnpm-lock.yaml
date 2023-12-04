@@ -29,8 +29,8 @@ devDependencies:
     specifier: ^1.4.1
     version: 1.4.1
   '@types/node':
-    specifier: ^20.10.1
-    version: 20.10.1
+    specifier: ^20.10.3
+    version: 20.10.3
   dprint:
     specifier: ^0.43.2
     version: 0.43.2
@@ -438,15 +438,15 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@types/node@20.10.1:
-    resolution: {integrity: sha512-T2qwhjWwGH81vUEx4EXmBKsTJRXFXNZTL4v0gi01+zyBmCwzE6TyHszqX01m+QHTEq+EZNo13NeJIdEqf+Myrg==}
+  /@types/node@20.10.3:
+    resolution: {integrity: sha512-XJavIpZqiXID5Yxnxv3RUDKTN5b81ddNC3ecsA0SoFXz/QU8OGBwZGMomiq0zw+uuqbL/krztv/DINAQ/EV4gg==}
     dependencies:
       undici-types: 5.26.5
 
   /@types/ws@8.5.9:
     resolution: {integrity: sha512-jbdrY0a8lxfdTp/+r7Z4CkycbOFN8WX+IOchLJr3juT/xzbJ8URyTVSJ/hvNdadTgM1mnedb47n+Y31GsFnQlg==}
     dependencies:
-      '@types/node': 20.10.1
+      '@types/node': 20.10.3
     dev: false
 
   /@vladfrangu/async_event_emitter@2.2.2:
