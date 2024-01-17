@@ -1,3 +1,5 @@
+import { type API, RESTJSONErrorCodes, type Snowflake } from "@discordjs/core";
+import { DiscordAPIError } from "@discordjs/rest";
 import { ellipsis, getGuildIdentifier } from "#utils/common.js";
 import { DELETE_MESSAGE_SECONDS, GUILD_IDS } from "#utils/env.js";
 import { error, info, warn } from "#utils/logger.js";
@@ -9,12 +11,10 @@ import {
 	UNBAN_REASON,
 } from "#utils/messages.js";
 import { removeRecentBan, removeRecentUnban } from "#utils/recentBans.js";
-import { type API, RESTJSONErrorCodes, type Snowflake } from "@discordjs/core";
-import { DiscordAPIError } from "@discordjs/rest";
 
 const enum BanType {
-	Ban,
-	Unban,
+	Ban = 0,
+	Unban = 1,
 }
 
 interface BanInfo {
@@ -115,8 +115,8 @@ export class BanQueue {
 			return true;
 		} catch (error_) {
 			if (
-				error_ instanceof DiscordAPIError
-				&& error_.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded
+				error_ instanceof DiscordAPIError &&
+				error_.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded
 			) {
 				// TODO: Disable ban queue in this guild until the day is over/after one day has passed
 

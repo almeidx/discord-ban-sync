@@ -1,5 +1,5 @@
-import { guilds } from "#utils/guilds.js";
 import type { APIUser, Snowflake } from "@discordjs/core";
+import { guilds } from "#utils/guilds.js";
 
 export enum Time {
 	Second = 1_000,

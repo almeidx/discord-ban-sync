@@ -26,11 +26,10 @@ function prefix(message: any, type: string) {
 }
 
 function formatDate(date: Date) {
-	return (
-		`${date.getFullYear()}-${padNumber(date.getMonth() + 1)}-${padNumber(date.getDate())} ${
-			padNumber(date.getHours())
-		}:${padNumber(date.getMinutes())}:${padNumber(date.getSeconds())}`
-	);
+	const datePart = `${date.getFullYear()}-${padNumber(date.getMonth() + 1)}-${padNumber(date.getDate())}`;
+	const hourPart = `${padNumber(date.getHours())}:${padNumber(date.getMinutes())}:${padNumber(date.getSeconds())}`;
+
+	return `${datePart} ${hourPart}`;
 }
 
 function padNumber(num: number) {

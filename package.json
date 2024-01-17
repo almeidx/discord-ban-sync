@@ -15,8 +15,8 @@
 		"build:clean": "node -e \"require('fs').rmSync('dist', { force: true, recursive: true })\"",
 		"build:write": "pnpm build:clean && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node20 --format=esm --sourcemap",
 		"fmt": "pnpm format",
-		"format": "dprint fmt && biome check --apply .",
-		"lint": "dprint check && biome check .",
+		"format": "biome check --apply .",
+		"lint": "biome check .",
 		"start": "node --enable-source-maps dist/index.js",
 		"start:env": "node --enable-source-maps --env-file=.env dist/index.js"
 	},
@@ -29,13 +29,12 @@
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.4.1",
-		"@types/node": "^20.10.5",
-		"dprint": "^0.44.0",
-		"esbuild": "^0.19.10",
+		"@biomejs/biome": "^1.5.2",
+		"@types/node": "^20.11.5",
+		"esbuild": "^0.19.11",
 		"typescript": "~5.3.3"
 	},
-	"packageManager": "pnpm@8.9.2+sha256.8d62573d93061f2722b7b48c9739e96cd4603c3ab153bc81c619dcb9861a214e",
+	"packageManager": "pnpm@8.14.1+sha256.2df78e65d433d7693b9d3fbdaf431b2d96bb4f96a2ffecd51a50efe16e50a6a8",
 	"engines": {
 		"node": "20"
 	}

@@ -1,3 +1,6 @@
+import { Client, GatewayIntentBits } from "@discordjs/core";
+import { REST } from "@discordjs/rest";
+import { WebSocketManager } from "@discordjs/ws";
 import { registerGuildBanAddListener } from "#listeners/guildBanAdd.js";
 import { registerGuildBanRemoveListener } from "#listeners/guildBanRemove.js";
 import { registerGuildCreateListener } from "#listeners/guildCreate.js";
@@ -7,15 +10,13 @@ import { registerInteractionCreateListener } from "#listeners/interactionCreate.
 import { registerReadyListener } from "#listeners/ready.js";
 import { BanQueue } from "#structures/banQueue.js";
 import { DISCORD_TOKEN } from "#utils/env.js";
-import { Client, GatewayIntentBits } from "@discordjs/core";
-import { REST } from "@discordjs/rest";
-import { WebSocketManager } from "@discordjs/ws";
 
 const rest = new REST().setToken(DISCORD_TOKEN);
 const gateway = new WebSocketManager({
 	rest,
-	intents: GatewayIntentBits.Guilds // GUILD_CREATE, GUILD_DELETE, GUILD_UPDATE
-		| GatewayIntentBits.GuildModeration, // GUILD_BAN_ADD, GUILD_BAN_REMOVE
+	intents:
+		GatewayIntentBits.Guilds | // GUILD_CREATE, GUILD_DELETE, GUILD_UPDATE
+		GatewayIntentBits.GuildModeration, // GUILD_BAN_ADD, GUILD_BAN_REMOVE
 	token: DISCORD_TOKEN,
 });
 
