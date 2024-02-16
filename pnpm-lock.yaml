@@ -29,8 +29,8 @@ devDependencies:
     specifier: ^1.5.3
     version: 1.5.3
   '@types/node':
-    specifier: ^20.11.15
-    version: 20.11.15
+    specifier: ^20.11.19
+    version: 20.11.19
   esbuild:
     specifier: ^0.20.0
     version: 0.20.0
@@ -408,15 +408,15 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@types/node@20.11.15:
-    resolution: {integrity: sha512-gscmuADZfvNULx1eyirVbr3kVOVZtpQtzKMCZpeSZcN6MfbkRXAR4s9/gsQ4CzxLHw6EStDtKLNtSDL3vbq05A==}
+  /@types/node@20.11.19:
+    resolution: {integrity: sha512-7xMnVEcZFu0DikYjWOlRq7NTPETrm7teqUT2WkQjrTIkEgUyyGdWsj/Zg8bEJt5TNklzbPD1X3fqfsHw3SpapQ==}
     dependencies:
       undici-types: 5.26.5
 
   /@types/ws@8.5.9:
     resolution: {integrity: sha512-jbdrY0a8lxfdTp/+r7Z4CkycbOFN8WX+IOchLJr3juT/xzbJ8URyTVSJ/hvNdadTgM1mnedb47n+Y31GsFnQlg==}
     dependencies:
-      '@types/node': 20.11.15
+      '@types/node': 20.11.19
     dev: false
 
   /@vladfrangu/async_event_emitter@2.2.2:
