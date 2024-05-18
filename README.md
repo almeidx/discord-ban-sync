@@ -28,6 +28,7 @@ This setup assumes you have [Git], and [Node.js] setup on your machine. This pro
 
 - `git clone git@github.com:almeidx/discord-ban-sync.git`
 - `cd discord-ban-sync`
+- `corepack install`
 - `pnpm i`
 
 Note: If you don't have corepack enabled, you can do it with `corepack enable`.
