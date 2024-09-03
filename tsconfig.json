@@ -1,48 +1,18 @@
 {
+	"extends": ["@tsconfig/node22/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
 	"compilerOptions": {
-		// Type Checking
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"exactOptionalPropertyTypes": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strict": true,
-		"useUnknownInCatchVariables": true,
-		"noUncheckedIndexedAccess": true,
-
-		// Modules
+		"checkJs": false,
 		"module": "ESNext",
-		"moduleResolution": "Node",
-		// "resolveJsonModule": true,
-		"verbatimModuleSyntax": true,
-
-		// Emit
-		"importHelpers": true,
-		"inlineSources": true,
-		"newLine": "lf",
-		"noEmitHelpers": true,
+		"moduleResolution": "Bundler",
+		"noEmit": true,
+		"noPropertyAccessFromIndexSignature": false,
 		"outDir": "dist",
-		"preserveConstEnums": true,
-		"removeComments": true,
-		"sourceMap": true,
-		"esModuleInterop": true,
-
-		// Language and Environment
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"lib": ["ESNext"],
-		"target": "ES2022",
-		"skipLibCheck": true,
-		"useDefineForClassFields": true,
-
 		"paths": {
 			"#commands/*": ["./src/commands/*"],
 			"#listeners/*": ["./src/listeners/*"],
 			"#structures/*": ["./src/structures/*"],
 			"#utils/*": ["./src/utils/*"]
-		}
+		},
+		"resolveJsonModule": true
 	}
 }
