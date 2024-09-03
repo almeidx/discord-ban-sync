@@ -22,15 +22,15 @@
 	},
 	"dependencies": {
 		"@discordjs/core": "^1.2.0",
-		"@discordjs/rest": "^2.3.0",
+		"@discordjs/rest": "^2.4.0",
 		"@discordjs/ws": "^1.1.1",
 		"colorette": "^2.0.20",
 		"pretty-ms": "^9.1.0",
-		"tslib": "^2.6.3"
+		"tslib": "^2.7.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
-		"@types/node": "^22.4.1",
+		"@types/node": "^22.5.2",
 		"esbuild": "^0.23.1",
 		"typescript": "~5.5.4"
 	},
