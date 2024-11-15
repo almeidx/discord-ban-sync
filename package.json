@@ -23,7 +23,7 @@
 		"@discordjs/core": "^2.0.0",
 		"@discordjs/rest": "^2.4.0",
 		"@discordjs/ws": "^2.0.0",
-		"pretty-ms": "^9.1.0"
+		"pretty-ms": "^9.2.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
