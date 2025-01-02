@@ -20,16 +20,16 @@
 		"start:env": "node --enable-source-maps --env-file=.env dist/index.js"
 	},
 	"dependencies": {
-		"@discordjs/core": "^2.0.0",
-		"@discordjs/rest": "^2.4.0",
-		"@discordjs/ws": "^2.0.0",
+		"@discordjs/core": "^2.0.1",
+		"@discordjs/rest": "^2.4.2",
+		"@discordjs/ws": "^2.0.1",
 		"pretty-ms": "^9.2.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@tsconfig/node22": "^22.0.0",
 		"@tsconfig/strictest": "^2.0.5",
-		"@types/node": "^22.10.2",
+		"@types/node": "^22.10.3",
 		"esbuild": "^0.24.2",
 		"typescript": "~5.7.2"
 	},
