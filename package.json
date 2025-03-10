@@ -29,8 +29,8 @@
 		"@biomejs/biome": "^1.9.4",
 		"@tsconfig/node22": "^22.0.0",
 		"@tsconfig/strictest": "^2.0.5",
-		"@types/node": "^22.13.8",
-		"esbuild": "^0.25.0",
+		"@types/node": "^22.13.10",
+		"esbuild": "^0.25.1",
 		"typescript": "~5.8.2"
 	},
 	"packageManager": "pnpm@9.12.3",
