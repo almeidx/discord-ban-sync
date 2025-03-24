@@ -12,8 +12,9 @@ updates:
           - patch
       discordjs:
         patterns:
-          - discord-api-types
           - "@discordjs/*"
+        update-types:
+          - major
 
   - package-ecosystem: github-actions
     directory: /
