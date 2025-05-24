@@ -1,10 +1,10 @@
 import { type Client, GatewayDispatchEvents } from "@discordjs/core";
-import type { BanQueue } from "#structures/banQueue.js";
-import { getGuildIdentifier, makeUserInfo } from "#utils/common.js";
-import { GUILD_IDS } from "#utils/env.js";
-import { info } from "#utils/logger.js";
-import { USER_BANNED } from "#utils/messages.js";
-import { addRecentBan, recentlyBanned } from "#utils/recentBans.js";
+import type { BanQueue } from "#structures/banQueue.ts";
+import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
+import { GUILD_IDS } from "#utils/env.ts";
+import { info } from "#utils/logger.ts";
+import { USER_BANNED } from "#utils/messages.ts";
+import { addRecentBan, recentlyBanned } from "#utils/recentBans.ts";
 
 export function registerGuildBanAddListener(client: Client, banQueue: BanQueue) {
 	client.on(GatewayDispatchEvents.GuildBanAdd, async ({ api, data }) => {

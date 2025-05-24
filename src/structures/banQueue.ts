@@ -1,21 +1,23 @@
 import { type API, RESTJSONErrorCodes, type Snowflake } from "@discordjs/core";
 import { DiscordAPIError } from "@discordjs/rest";
-import { ellipsis, getGuildIdentifier } from "#utils/common.js";
-import { DELETE_MESSAGE_SECONDS, GUILD_IDS } from "#utils/env.js";
-import { error, info, warn } from "#utils/logger.js";
+import { ellipsis, getGuildIdentifier } from "#utils/common.ts";
+import { DELETE_MESSAGE_SECONDS, GUILD_IDS } from "#utils/env.ts";
+import { error, info, warn } from "#utils/logger.ts";
 import {
 	BAN_NO_REASON,
 	BAN_REASON,
 	MAX_NON_MEMBER_BANS_REACHED,
 	UNBAN_NO_REASON,
 	UNBAN_REASON,
-} from "#utils/messages.js";
-import { removeRecentBan, removeRecentUnban } from "#utils/recentBans.js";
+} from "#utils/messages.ts";
+import { removeRecentBan, removeRecentUnban } from "#utils/recentBans.ts";
 
-const enum BanType {
-	Ban = 0,
-	Unban = 1,
-}
+const BanType = {
+	Ban: 0,
+	Unban: 1,
+} as const;
+
+type BanType = (typeof BanType)[keyof typeof BanType];
 
 interface BanInfo {
 	guildId: Snowflake;
@@ -29,7 +31,11 @@ export class BanQueue {
 
 	readonly #queue: BanInfo[] = [];
 
-	public constructor(private readonly api: API) {}
+	#api: API;
+
+	public constructor(api: API) {
+		this.#api = api;
+	}
 
 	public queueBan(guildId: Snowflake, userId: Snowflake, reason: string | null | undefined): void {
 		this.#queue.push({ guildId, userId, reason, type: BanType.Ban });
@@ -110,7 +116,7 @@ export class BanQueue {
 
 	async #banUser(guildId: Snowflake, userId: Snowflake, reason: string): Promise<boolean> {
 		try {
-			await this.api.guilds.banUser(guildId, userId, { delete_message_seconds: DELETE_MESSAGE_SECONDS }, { reason });
+			await this.#api.guilds.banUser(guildId, userId, { delete_message_seconds: DELETE_MESSAGE_SECONDS }, { reason });
 
 			return true;
 		} catch (error_) {
@@ -130,7 +136,7 @@ export class BanQueue {
 
 	async #unbanUser(guildId: Snowflake, userId: Snowflake, reason: string): Promise<boolean> {
 		try {
-			await this.api.guilds.unbanUser(guildId, userId, { reason });
+			await this.#api.guilds.unbanUser(guildId, userId, { reason });
 
 			return true;
 		} catch (error_) {

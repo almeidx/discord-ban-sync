@@ -1,6 +1,6 @@
 import { type API, type APIChatInputApplicationCommandGuildInteraction, MessageFlags } from "@discordjs/core";
 import ms from "pretty-ms";
-import { getTimestampFromSnowflake } from "#utils/common.js";
+import { getTimestampFromSnowflake } from "#utils/common.ts";
 
 export async function pingCommandInteraction(
 	api: API,

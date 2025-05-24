@@ -5,8 +5,8 @@ import {
 	InteractionType,
 	Utils,
 } from "@discordjs/core";
-import { pingCommandInteraction } from "#commands/ping.js";
-import { GUILD_IDS } from "#utils/env.js";
+import { pingCommandInteraction } from "#commands/ping.ts";
+import { GUILD_IDS } from "#utils/env.ts";
 
 export function registerInteractionCreateListener(client: Client) {
 	client.on(GatewayDispatchEvents.InteractionCreate, async ({ api, data }) => {

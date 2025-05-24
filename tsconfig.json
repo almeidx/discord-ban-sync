@@ -1,18 +1,14 @@
 {
-	"extends": ["@tsconfig/node22/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
 	"compilerOptions": {
 		"checkJs": false,
+		"erasableSyntaxOnly": true,
+		"libReplacement": false,
 		"module": "ESNext",
 		"moduleResolution": "Bundler",
 		"noEmit": true,
 		"noPropertyAccessFromIndexSignature": false,
-		"outDir": "dist",
-		"paths": {
-			"#commands/*": ["./src/commands/*"],
-			"#listeners/*": ["./src/listeners/*"],
-			"#structures/*": ["./src/structures/*"],
-			"#utils/*": ["./src/utils/*"]
-		},
-		"resolveJsonModule": true
-	}
+		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true
+	},
+	"extends": ["@tsconfig/node24/tsconfig.json", "@tsconfig/strictest/tsconfig.json"]
 }

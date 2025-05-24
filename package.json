@@ -4,20 +4,16 @@
 	"author": "Almeida <contact@almeidx.dev> (almeidx.dev)",
 	"type": "module",
 	"imports": {
-		"#commands/*": "./dist/commands/*",
-		"#listeners/*": "./dist/listeners/*",
-		"#structures/*": "./dist/structures/*",
-		"#utils/*": "./dist/utils/*"
+		"#commands/*": "./src/commands/*",
+		"#listeners/*": "./src/listeners/*",
+		"#structures/*": "./src/structures/*",
+		"#utils/*": "./src/utils/*"
 	},
 	"scripts": {
-		"build": "pnpm build:check && pnpm build:write",
-		"build:check": "tsc --noEmit",
-		"build:clean": "node -e \"require('fs').rmSync('dist', { force: true, recursive: true })\"",
-		"build:write": "pnpm build:clean && esbuild \"src/**/*.ts\" --outdir=dist --platform=node --target=node20.17 --format=esm --sourcemap",
+		"build": "tsc",
 		"fmt": "biome check --write",
 		"lint": "biome check",
-		"start": "node --enable-source-maps dist/index.js",
-		"start:env": "node --enable-source-maps --env-file=.env dist/index.js"
+		"start": "node --env-file=.env src/index.ts"
 	},
 	"dependencies": {
 		"@discordjs/core": "^2.1.0",
@@ -27,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@tsconfig/node22": "^22.0.2",
+		"@tsconfig/node24": "^24.0.1",
 		"@tsconfig/strictest": "^2.0.5",
 		"@types/node": "^22.15.21",
 		"esbuild": "^0.25.4",
@@ -35,6 +31,9 @@
 	},
 	"packageManager": "pnpm@10.11.0",
 	"engines": {
-		"node": ">=20.19.2"
+		"node": ">=24.1.0"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
 	}
 }

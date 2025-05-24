@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { env } from "node:process";
 
-assert(typeof env.DISCORD_TOKEN === "string", "DISCORD_TOKEN must be set");
-assert(typeof env.GUILD_IDS === "string", "GUILD_IDS must be set");
+assert(typeof env.DISCORD_TOKEN === "string" && env.DISCORD_TOKEN, "DISCORD_TOKEN must be set");
+assert(typeof env.GUILD_IDS === "string" && env.GUILD_IDS, "GUILD_IDS must be set");
 assert(
 	typeof env.DELETE_MESSAGE_SECONDS === "string" || typeof env.DELETE_MESSAGE_DAYS === "string",
 	"DELETE_MESSAGE_SECONDS must be set",

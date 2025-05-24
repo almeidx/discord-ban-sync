@@ -15,13 +15,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
-          node-version-file: .nvmrc
+          node-version-file: .node-version
 
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: pnpm lint
+        run: node --run lint
 
       - name: Build
-        run: pnpm build
+        run: node --run build

@@ -1,12 +1,14 @@
 import type { APIUser, Snowflake } from "@discordjs/core";
-import { guilds } from "#utils/guilds.js";
+import { guilds } from "#utils/guilds.ts";
 
-export enum Time {
-	Second = 1_000,
-	Minute = Second * 1_000,
-	Hour = Minute * 60,
-	Day = Hour * 24,
-}
+export const Time = {
+	Second: 1_000,
+	Minute: 1_000 * 60,
+	Hour: 1_000 * 60 * 60,
+	Day: 1_000 * 60 * 60 * 24,
+} as const;
+
+export type Time = (typeof Time)[keyof typeof Time];
 
 /**
  * Returns a string representation of a user's information.

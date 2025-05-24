@@ -1,71 +1,108 @@
 # Discord Ban Sync
 
+A Discord bot that automatically synchronizes bans between multiple Discord servers, ensuring consistent moderation across your server network.
+
 ## Table of Contents
 
-- [Discord Ban Sync](#discord-ban-sync)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Local setup](#local-setup)
-      - [Cloning repository](#cloning-repository)
-      - [Setting up the env variables locally](#setting-up-the-env-variables-locally)
-      - [Running the bot locally](#running-the-bot-locally)
-      - [Updating the bot](#updating-the-bot)
-    - [Author](#author)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Cloning Repository](#cloning-repository)
+  - [Environment Setup](#environment-setup)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [Running with Docker](#running-with-docker)
+  - [Running Locally](#running-locally)
+- [Updating](#updating)
+- [Author](#author)
 
----
+## Features
 
-## Overview
+- ⚡ Real-time ban updates across your Discord servers
+- 🔒 Secure and reliable ban management
+- 🛠️ Easy setup and configuration
 
-This repository houses a bot that automatically synchronizes bans between multiple Discord servers.
+## Prerequisites
 
----
+Before you begin, ensure you have the following installed:
+- [Git]
+- [Node.js] (v24.1.0 or higher)
+- [pnpm] (v10.11.0 or higher)
+- [Docker] (optional, for containerized deployment)
+- [PM2] (optional, for process management)
 
-### Local setup
+## Installation
 
-This setup assumes you have [Git], and [Node.js] setup on your machine. This project requires [Node.js] version 20.17.0
-or higher, and uses the [pnpm] package manager, so you should have basic knowledge about how to use them.
+### Cloning Repository
 
-#### Cloning repository
+This assumes you already have Corepack enabled on your system. If you don't, you can enable it using `corepack enable`,
+as it comes preinstalled with [Node.js].
 
-- `git clone git@github.com:almeidx/discord-ban-sync.git`
-- `cd discord-ban-sync`
-- `corepack install`
-- `pnpm i`
+```bash
+git clone git@github.com:almeidx/discord-ban-sync.git
+cd discord-ban-sync
+```
 
-Note: If you don't have corepack enabled, you can do it with `corepack enable`.
+### Environment Setup
 
-#### Setting up the env variables locally
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
 
-- `cp .env.example .env`
-- Fill out the variables in the .env file
+2. Configure your environment variables in the `.env` file
 
-The guild ids should be comma separated, e.g. `GUILD_IDS=493351982887862283,513338222810497041`
+## Configuration
 
-#### Running the bot locally
+| Variable                 | Description                                                                | Example                                 | Required |
+|--------------------------|----------------------------------------------------------------------------|-----------------------------------------|----------|
+| `DISCORD_TOKEN`          | Your Discord bot token                                                     | `your-bot-token-here`                   | Yes      |
+| `GUILD_IDS`              | Comma-separated list of server IDs                                         | `123456789012345678,123456789012345678` | Yes      |
+| `DELETE_MESSAGE_SECONDS` | Amount of seconds of messages to delete from users when banning (0-604800) | `604800` (7 days)                       | No       |
 
-- `pnpm build`
+## Usage
 
-Then:
+### Running with Docker
 
-- if you're using pm2, you can use:
-  - `pm2 start ecosystem.config.cjs`
+```bash
+docker compose up -d
+```
 
-- if your environment variables are stored on the .env file, you can use:
-  - `pnpm start:env`
+### Running locally
 
-- otherwise, use:
-  - `pnpm start`
+First off, setup the environment:
 
-To check if the bot is working, you can run the `/ping` slash command.
+If you don't have Corepack enabled, you can do it using `corepack enable`, as it comes preinstall with [Node.js].
 
-#### Updating the bot
+```bash
+corepack install
+pnpm install --frozen-lockfile
+```
 
-- `git pull`
-- `pnpm i`
-- `pnpm build`
-- Refer to [Running the bot locally] to run the bot again
+#### Directly
 
----
+```bash
+node --run start
+```
+
+#### PM2
+
+```bash
+pm2 start ecosystem.config.cjs
+```
+
+To verify the bot is working, use the `/ping` slash command in your Discord server.
+
+## Updating
+
+To update the bot to the latest version:
+
+```bash
+git pull --rebase
+pnpm install --frozen-lockfile
+```
+
+Then restart the bot using your preferred method (local, Docker, or PM2).
 
 ### Author
 
@@ -76,6 +113,8 @@ To check if the bot is working, you can run the `/ping` slash command.
 [git]: https://git-scm.com/
 [node.js]: https://nodejs.org
 [pnpm]: https://pnpm.io/
+[docker]: https://www.docker.com/
+[pm2]: https://pm2.keymetrics.io/
 [apache 2.0]: https://github.com/almeidx/discord-ban-sync/blob/main/LICENSE
 [almeidx]: https://almeidx.dev
 [@almeidx]: https://github.com/almeidx

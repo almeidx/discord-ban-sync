@@ -1,0 +1,10 @@
+services:
+  discord-ban-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      DISCORD_TOKEN: ${DISCORD_TOKEN:?DISCORD_TOKEN environment variable is required}
+      GUILD_IDS: ${GUILD_IDS:?GUILD_IDS environment variable is required}
+      DELETE_MESSAGE_SECONDS: ${DELETE_MESSAGE_SECONDS:0}

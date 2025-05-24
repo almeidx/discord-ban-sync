@@ -8,5 +8,6 @@
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 	"typescript.preferences.importModuleSpecifierEnding": "js",
 	"typescript.preferences.includePackageJsonAutoImports": "on",
-	"cSpell.words": ["colorette"]
+	"cSpell.words": ["colorette"],
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

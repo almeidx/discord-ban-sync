@@ -1,6 +1,6 @@
 import { type Client, GatewayDispatchEvents } from "@discordjs/core";
-import { GUILD_IDS } from "#utils/env.js";
-import { guilds } from "#utils/guilds.js";
+import { GUILD_IDS } from "#utils/env.ts";
+import { guilds } from "#utils/guilds.ts";
 
 export function registerGuildCreateListener(client: Client) {
 	client.on(GatewayDispatchEvents.GuildCreate, ({ data }) => {

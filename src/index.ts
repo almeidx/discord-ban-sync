@@ -1,15 +1,15 @@
 import { Client, GatewayIntentBits } from "@discordjs/core";
 import { REST } from "@discordjs/rest";
 import { WebSocketManager } from "@discordjs/ws";
-import { registerGuildBanAddListener } from "#listeners/guildBanAdd.js";
-import { registerGuildBanRemoveListener } from "#listeners/guildBanRemove.js";
-import { registerGuildCreateListener } from "#listeners/guildCreate.js";
-import { registerGuildDeleteListener } from "#listeners/guildDelete.js";
-import { registerGuildUpdateListener } from "#listeners/guildUpdate.js";
-import { registerInteractionCreateListener } from "#listeners/interactionCreate.js";
-import { registerReadyListener } from "#listeners/ready.js";
-import { BanQueue } from "#structures/banQueue.js";
-import { DISCORD_TOKEN } from "#utils/env.js";
+import { registerGuildBanAddListener } from "#listeners/guildBanAdd.ts";
+import { registerGuildBanRemoveListener } from "#listeners/guildBanRemove.ts";
+import { registerGuildCreateListener } from "#listeners/guildCreate.ts";
+import { registerGuildDeleteListener } from "#listeners/guildDelete.ts";
+import { registerGuildUpdateListener } from "#listeners/guildUpdate.ts";
+import { registerInteractionCreateListener } from "#listeners/interactionCreate.ts";
+import { registerReadyListener } from "#listeners/ready.ts";
+import { BanQueue } from "#structures/banQueue.ts";
+import { DISCORD_TOKEN } from "#utils/env.ts";
 
 const rest = new REST().setToken(DISCORD_TOKEN);
 const gateway = new WebSocketManager({
