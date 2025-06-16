@@ -63,8 +63,58 @@ cp .env.example .env
 
 ### Running with Docker
 
+The easiest way to run the bot is using Docker. You have two options:
+
+#### Option 1: Using Docker Compose
+
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+2. Configure your environment variables in the `.env` file
+
+3. Start the bot:
 ```bash
 docker compose up -d
+```
+
+4. View logs:
+```bash
+docker compose logs -f
+```
+
+5. Stop the bot:
+```bash
+docker compose down
+```
+
+#### Option 2: Using Docker directly
+
+1. Pull the latest image:
+```bash
+docker pull ghcr.io/almeidx/discord-ban-sync:latest
+```
+
+2. Run the container with environment variables:
+```bash
+docker run -d \
+  --name discord-ban-sync \
+  -e DISCORD_TOKEN=your-bot-token-here \
+  -e GUILD_IDS=123456789012345678,987654321098765432 \
+  -e DELETE_MESSAGE_SECONDS=604800 \ # Optional
+  ghcr.io/almeidx/discord-ban-sync:latest
+```
+
+3. View logs:
+```bash
+docker logs -f discord-ban-sync
+```
+
+4. Stop the container:
+```bash
+docker stop discord-ban-sync
+docker rm discord-ban-sync
 ```
 
 ### Running locally
