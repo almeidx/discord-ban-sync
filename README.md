@@ -51,13 +51,12 @@ cp .env.example .env
 ```
 
 2. Configure your environment variables in the `.env` file
-
 ## Configuration
 
 | Variable                 | Description                                                                | Example                                 | Required |
 |--------------------------|----------------------------------------------------------------------------|-----------------------------------------|----------|
 | `DISCORD_TOKEN`          | Your Discord bot token                                                     | `your-bot-token-here`                   | Yes      |
-| `GUILD_IDS`              | Comma-separated list of server IDs                                         | `123456789012345678,123456789012345678` | Yes      |
+| `GUILD_IDS`              | Comma/Newline-separated list of server IDs                                 | `123456789012345678,123456789012345678` | Yes      |
 | `DELETE_MESSAGE_SECONDS` | Amount of seconds of messages to delete from users when banning (0-604800) | `604800` (7 days)                       | No       |
 
 ## Usage

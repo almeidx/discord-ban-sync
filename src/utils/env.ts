@@ -10,7 +10,9 @@ assert(
 
 export const DISCORD_TOKEN = env.DISCORD_TOKEN;
 
-export const GUILD_IDS = env.GUILD_IDS.replaceAll(" ", "").split(",");
+export const GUILD_IDS = env.GUILD_IDS.replaceAll(" ", "")
+	.split(/,|\n/)
+	.filter((id) => id.trim() !== "");
 
 export const DELETE_MESSAGE_SECONDS = Number(
 	env.DELETE_MESSAGE_SECONDS ?? (env.DELETE_MESSAGE_DAYS && Number(env.DELETE_MESSAGE_DAYS) * 24 * 60 * 60),
