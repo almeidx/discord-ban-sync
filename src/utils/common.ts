@@ -2,10 +2,10 @@ import type { APIUser, Snowflake } from "@discordjs/core";
 import { guilds } from "#utils/guilds.ts";
 
 export const Time = {
-	Second: 1_000,
-	Minute: 1_000 * 60,
-	Hour: 1_000 * 60 * 60,
 	Day: 1_000 * 60 * 60 * 24,
+	Hour: 1_000 * 60 * 60,
+	Minute: 1_000 * 60,
+	Second: 1_000,
 } as const;
 
 export type Time = (typeof Time)[keyof typeof Time];

@@ -8,8 +8,8 @@ export function registerReadyListener(client: Client) {
 
 		const commands = [
 			{
-				name: "ping",
 				description: "Checks the bots ping to the Discord servers",
+				name: "ping",
 			},
 		] satisfies RESTPostAPIApplicationCommandsJSONBody[];
 

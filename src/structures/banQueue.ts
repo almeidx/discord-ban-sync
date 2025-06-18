@@ -38,13 +38,13 @@ export class BanQueue {
 	}
 
 	public queueBan(guildId: Snowflake, userId: Snowflake, reason: string | null | undefined): void {
-		this.#queue.push({ guildId, userId, reason, type: BanType.Ban });
+		this.#queue.push({ guildId, reason, type: BanType.Ban, userId });
 
 		void this.#processQueue();
 	}
 
 	public queueUnban(guildId: Snowflake, userId: Snowflake, reason: string | null | undefined): void {
-		this.#queue.push({ guildId, userId, reason, type: BanType.Unban });
+		this.#queue.push({ guildId, reason, type: BanType.Unban, userId });
 
 		void this.#processQueue();
 	}

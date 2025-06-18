@@ -13,10 +13,10 @@ import { DISCORD_TOKEN } from "#utils/env.ts";
 
 const rest = new REST().setToken(DISCORD_TOKEN);
 const gateway = new WebSocketManager({
-	rest,
 	intents:
 		GatewayIntentBits.Guilds | // GUILD_CREATE, GUILD_DELETE, GUILD_UPDATE
 		GatewayIntentBits.GuildModeration, // GUILD_BAN_ADD, GUILD_BAN_REMOVE
+	rest,
 	token: DISCORD_TOKEN,
 });
 

@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"allowImportingTsExtensions": true,
 		"checkJs": false,
 		"erasableSyntaxOnly": true,
 		"libReplacement": false,
@@ -7,8 +8,7 @@
 		"moduleResolution": "Bundler",
 		"noEmit": true,
 		"noPropertyAccessFromIndexSignature": false,
-		"resolveJsonModule": true,
-		"allowImportingTsExtensions": true
+		"resolveJsonModule": true
 	},
 	"extends": ["@tsconfig/node24/tsconfig.json", "@tsconfig/strictest/tsconfig.json"]
 }

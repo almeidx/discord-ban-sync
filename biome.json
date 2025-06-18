@@ -2,10 +2,14 @@
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"assist": {
 		"actions": {
+			"recommended": true,
 			"source": {
-				"organizeImports": "on"
+				"useSortedAttributes": "on",
+				"useSortedKeys": "on",
+				"useSortedProperties": "on"
 			}
-		}
+		},
+		"enabled": true
 	},
 	"files": {
 		"ignoreUnknown": true,
@@ -51,5 +55,13 @@
 				"noMisrefactoredShorthandAssign": "error"
 			}
 		}
-	}
+	},
+	"overrides": [
+		{
+			"assist": {
+				"enabled": false
+			},
+			"includes": ["package.json"]
+		}
+	]
 }
