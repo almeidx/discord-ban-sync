@@ -1,21 +1,48 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
 	"files": {
-		"ignore": ["node_modules/*", "dist/*", "pnpm-lock.yaml"],
-		"ignoreUnknown": true
+		"ignoreUnknown": true,
+		"includes": ["**", "!**/node_modules/**/*", "!**/dist/**/*", "!**/pnpm-lock.yaml"]
+	},
+	"formatter": {
+		"lineWidth": 120
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
+			"complexity": {
+				"noCommaOperator": "off"
+			},
 			"recommended": true,
 			"style": {
-				"noCommaOperator": "off",
+				"noInferrableTypes": "error",
 				"noNamespace": "error",
 				"noNegationElse": "error",
 				"noNonNullAssertion": "off",
+				"noParameterAssign": "error",
+				"noUnusedTemplateLiteral": "error",
+				"noUselessElse": "error",
+				"useAsConstAssertion": "error",
 				"useCollapsedElseIf": "error",
-				"useShorthandArrayType": "error",
-				"useShorthandAssign": "error"
+				"useConsistentArrayType": {
+					"level": "error",
+					"options": {
+						"syntax": "shorthand"
+					}
+				},
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useNumberNamespace": "error",
+				"useSelfClosingElements": "error",
+				"useShorthandAssign": "error",
+				"useSingleVarDeclarator": "error"
 			},
 			"suspicious": {
 				"noApproximativeNumericConstant": "error",
@@ -24,11 +51,5 @@
 				"noMisrefactoredShorthandAssign": "error"
 			}
 		}
-	},
-	"formatter": {
-		"lineWidth": 120
-	},
-	"organizeImports": {
-		"enabled": true
 	}
 }
