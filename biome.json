@@ -4,21 +4,22 @@
 		"actions": {
 			"recommended": true,
 			"source": {
-				"useSortedAttributes": "on",
-				"useSortedKeys": "on",
-				"useSortedProperties": "on"
+				"useSortedKeys": "on"
 			}
 		},
 		"enabled": true
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["**", "!**/node_modules/**/*", "!**/dist/**/*", "!**/pnpm-lock.yaml"]
+		"includes": ["**", "!**/pnpm-lock.yaml"]
 	},
 	"formatter": {
 		"lineWidth": 120
 	},
 	"linter": {
+		"domains": {
+			"project": "recommended"
+		},
 		"enabled": true,
 		"rules": {
 			"complexity": {
@@ -35,12 +36,7 @@
 				"noUselessElse": "error",
 				"useAsConstAssertion": "error",
 				"useCollapsedElseIf": "error",
-				"useConsistentArrayType": {
-					"level": "error",
-					"options": {
-						"syntax": "shorthand"
-					}
-				},
+				"useConsistentArrayType": "error",
 				"useDefaultParameterLast": "error",
 				"useEnumInitializers": "error",
 				"useNumberNamespace": "error",
@@ -63,5 +59,10 @@
 			},
 			"includes": ["package.json"]
 		}
-	]
+	],
+	"vcs": {
+		"clientKind": "git",
+		"enabled": true,
+		"useIgnoreFile": true
+	}
 }
