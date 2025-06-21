@@ -4,9 +4,7 @@
 		"actions": {
 			"recommended": true,
 			"source": {
-				"useSortedAttributes": "on",
-				"useSortedKeys": "on",
-				"useSortedProperties": "on"
+				"useSortedKeys": "on"
 			}
 		},
 		"enabled": true
