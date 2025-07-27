@@ -136,8 +136,8 @@ packages:
     resolution: {integrity: sha512-RaI5qZo6D2CVS6sTHFKg1v5Ohq/+Bo2LZ5gzUEwZ/WkHhwtGTCB/sVLw8ijOkAUxasZ+WshN/Rzj4ywsABJ5ZA==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
-  discord-api-types@0.38.16:
-    resolution: {integrity: sha512-Cz42dC5WqJD17Yk0bRy7YLTJmh3NKo4FGpxZuA8MHqT0RPxKSrll5YhlODZ2z5DiEV/gpHMeTSrTFTWpSXjT1Q==}
+  discord-api-types@0.38.17:
+    resolution: {integrity: sha512-/fCx5jdUoR2hBFcj77Qx7Tmx1Ub8V/QpyS6uorjFvxRLcJJ348QxMFml9QW/eXh3i46eO4Ve8qGVepStpInEPg==}
 
   magic-bytes.js@1.12.1:
     resolution: {integrity: sha512-ThQLOhN86ZkJ7qemtVRGYM+gRgR8GEXNli9H/PMvpnZsE44Xfh3wx9kGJaldg314v85m+bFW6WBMaVHJc/c3zA==}
@@ -223,7 +223,7 @@ snapshots:
       '@discordjs/ws': 2.0.3
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.6
-      discord-api-types: 0.38.16
+      discord-api-types: 0.38.17
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -235,7 +235,7 @@ snapshots:
       '@sapphire/async-queue': 1.5.5
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.6
-      discord-api-types: 0.38.16
+      discord-api-types: 0.38.17
       magic-bytes.js: 1.12.1
       tslib: 2.8.1
       undici: 6.21.3
@@ -250,7 +250,7 @@ snapshots:
       '@sapphire/async-queue': 1.5.5
       '@types/ws': 8.18.1
       '@vladfrangu/async_event_emitter': 2.4.6
-      discord-api-types: 0.38.16
+      discord-api-types: 0.38.17
       tslib: 2.8.1
       ws: 8.18.3
     transitivePeerDependencies:
@@ -275,7 +275,7 @@ snapshots:
 
   '@vladfrangu/async_event_emitter@2.4.6': {}
 
-  discord-api-types@0.38.16: {}
+  discord-api-types@0.38.17: {}
 
   magic-bytes.js@1.12.1: {}
 
