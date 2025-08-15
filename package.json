@@ -25,12 +25,12 @@
 		"@biomejs/biome": "^2.2.0",
 		"@tsconfig/node24": "^24.0.1",
 		"@tsconfig/strictest": "^2.0.5",
-		"@types/node": "^22.17.1",
+		"@types/node": "^22.17.2",
 		"typescript": "~5.9.2"
 	},
 	"packageManager": "pnpm@10.14.0",
 	"engines": {
-		"node": ">=24.5.0"
+		"node": ">=24.6.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
