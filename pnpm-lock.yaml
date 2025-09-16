@@ -18,8 +18,8 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       pretty-ms:
-        specifier: ^9.2.0
-        version: 9.2.0
+        specifier: ^9.3.0
+        version: 9.3.0
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.2.4
@@ -31,8 +31,8 @@ importers:
         specifier: ^2.0.5
         version: 2.0.5
       '@types/node':
-        specifier: ^24.4.0
-        version: 24.4.0
+        specifier: ^24.5.0
+        version: 24.5.0
       typescript:
         specifier: ~5.9.2
         version: 5.9.2
@@ -126,8 +126,8 @@ packages:
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
 
-  '@types/node@24.4.0':
-    resolution: {integrity: sha512-gUuVEAK4/u6F9wRLznPUU4WGUacSEBDPoC2TrBkw3GAnOLHBL45QdfHOXp1kJ4ypBGLxTOB+t7NJLpKoC3gznQ==}
+  '@types/node@24.5.0':
+    resolution: {integrity: sha512-y1dMvuvJspJiPSDZUQ+WMBvF7dpnEqN4x9DDC9ie5Fs/HUZJA3wFp7EhHoVaKX/iI0cRoECV8X2jL8zi0xrHCg==}
 
   '@types/ws@8.18.1':
     resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
@@ -146,8 +146,8 @@ packages:
     resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
     engines: {node: '>=18'}
 
-  pretty-ms@9.2.0:
-    resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
+  pretty-ms@9.3.0:
+    resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
     engines: {node: '>=18'}
 
   tslib@2.8.1:
@@ -158,8 +158,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@7.11.0:
-    resolution: {integrity: sha512-kt1ZriHTi7MU+Z/r9DOdAI3ONdaR3M3csEaRc6ewa4f4dTvX4cQCbJ4NkEn0ohE4hHtq85+PhPSTY+pO/1PwgA==}
+  undici-types@7.12.0:
+    resolution: {integrity: sha512-goOacqME2GYyOZZfb5Lgtu+1IDmAlAEu5xnD3+xTzS10hT0vzpf0SPjkXwAw9Jm+4n/mQGDP3LO8CPbYROeBfQ==}
 
   undici@6.21.3:
     resolution: {integrity: sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==}
@@ -265,13 +265,13 @@ snapshots:
 
   '@tsconfig/strictest@2.0.5': {}
 
-  '@types/node@24.4.0':
+  '@types/node@24.5.0':
     dependencies:
-      undici-types: 7.11.0
+      undici-types: 7.12.0
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 24.4.0
+      '@types/node': 24.5.0
 
   '@vladfrangu/async_event_emitter@2.4.6': {}
 
@@ -281,7 +281,7 @@ snapshots:
 
   parse-ms@4.0.0: {}
 
-  pretty-ms@9.2.0:
+  pretty-ms@9.3.0:
     dependencies:
       parse-ms: 4.0.0
 
@@ -289,7 +289,7 @@ snapshots:
 
   typescript@5.9.2: {}
 
-  undici-types@7.11.0: {}
+  undici-types@7.12.0: {}
 
   undici@6.21.3: {}
 
