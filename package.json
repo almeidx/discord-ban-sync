@@ -16,7 +16,7 @@
 		"start": "node --env-file=.env src/index.ts"
 	},
 	"dependencies": {
-		"@discordjs/core": "^2.2.2",
+		"@discordjs/core": "^2.3.0",
 		"@discordjs/rest": "^2.6.0",
 		"@discordjs/ws": "^2.0.3",
 		"pretty-ms": "^9.3.0"
@@ -30,7 +30,7 @@
 	},
 	"packageManager": "pnpm@10.18.1",
 	"engines": {
-		"node": ">=24.9.0"
+		"node": ">=24.10.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
