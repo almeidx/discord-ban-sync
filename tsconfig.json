@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"allowImportingTsExtensions": true,
-		"checkJs": false,
 		"erasableSyntaxOnly": true,
 		"libReplacement": false,
 		"module": "ESNext",
