@@ -15,8 +15,8 @@ importers:
         specifier: ^2.6.0
         version: 2.6.0
       '@discordjs/ws':
-        specifier: ^2.0.3
-        version: 2.0.3
+        specifier: ^2.0.4
+        version: 2.0.4
       pretty-ms:
         specifier: ^9.3.0
         version: 9.3.0
@@ -108,8 +108,8 @@ packages:
     resolution: {integrity: sha512-eddz6UnOBEB1oITPinyrB2Pttej49M9FZQY8NxgEvc3tq6ZICZ19m70RsmzRdDHk80O9NoYN/25AqJl8vPVf/g==}
     engines: {node: '>=18'}
 
-  '@discordjs/ws@2.0.3':
-    resolution: {integrity: sha512-c/Yd0eK2kFAvGn5/xECdUziSXLQh7tFO7kw2nfsj46B6txhPpJweR8yYjtYQ+kbUsaFcoQOrZ69wYqfetdqSHw==}
+  '@discordjs/ws@2.0.4':
+    resolution: {integrity: sha512-ARXnE+qi+D7Y4trd1bKA9uhiUxQvLbOKcdehDa6NLd7FiqmDvvk8N5RGk6Ho9gdT/Wap09dz/IuLv7hNpUzt6g==}
     engines: {node: '>=20'}
 
   '@sapphire/async-queue@1.5.5':
@@ -220,7 +220,7 @@ snapshots:
     dependencies:
       '@discordjs/rest': 2.6.0
       '@discordjs/util': 1.1.1
-      '@discordjs/ws': 2.0.3
+      '@discordjs/ws': 2.0.4
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.7
       discord-api-types: 0.38.32
@@ -242,7 +242,7 @@ snapshots:
 
   '@discordjs/util@1.1.1': {}
 
-  '@discordjs/ws@2.0.3':
+  '@discordjs/ws@2.0.4':
     dependencies:
       '@discordjs/collection': 2.1.1
       '@discordjs/rest': 2.6.0
