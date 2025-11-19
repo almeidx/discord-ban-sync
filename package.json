@@ -16,7 +16,7 @@
 		"start": "node --env-file=.env src/index.ts"
 	},
 	"dependencies": {
-		"@discordjs/core": "^2.3.0",
+		"@discordjs/core": "^2.4.0",
 		"@discordjs/rest": "^2.6.0",
 		"@discordjs/ws": "^2.0.4",
 		"pretty-ms": "^9.3.0"
