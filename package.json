@@ -28,7 +28,7 @@
 		"@types/node": "^24.10.9",
 		"typescript": "~5.9.3"
 	},
-	"packageManager": "pnpm@10.28.0",
+	"packageManager": "pnpm@10.28.1",
 	"engines": {
 		"node": ">=24.13.0"
 	}
