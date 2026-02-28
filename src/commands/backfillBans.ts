@@ -118,9 +118,14 @@ function formatStatus(): string {
 	}
 
 	if (state.phase === "done" || state.phase === "applying") {
-		lines.push(
-			`**Applied:** ${state.totalBanned.toLocaleString()} | **Failed:** ${state.totalFailed.toLocaleString()}`,
-		);
+		let applied = 0;
+		let failed = 0;
+		for (const progress of state.guilds.values()) {
+			applied += progress.applied;
+			failed += progress.failed;
+		}
+
+		lines.push(`**Applied:** ${applied.toLocaleString()} | **Failed:** ${failed.toLocaleString()}`);
 	}
 
 	if (state.blockedGuilds.length > 0) {
