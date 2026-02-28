@@ -1,13 +1,13 @@
 import { type API, AuditLogEvent, type Client, GatewayDispatchEvents, type Snowflake } from "@discordjs/core";
 import type { BanQueue } from "#structures/banQueue.ts";
 import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
-import { GUILD_IDS } from "#utils/env.ts";
+import { isGuildEnabled } from "#utils/env.ts";
 import { error, info } from "#utils/logger.ts";
 import { addRecentUnban, recentlyUnbanned, trackUnbanDuringBackfill } from "#utils/recentBans.ts";
 
 export function registerGuildBanRemoveListener(client: Client, banQueue: BanQueue) {
 	client.on(GatewayDispatchEvents.GuildBanRemove, async ({ api, data }) => {
-		if (!GUILD_IDS.includes(data.guild_id) || recentlyUnbanned(data.user.id)) return;
+		if (!isGuildEnabled(data.guild_id) || recentlyUnbanned(data.user.id)) return;
 
 		addRecentUnban(data.user.id);
 		trackUnbanDuringBackfill(data.user.id);

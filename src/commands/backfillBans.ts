@@ -176,7 +176,7 @@ async function runBackfill(api: API): Promise<void> {
 
 		const elapsed = ms(state.completedAt - state.startedAt);
 		info(
-			`[Backfill] Complete in ${elapsed}: ${GUILD_IDS.length} guilds, ${state.totalBanned.toLocaleString()} applied, ${state.totalFailed.toLocaleString()} failed, ${state.blockedGuilds.length} blocked`,
+			`[Backfill] Complete in ${elapsed}: ${GUILD_IDS.size} guilds, ${state.totalBanned.toLocaleString()} applied, ${state.totalFailed.toLocaleString()} failed, ${state.blockedGuilds.length} blocked`,
 		);
 
 		setTimeout(() => {

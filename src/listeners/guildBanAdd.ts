@@ -1,14 +1,14 @@
 import { type Client, GatewayDispatchEvents } from "@discordjs/core";
 import type { BanQueue } from "#structures/banQueue.ts";
 import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
-import { GUILD_IDS } from "#utils/env.ts";
+import { isGuildEnabled } from "#utils/env.ts";
 import { info } from "#utils/logger.ts";
 import { addRecentBan, consumeBackfillBan, recentlyBanned } from "#utils/recentBans.ts";
 
 export function registerGuildBanAddListener(client: Client, banQueue: BanQueue) {
 	client.on(GatewayDispatchEvents.GuildBanAdd, async ({ api, data }) => {
 		if (
-			!GUILD_IDS.includes(data.guild_id) ||
+			!isGuildEnabled(data.guild_id) ||
 			consumeBackfillBan(data.guild_id, data.user.id) ||
 			recentlyBanned(data.user.id)
 		) {

@@ -5,13 +5,13 @@ import {
 	PermissionFlagsBits,
 } from "@discordjs/core";
 import { getBotUserId, guilds } from "#utils/cache.ts";
-import { GUILD_IDS } from "#utils/env.ts";
+import { isGuildEnabled } from "#utils/env.ts";
 import { warn } from "#utils/logger.ts";
 import { computePermissionsForMember } from "#utils/permissions.ts";
 
 export function registerGuildCreateListener(client: Client) {
 	client.on(GatewayDispatchEvents.GuildCreate, ({ data }) => {
-		if (!GUILD_IDS.includes(data.id)) {
+		if (!isGuildEnabled(data.id)) {
 			return;
 		}
 

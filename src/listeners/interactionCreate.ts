@@ -7,13 +7,13 @@ import {
 } from "@discordjs/core";
 import { backfillBansCommandInteraction, backfillStatusCommandInteraction } from "#commands/backfillBans.ts";
 import { pingCommandInteraction } from "#commands/ping.ts";
-import { GUILD_IDS } from "#utils/env.ts";
+import { isGuildEnabled } from "#utils/env.ts";
 
 export function registerInteractionCreateListener(client: Client) {
 	client.on(GatewayDispatchEvents.InteractionCreate, async ({ api, data }) => {
 		if (
 			!Utils.isGuildInteraction(data) ||
-			!GUILD_IDS.includes(data.guild_id) ||
+			!isGuildEnabled(data.guild_id) ||
 			data.type !== InteractionType.ApplicationCommand ||
 			!Utils.isChatInputApplicationCommandInteraction(data)
 		) {
