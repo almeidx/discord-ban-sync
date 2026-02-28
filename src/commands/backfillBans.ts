@@ -364,17 +364,22 @@ async function applyGuildDiff(api: API, guildId: Snowflake, guildName: string, u
 				guildFailed += result.failed_users.length;
 			}
 		} catch (err) {
-			if (
-				err instanceof DiscordAPIError &&
-				err.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded
-			) {
-				warn(`[Backfill] ${guildName}: non-member ban cap hit at chunk ${i + 1}/${totalChunks}, skipping remaining`);
-				blocked = true;
+			if (err instanceof DiscordAPIError) {
+				if (err.code === RESTJSONErrorCodes.FailedToBanUsers) {
+					guildFailed += chunk.length;
+					warn(`[Backfill] ${guildName}: all ${chunk.length} users failed to ban in chunk ${i + 1}/${totalChunks}`);
+					continue;
+				}
 
-				const progress = state!.guilds.get(guildId)!;
-				progress.blocked = true;
-				state!.blockedGuilds.push(guildId);
-				break;
+				if (err.code === RESTJSONErrorCodes.MaximumNumberOfNonGuildMemberBansHasBeenExceeded) {
+					warn(`[Backfill] ${guildName}: non-member ban cap hit at chunk ${i + 1}/${totalChunks}, skipping remaining`);
+					blocked = true;
+
+					const progress = state!.guilds.get(guildId)!;
+					progress.blocked = true;
+					state!.blockedGuilds.push(guildId);
+					break;
+				}
 			}
 
 			throw err;
