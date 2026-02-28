@@ -1,8 +1,8 @@
 import { type API, AuditLogEvent, type Client, GatewayDispatchEvents, type Snowflake } from "@discordjs/core";
 import type { BanQueue } from "#structures/banQueue.ts";
-import { getGuildIdentifier, makeUserInfo, } from "#utils/common.ts";
+import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
 import { GUILD_IDS } from "#utils/env.ts";
-import { error, info, } from "#utils/logger.ts";
+import { error, info } from "#utils/logger.ts";
 import { addRecentUnban, recentlyUnbanned } from "#utils/recentBans.ts";
 import { USER_UNBANNED } from "../utils/messages.ts";
 
