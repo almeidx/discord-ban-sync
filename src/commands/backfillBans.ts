@@ -357,12 +357,12 @@ async function applyGuildDiff(api: API, guildId: Snowflake, guildName: string, u
 				{ reason: "Historical ban sync" },
 			);
 
-			if (!result.banned_users || !result.failed_users) {
-				warn(`[Backfill] ${guildName}: unexpected bulk ban response at chunk ${i + 1}/${totalChunks}`, result);
+			if (result instanceof ArrayBuffer) {
+				guildApplied += chunk.length;
+			} else {
+				guildApplied += result.banned_users.length;
+				guildFailed += result.failed_users.length;
 			}
-
-			guildApplied += result.banned_users?.length ?? 0;
-			guildFailed += result.failed_users?.length ?? 0;
 		} catch (err) {
 			if (
 				err instanceof DiscordAPIError &&
