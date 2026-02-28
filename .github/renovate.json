@@ -10,6 +10,11 @@
 	"minimumReleaseAge": "1 day",
 	"packageRules": [
 		{
+			"allowedVersions": "/^(\\d+\\.\\d+\\.\\d+(-dev\\.\\d+-[a-f0-9]+)?)$/",
+			"matchPackageNames": ["discord.js", "/^@discordjs\\//"],
+			"minimumReleaseAge": "0 days"
+		},
+		{
 			"groupName": "patch/minor dependencies",
 			"groupSlug": "all-non-major",
 			"matchUpdateTypes": ["patch", "minor"],
