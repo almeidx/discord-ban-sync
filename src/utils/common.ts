@@ -50,5 +50,5 @@ export function getTimestampFromSnowflake(snowflake: Snowflake): number {
  * @param guildId - The guild id to get the identifier for
  */
 export function getGuildIdentifier(guildId: Snowflake) {
-	return guilds.get(guildId) ?? guildId;
+	return guilds.get(guildId)?.name ?? guildId;
 }

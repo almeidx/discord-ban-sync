@@ -8,6 +8,6 @@ export function registerGuildCreateListener(client: Client) {
 			return;
 		}
 
-		guilds.set(data.id, data.name);
+		guilds.set(data.id, { id: data.id, name: data.name });
 	});
 }

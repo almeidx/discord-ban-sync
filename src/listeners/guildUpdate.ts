@@ -3,10 +3,8 @@ import { guilds } from "#utils/guilds.ts";
 
 export function registerGuildUpdateListener(client: Client) {
 	client.on(GatewayDispatchEvents.GuildUpdate, ({ data }) => {
-		const guild = guilds.get(data.id);
-
-		if (guild) {
-			guilds.set(data.id, data.name);
+		if (guilds.has(data.id)) {
+			guilds.set(data.id, { id: data.id, name: data.name });
 		}
 	});
 }
