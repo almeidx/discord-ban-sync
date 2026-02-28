@@ -5,6 +5,7 @@ import {
 	InteractionType,
 	Utils,
 } from "@discordjs/core";
+import { backfillBansCommandInteraction, backfillStatusCommandInteraction } from "#commands/backfillBans.ts";
 import { pingCommandInteraction } from "#commands/ping.ts";
 import { GUILD_IDS } from "#utils/env.ts";
 
@@ -19,8 +20,14 @@ export function registerInteractionCreateListener(client: Client) {
 			return;
 		}
 
+		const interaction = data as APIChatInputApplicationCommandGuildInteraction;
+
 		if (data.data.name === "ping") {
-			await pingCommandInteraction(api, data as APIChatInputApplicationCommandGuildInteraction);
+			await pingCommandInteraction(api, interaction);
+		} else if (data.data.name === "backfill-bans") {
+			await backfillBansCommandInteraction(api, interaction);
+		} else if (data.data.name === "backfill-status") {
+			await backfillStatusCommandInteraction(api, interaction);
 		}
 	});
 }

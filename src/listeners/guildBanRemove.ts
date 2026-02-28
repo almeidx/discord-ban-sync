@@ -3,7 +3,7 @@ import type { BanQueue } from "#structures/banQueue.ts";
 import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
 import { GUILD_IDS } from "#utils/env.ts";
 import { error, info } from "#utils/logger.ts";
-import { addRecentUnban, recentlyUnbanned } from "#utils/recentBans.ts";
+import { addRecentUnban, recentlyUnbanned, trackUnbanDuringBackfill } from "#utils/recentBans.ts";
 import { USER_UNBANNED } from "../utils/messages.ts";
 
 export function registerGuildBanRemoveListener(client: Client, banQueue: BanQueue) {
@@ -11,6 +11,7 @@ export function registerGuildBanRemoveListener(client: Client, banQueue: BanQueu
 		if (!GUILD_IDS.includes(data.guild_id) || recentlyUnbanned(data.user.id)) return;
 
 		addRecentUnban(data.user.id);
+		trackUnbanDuringBackfill(data.user.id);
 
 		info(USER_UNBANNED(getGuildIdentifier(data.guild_id), makeUserInfo(data.user)));
 

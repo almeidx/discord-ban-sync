@@ -26,3 +26,36 @@ export function removeRecentBan(userId: Snowflake): void {
 export function removeRecentUnban(userId: Snowflake): void {
 	recentUnbans.delete(userId);
 }
+
+const backfillSuppressed = new Set<string>();
+const unbannedDuringBackfill = new Set<Snowflake>();
+let backfillActive = false;
+
+export function suppressBackfillBan(guildId: Snowflake, userId: Snowflake): void {
+	backfillSuppressed.add(`${guildId}:${userId}`);
+}
+
+export function consumeBackfillBan(guildId: Snowflake, userId: Snowflake): boolean {
+	return backfillSuppressed.delete(`${guildId}:${userId}`);
+}
+
+export function clearBackfillSuppressions(): void {
+	backfillSuppressed.clear();
+}
+
+export function setBackfillActive(active: boolean): void {
+	backfillActive = active;
+	if (!active) {
+		unbannedDuringBackfill.clear();
+	}
+}
+
+export function trackUnbanDuringBackfill(userId: Snowflake): void {
+	if (backfillActive) {
+		unbannedDuringBackfill.add(userId);
+	}
+}
+
+export function getUnbannedDuringBackfill(): ReadonlySet<Snowflake> {
+	return unbannedDuringBackfill;
+}

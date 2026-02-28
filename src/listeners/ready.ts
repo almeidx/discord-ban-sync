@@ -1,4 +1,9 @@
-import { type Client, GatewayDispatchEvents, type RESTPostAPIApplicationCommandsJSONBody } from "@discordjs/core";
+import {
+	type Client,
+	GatewayDispatchEvents,
+	PermissionFlagsBits,
+	type RESTPostAPIApplicationCommandsJSONBody,
+} from "@discordjs/core";
 import { info } from "#utils/logger.ts";
 import { READY } from "#utils/messages.ts";
 
@@ -10,6 +15,16 @@ export function registerReadyListener(client: Client) {
 			{
 				description: "Checks the bots ping to the Discord servers",
 				name: "ping",
+			},
+			{
+				default_member_permissions: PermissionFlagsBits.Administrator.toString(),
+				description: "Starts a one-time historical ban sync across all configured guilds",
+				name: "backfill-bans",
+			},
+			{
+				default_member_permissions: PermissionFlagsBits.Administrator.toString(),
+				description: "Shows the current backfill progress or last run results",
+				name: "backfill-status",
 			},
 		] satisfies RESTPostAPIApplicationCommandsJSONBody[];
 

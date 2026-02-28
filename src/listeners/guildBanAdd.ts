@@ -4,11 +4,17 @@ import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
 import { GUILD_IDS } from "#utils/env.ts";
 import { info } from "#utils/logger.ts";
 import { USER_BANNED } from "#utils/messages.ts";
-import { addRecentBan, recentlyBanned } from "#utils/recentBans.ts";
+import { addRecentBan, consumeBackfillBan, recentlyBanned } from "#utils/recentBans.ts";
 
 export function registerGuildBanAddListener(client: Client, banQueue: BanQueue) {
 	client.on(GatewayDispatchEvents.GuildBanAdd, async ({ api, data }) => {
-		if (!GUILD_IDS.includes(data.guild_id) || recentlyBanned(data.user.id)) return;
+		if (
+			!GUILD_IDS.includes(data.guild_id) ||
+			consumeBackfillBan(data.guild_id, data.user.id) ||
+			recentlyBanned(data.user.id)
+		) {
+			return;
+		}
 
 		addRecentBan(data.user.id);
 
