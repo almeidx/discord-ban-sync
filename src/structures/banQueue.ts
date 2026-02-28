@@ -3,13 +3,6 @@ import { DiscordAPIError } from "@discordjs/rest";
 import { ellipsis, getGuildIdentifier } from "#utils/common.ts";
 import { DELETE_MESSAGE_SECONDS, GUILD_IDS } from "#utils/env.ts";
 import { error, info, warn } from "#utils/logger.ts";
-import {
-	BAN_NO_REASON,
-	BAN_REASON,
-	MAX_NON_MEMBER_BANS_REACHED,
-	UNBAN_NO_REASON,
-	UNBAN_REASON,
-} from "#utils/messages.ts";
 import { removeRecentBan, removeRecentUnban } from "#utils/recentBans.ts";
 
 const BanType = {
@@ -98,21 +91,9 @@ export class BanQueue {
 	}
 
 	#resolveReason({ guildId, reason, type }: BanInfo): string {
-		let msg: string;
-
 		const guildIdentifier = getGuildIdentifier(guildId);
-
-		if (type === BanType.Ban) {
-			if (reason) {
-				msg = BAN_REASON(guildIdentifier, reason);
-			} else {
-				msg = BAN_NO_REASON(guildIdentifier);
-			}
-		} else if (reason) {
-			msg = UNBAN_REASON(guildIdentifier, reason);
-		} else {
-			msg = UNBAN_NO_REASON(guildIdentifier);
-		}
+		const action = type === BanType.Ban ? "Banned" : "Unbanned";
+		const msg = reason ? `${action} from ${guildIdentifier} for: ${reason}` : `${action} from ${guildIdentifier}`;
 
 		return ellipsis(msg, 0, 512);
 	}
@@ -129,7 +110,7 @@ export class BanQueue {
 			) {
 				// TODO: Disable ban queue in this guild until the day is over/after one day has passed
 
-				warn(MAX_NON_MEMBER_BANS_REACHED(getGuildIdentifier(guildId)));
+				warn(`The maximum number of non-member bans has been reached in ${getGuildIdentifier(guildId)}`);
 				return false;
 			}
 

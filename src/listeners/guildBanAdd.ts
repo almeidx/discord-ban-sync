@@ -3,7 +3,6 @@ import type { BanQueue } from "#structures/banQueue.ts";
 import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
 import { GUILD_IDS } from "#utils/env.ts";
 import { info } from "#utils/logger.ts";
-import { USER_BANNED } from "#utils/messages.ts";
 import { addRecentBan, consumeBackfillBan, recentlyBanned } from "#utils/recentBans.ts";
 
 export function registerGuildBanAddListener(client: Client, banQueue: BanQueue) {
@@ -18,7 +17,7 @@ export function registerGuildBanAddListener(client: Client, banQueue: BanQueue) 
 
 		addRecentBan(data.user.id);
 
-		info(USER_BANNED(getGuildIdentifier(data.guild_id), makeUserInfo(data.user)));
+		info(`${getGuildIdentifier(data.guild_id)}: ${makeUserInfo(data.user)} banned`);
 
 		const banInfo = await api.guilds.getMemberBan(data.guild_id, data.user.id).catch(() => null);
 

@@ -4,7 +4,6 @@ import { getGuildIdentifier, makeUserInfo } from "#utils/common.ts";
 import { GUILD_IDS } from "#utils/env.ts";
 import { error, info } from "#utils/logger.ts";
 import { addRecentUnban, recentlyUnbanned, trackUnbanDuringBackfill } from "#utils/recentBans.ts";
-import { USER_UNBANNED } from "../utils/messages.ts";
 
 export function registerGuildBanRemoveListener(client: Client, banQueue: BanQueue) {
 	client.on(GatewayDispatchEvents.GuildBanRemove, async ({ api, data }) => {
@@ -13,7 +12,7 @@ export function registerGuildBanRemoveListener(client: Client, banQueue: BanQueu
 		addRecentUnban(data.user.id);
 		trackUnbanDuringBackfill(data.user.id);
 
-		info(USER_UNBANNED(getGuildIdentifier(data.guild_id), makeUserInfo(data.user)));
+		info(`${getGuildIdentifier(data.guild_id)}: ${makeUserInfo(data.user)} unbanned`);
 
 		const auditLogReason = await getUnbanAuditLogReason(api, data.guild_id, data.user.id);
 		banQueue.queueUnban(data.guild_id, data.user.id, auditLogReason);
