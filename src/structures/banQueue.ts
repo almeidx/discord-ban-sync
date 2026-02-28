@@ -61,6 +61,7 @@ export class BanQueue {
 		const reason = this.#resolveReason(banInfo);
 
 		let actionsTaken = 0;
+		const actionLabel = banInfo.type === BanType.Ban ? "ban" : "unban";
 
 		try {
 			for (const guildId of GUILD_IDS) {
@@ -69,16 +70,18 @@ export class BanQueue {
 					continue;
 				}
 
-				if (banInfo.type === BanType.Ban) {
-					const success = await this.#banUser(guildId, banInfo.userId, reason);
-					if (success) actionsTaken++;
-				} else {
-					const success = await this.#unbanUser(guildId, banInfo.userId, reason);
-					if (success) actionsTaken++;
+				try {
+					if (banInfo.type === BanType.Ban) {
+						const success = await this.#banUser(guildId, banInfo.userId, reason);
+						if (success) actionsTaken++;
+					} else {
+						const success = await this.#unbanUser(guildId, banInfo.userId, reason);
+						if (success) actionsTaken++;
+					}
+				} catch (error_) {
+					error(`Failed to ${actionLabel} ${banInfo.userId} in ${getGuildIdentifier(guildId)}`, error_);
 				}
 			}
-		} catch (error_) {
-			error(error_);
 		} finally {
 			if (banInfo.type === BanType.Ban) {
 				removeRecentBan(banInfo.userId);
