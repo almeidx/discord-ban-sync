@@ -1,5 +1,5 @@
 import type { APIUser, Snowflake } from "@discordjs/core";
-import { guilds } from "#utils/guilds.ts";
+import { guilds } from "#utils/cache.ts";
 
 export const Time = {
 	Day: 1_000 * 60 * 60 * 24,

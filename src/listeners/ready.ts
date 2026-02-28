@@ -4,12 +4,15 @@ import {
 	PermissionFlagsBits,
 	type RESTPostAPIApplicationCommandsJSONBody,
 } from "@discordjs/core";
+import { setBotUserId } from "#utils/cache.ts";
 import { info } from "#utils/logger.ts";
 import { READY } from "#utils/messages.ts";
 
 export function registerReadyListener(client: Client) {
 	client.on(GatewayDispatchEvents.Ready, async ({ api, data }) => {
 		info(READY(data.user.username));
+
+		setBotUserId(data.user.id);
 
 		const commands = [
 			{
