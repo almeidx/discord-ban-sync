@@ -16,16 +16,16 @@
 		"start": "node --env-file=.env src/index.ts"
 	},
 	"dependencies": {
-		"@discordjs/core": "3.0.0-dev.1772755842-41439d3a4",
-		"@discordjs/rest": "3.0.0-dev.1772755842-41439d3a4",
-		"@discordjs/ws": "3.0.0-dev.1772755842-41439d3a4",
+		"@discordjs/core": "3.0.0-dev.1772884937-84b85f4c9",
+		"@discordjs/rest": "3.0.0-dev.1772884937-84b85f4c9",
+		"@discordjs/ws": "3.0.0-dev.1772884937-84b85f4c9",
 		"pretty-ms": "^9.3.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.6",
 		"@tsconfig/node24": "^24.0.4",
 		"@tsconfig/strictest": "^2.0.8",
-		"@types/node": "^24.11.0",
+		"@types/node": "^24.12.0",
 		"typescript": "~5.9.3"
 	},
 	"packageManager": "pnpm@10.30.3",
