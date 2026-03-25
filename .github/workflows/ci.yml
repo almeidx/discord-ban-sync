@@ -23,5 +23,8 @@ jobs:
       - name: Lint
         run: node --run lint
 
+      - name: Build type check
+        run: node --run build:typecheck
+
       - name: Build
         run: node --run build

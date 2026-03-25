@@ -11,6 +11,7 @@
 	},
 	"scripts": {
 		"build": "tsc",
+		"build:typecheck": "tsc --noEmit",
 		"fmt": "biome check --write",
 		"lint": "biome check",
 		"start": "node --env-file=.env src/index.ts"
@@ -26,7 +27,7 @@
 		"@tsconfig/node24": "^24.0.4",
 		"@tsconfig/strictest": "^2.0.8",
 		"@types/node": "^24.12.0",
-		"typescript": "~5.9.3"
+		"typescript": "~6.0.2"
 	},
 	"packageManager": "pnpm@10.32.1",
 	"engines": {
