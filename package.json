@@ -17,9 +17,9 @@
 		"start": "node --env-file=.env src/index.ts"
 	},
 	"dependencies": {
-		"@discordjs/core": "3.0.0-dev.1775045529-1f9affd97",
-		"@discordjs/rest": "3.0.0-dev.1775045529-1f9affd97",
-		"@discordjs/ws": "3.0.0-dev.1775045529-1f9affd97",
+		"@discordjs/core": "3.0.0-dev.1775779790-aa1e6be79",
+		"@discordjs/rest": "3.0.0-dev.1775779790-aa1e6be79",
+		"@discordjs/ws": "3.0.0-dev.1775779790-aa1e6be79",
 		"pretty-ms": "^9.3.0"
 	},
 	"devDependencies": {
