@@ -27,7 +27,7 @@ A Discord bot that automatically synchronizes bans between multiple Discord serv
 Before you begin, ensure you have the following installed:
 - [Git]
 - [Node.js] (v24.1.0 or higher)
-- [pnpm] (v10.11.0 or higher)
+- [pnpm] (v11.0.0 or higher)
 - [Docker] (optional, for containerized deployment)
 - [PM2] (optional, for process management)
 

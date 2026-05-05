@@ -5,7 +5,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 WORKDIR /app
 
-RUN npm --global install pnpm@latest-10
+RUN npm --global install pnpm@latest-11
 RUN pnpm self-update
 
 COPY package.json pnpm-lock.yaml ./
