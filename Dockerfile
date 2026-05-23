@@ -8,7 +8,7 @@ WORKDIR /app
 RUN npm --global install pnpm@latest-11
 RUN pnpm self-update
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
