@@ -10,6 +10,16 @@ import { registerInteractionCreateListener } from "#listeners/interactionCreate.
 import { registerReadyListener } from "#listeners/ready.ts";
 import { BanQueue } from "#structures/banQueue.ts";
 import { DISCORD_TOKEN } from "#utils/env.ts";
+import { error } from "#utils/logger.ts";
+
+process.on("unhandledRejection", (reason) => {
+	error("Unhandled promise rejection", reason);
+});
+
+process.on("uncaughtException", (error_) => {
+	error("Uncaught exception, exiting", error_);
+	process.exit(1);
+});
 
 const rest = new REST().setToken(DISCORD_TOKEN);
 const gateway = new WebSocketManager({

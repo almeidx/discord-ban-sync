@@ -5,7 +5,7 @@ import {
 	type RESTPostAPIApplicationCommandsJSONBody,
 } from "@discordjs/core";
 import { setBotUserId } from "#utils/cache.ts";
-import { info } from "#utils/logger.ts";
+import { error, info } from "#utils/logger.ts";
 
 export function registerReadyListener(client: Client) {
 	client.on(GatewayDispatchEvents.Ready, async ({ api, data }) => {
@@ -30,8 +30,11 @@ export function registerReadyListener(client: Client) {
 			},
 		] satisfies RESTPostAPIApplicationCommandsJSONBody[];
 
-		await api.applicationCommands.bulkOverwriteGlobalCommands(data.application.id, commands);
-
-		info("Registered global slash commands");
+		try {
+			await api.applicationCommands.bulkOverwriteGlobalCommands(data.application.id, commands);
+			info("Registered global slash commands");
+		} catch (error_) {
+			error("Failed to register global slash commands", error_);
+		}
 	});
 }
