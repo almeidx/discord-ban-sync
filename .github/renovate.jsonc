@@ -33,6 +33,10 @@
 				"!kindest/node",
 				"!docker.io/kindest/node"
 			]
+		},
+		{
+			"enabled": false,
+			"matchDepTypes": ["engines"]
 		}
 	],
 	"postUpdateOptions": ["pnpmDedupe"],
