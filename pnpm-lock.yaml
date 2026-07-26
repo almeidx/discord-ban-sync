@@ -260,11 +260,11 @@ packages:
     resolution: {integrity: sha512-Xfe6rpCTxSxfbswi/W/Pz7zp1WWSNn4A0eW4mLkQUewCrXXtMj31lCg+iQyTkh/CkusZSq9eDflu7tjEDXUY6g==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
-  discord-api-types@0.38.50:
-    resolution: {integrity: sha512-J2n/bpIETX3DQ6AJ7/0xbsTLmYiJQtO/LKcXKC1YDbB56OUwtDbdXOFE8Q4g8jVGHBR2VAy1+D4ngaIgkMNV9w==}
+  discord-api-types@0.38.51:
+    resolution: {integrity: sha512-SnaFHd+b8Z3HgjEIoSA1wkstXCt6J0Zrxvny0BJZZz7AhmFSetRY3DMrIdO3LFDMeeTxF7WKornnAGxaws5Adw==}
 
-  magic-bytes.js@1.13.0:
-    resolution: {integrity: sha512-afO2mnxW7GDTXMm5/AoN1WuOcdoKhtgXjIvHmobqTD1grNplhGdv3PFOyjCVmrnOZBIT/gD/koDKpYG+0mvHcg==}
+  magic-bytes.js@1.13.1:
+    resolution: {integrity: sha512-x5sn4UX2k5gCWlcfmoFwG4TPie8+dctESyqOBdhB5p6MsgWXdBKGmt9nXPObj/JI50TTL928lc5Yt1WntMn1bw==}
 
   parse-ms@4.0.0:
     resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
@@ -351,7 +351,7 @@ snapshots:
       '@discordjs/ws': 3.0.0-dev.1784593104-219ad7ba0
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.7
-      discord-api-types: 0.38.50
+      discord-api-types: 0.38.51
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -363,15 +363,15 @@ snapshots:
       '@sapphire/async-queue': 1.5.5
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.7
-      discord-api-types: 0.38.50
-      magic-bytes.js: 1.13.0
+      discord-api-types: 0.38.51
+      magic-bytes.js: 1.13.1
       tslib: 2.8.1
       undici: 7.24.6
       uuid: 13.0.2
 
   '@discordjs/util@2.0.0-dev.1784593104-219ad7ba0':
     dependencies:
-      discord-api-types: 0.38.50
+      discord-api-types: 0.38.51
 
   '@discordjs/ws@3.0.0-dev.1784593104-219ad7ba0':
     dependencies:
@@ -380,7 +380,7 @@ snapshots:
       '@sapphire/async-queue': 1.5.5
       '@types/ws': 8.18.1
       '@vladfrangu/async_event_emitter': 2.4.7
-      discord-api-types: 0.38.50
+      discord-api-types: 0.38.51
       tslib: 2.8.1
       ws: 8.21.1
     transitivePeerDependencies:
@@ -465,9 +465,9 @@ snapshots:
 
   '@vladfrangu/async_event_emitter@2.4.7': {}
 
-  discord-api-types@0.38.50: {}
+  discord-api-types@0.38.51: {}
 
-  magic-bytes.js@1.13.0: {}
+  magic-bytes.js@1.13.1: {}
 
   parse-ms@4.0.0: {}
 
