@@ -9,21 +9,21 @@ importers:
   .:
     dependencies:
       '@discordjs/core':
-        specifier: 3.0.0-dev.1785370677-4b3f1c166
-        version: 3.0.0-dev.1785370677-4b3f1c166
+        specifier: 3.0.0-dev.1786752260-c9855614c
+        version: 3.0.0-dev.1786752260-c9855614c
       '@discordjs/rest':
-        specifier: 3.0.0-dev.1785370677-4b3f1c166
-        version: 3.0.0-dev.1785370677-4b3f1c166
+        specifier: 3.0.0-dev.1786752260-c9855614c
+        version: 3.0.0-dev.1786752260-c9855614c
       '@discordjs/ws':
-        specifier: 3.0.0-dev.1785370677-4b3f1c166
-        version: 3.0.0-dev.1785370677-4b3f1c166
+        specifier: 3.0.0-dev.1786752260-c9855614c
+        version: 3.0.0-dev.1786752260-c9855614c
       pretty-ms:
         specifier: ^9.3.0
         version: 9.3.0
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.5.7
-        version: 2.5.7
+        specifier: ^2.5.8
+        version: 2.5.8
       '@tsconfig/node24':
         specifier: ^24.0.4
         version: 24.0.4
@@ -39,81 +39,81 @@ importers:
 
 packages:
 
-  '@biomejs/biome@2.5.7':
-    resolution: {integrity: sha512-zr8K/DcY5tYsQOQwqMJ0AWElo6QgmgNI7idXgXLhevVszlt8RGVpesEJPqx3ThazLaOwjJ5Y8fz3BtH5fGZNsw==}
+  '@biomejs/biome@2.5.8':
+    resolution: {integrity: sha512-aeAeeJB9fSDc7Gq+2GqpQxA0qBj6gj1k2R6L1cYqGePKP/baIq1WX8y6B+D+nRsO5ViQL22K/8IwbqERW0q1nw==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.5.7':
-    resolution: {integrity: sha512-vxo/Ls3/PYdQWyLhYYcgMOCzQypAjcY+iihS8M0wW03l16TCLW4zqZzGo75gm1VdCMj38hTVZ31KBWrZ4G9dJw==}
+  '@biomejs/cli-darwin-arm64@2.5.8':
+    resolution: {integrity: sha512-mk1QON9PHllvvLN5gU3f4rMxeh4syK5p9OvKyWH6/W8ueh04uaC8TUXXByhGufWf/y5mQc03ZLM45zU+cmqMjA==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.5.7':
-    resolution: {integrity: sha512-Cd3Ga61amT/Yl/0x8elP5hhGYaFy4bw6WuysTgf7oo8TA5tJ5A1k+DkVoJ2BHbTVil51gTX9VPzArnrlLJ3Kyg==}
+  '@biomejs/cli-darwin-x64@2.5.8':
+    resolution: {integrity: sha512-bsGwFMBNyHPyiLSsQcZJxdoRrg1V4JL+d7wEsvUBczlP9U9lwM+7mzQHxI4o1mhBsTmdOBbAb6fHU3Z3snN45w==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.5.7':
-    resolution: {integrity: sha512-xPI5yB6XlpDbNkS+bm1t42olw5c4l3UrlOmLg7KtLJvjvkNF/1V4tnUgfkylGIeb3u/T+BzMGYqgQhzjAoJzuQ==}
+  '@biomejs/cli-linux-arm64-musl@2.5.8':
+    resolution: {integrity: sha512-VcJNbstduTHx83NGAdhp78/JOcP45BZHXL7yNsfI1uGzdUgegAz2s+mSoT7wK6PBNzLoqG0zDOXaz/RQYVtSiw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-arm64@2.5.7':
-    resolution: {integrity: sha512-rR2QE0yF2GYSuYuKIa7pKvODGJqnOH+2eDREAM8wV+mWKSkMQKdAp4zXEZfTaxY8PMoNONnpgSWcBCyLDPDOKg==}
+  '@biomejs/cli-linux-arm64@2.5.8':
+    resolution: {integrity: sha512-XmFiA0WPYFC+uiUDC8WRFzAIH9bo7vwQLav38Uoq4ETC+T/+uBi0TsYGJECkugY3r8USl3jc+Ae2/irAF6F2lQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-linux-x64-musl@2.5.7':
-    resolution: {integrity: sha512-rE5VZi+qtmPgQH+l7jVxYoZ18b/TiHEhulhMpjmCZH1PltSbjRcxNWywC3HZ9tYottG7ORkeTtoscBilKSBm0g==}
+  '@biomejs/cli-linux-x64-musl@2.5.8':
+    resolution: {integrity: sha512-kKmiyokeISRGq2FLwvr+TzsgBusfxaZ0FZNLcOYOpCK/78tRrEjeEBLvq3xLZMpqbANgJdRPI7vZX8ZL37u9/w==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-x64@2.5.7':
-    resolution: {integrity: sha512-FQgqJhscrqJUFptGaRSUJWlXAExwWcDwLuK49dvKfkQ1bB5SEEyFssnsxQY83Xm6jR0EbbX3+8+D5bfvYqUG2Q==}
+  '@biomejs/cli-linux-x64@2.5.8':
+    resolution: {integrity: sha512-S5wcm9OBDvLHodD4PUaN488hCpco9QD/9ZxuYJiw4euWtr/oQvLR72z2ixItH8Wd5BCm6FZaeb+YNvOoM1xHtQ==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-win32-arm64@2.5.7':
-    resolution: {integrity: sha512-Oq4x0CCwP4jirrcTywXs5kOGZ4v5vuEP+gWrbtjApOA2CL9F3F9GlIdQIci8AKSCa/zURanMRpX/4wQ7Am6hHg==}
+  '@biomejs/cli-win32-arm64@2.5.8':
+    resolution: {integrity: sha512-nILH0mzm3Hi3iEdd7o7GpB8kBR/mSQwfQG/tyBqyNrY2GFtcgwfV9nV8xLmbtUpMNY/Oi0Ml1XgfR4flOdq+AA==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.5.7':
-    resolution: {integrity: sha512-V+0wu/nrj2S+MhP4EQ0uHNolP0IALEsz45pg0WoKkHfDeh0+ItHwP/p7bX5RPoMOl9NkpHYWdYPhIcy2mACHvQ==}
+  '@biomejs/cli-win32-x64@2.5.8':
+    resolution: {integrity: sha512-I2czzXTY61f3nFJxXoMDq80t7MivxDEnCjE+8sDKoFfcKMaoQdkqhIFQ3KyY0XLzeSpUBYeNAXgD+iOV/BU0VA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
 
-  '@discordjs/collection@3.0.0-dev.1785370677-4b3f1c166':
-    resolution: {integrity: sha512-aKyV07L4eKXCV5/ph1VLlm3lZ77v+qaedMTIUgyVkP4Lp7liWYJ7rF9sTdGiNW5Oa4wvpZvrJ+K+E/oiVU6Imw==}
+  '@discordjs/collection@3.0.0-dev.1786752260-c9855614c':
+    resolution: {integrity: sha512-NJs4MOQeTXxWh3sjCm9Ljxbr3eOtHvyqQdVDfogkytVczUGp386hG4bg06y5BzgWKA2jbR85IPv9TRMGuCetSA==}
     engines: {node: '>=24.17.0'}
 
-  '@discordjs/core@3.0.0-dev.1785370677-4b3f1c166':
-    resolution: {integrity: sha512-UcfYj5T17HdtNeTFz5xGIkwTpMRtS5yKQaJQDCPibsWuWkDLD36c36TpzVEeMhdzxctBwsC6LHlKX6pK2R1CVA==}
+  '@discordjs/core@3.0.0-dev.1786752260-c9855614c':
+    resolution: {integrity: sha512-W0S8LkBNud4KYSej12yC3drVPgpyE4jGUZHoZvWkJ2vrMi4kO/JfvUZaltHqoNu8pYrOab4y+H2EkkGW2p6Cfw==}
     engines: {node: '>=24.17.0'}
 
-  '@discordjs/rest@3.0.0-dev.1785370677-4b3f1c166':
-    resolution: {integrity: sha512-xAdZCIOTE80RUIXTh42tcnPwItmQkZOYp2ARk8TS5Ld7CFvNjYn0//7y4Xrcw8l13fv70WCDx8TXqHU9GwrnwQ==}
+  '@discordjs/rest@3.0.0-dev.1786752260-c9855614c':
+    resolution: {integrity: sha512-x/SE2tNWKzH5Od+hxHOkZz/Tx/bXAMCVPjIZY/1FjLe8BsAPjJL3vAmgZE0CmP/lW7a0DOEQgNRxez6Bd6A4Yw==}
     engines: {node: '>=24.17.0'}
 
-  '@discordjs/util@2.0.0-dev.1785370677-4b3f1c166':
-    resolution: {integrity: sha512-Ap2veBVRgTsgfOH7zr4cSc92uxgIR7Ot84HcckDMw7DN8Pk37p0U/6uaw69uFbpkrdj4yx86vuGFnpA+t6JakA==}
+  '@discordjs/util@2.0.0-dev.1786752260-c9855614c':
+    resolution: {integrity: sha512-NYyaMImYRtiqI+QOVkPa7v0XqGGVC2YPvizGBiAakwYqS0gfRXyDqBfms1olG1j4Y9K9ZhOWnIBYPUeNFK275g==}
     engines: {node: '>=24.17.0'}
 
-  '@discordjs/ws@3.0.0-dev.1785370677-4b3f1c166':
-    resolution: {integrity: sha512-fhCtjX6bhT0XnMpwlwLyHD8cwUHdQpPPYNl8iLM6PSmARRPNLoSbWovw4NlplZlKTDfbfzhh5HqaLT37yHTkVg==}
+  '@discordjs/ws@3.0.0-dev.1786752260-c9855614c':
+    resolution: {integrity: sha512-QsKR9lr/JA/ddozAITrPxccLZrSFghDHeLsao9J0nTEhbG7lFrGM0n4cPRy7DDRwqTrIYL1I6dWszajCyOll7Q==}
     engines: {node: '>=24.17.0'}
 
   '@sapphire/async-queue@1.5.5':
@@ -307,48 +307,48 @@ packages:
 
 snapshots:
 
-  '@biomejs/biome@2.5.7':
+  '@biomejs/biome@2.5.8':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.5.7
-      '@biomejs/cli-darwin-x64': 2.5.7
-      '@biomejs/cli-linux-arm64': 2.5.7
-      '@biomejs/cli-linux-arm64-musl': 2.5.7
-      '@biomejs/cli-linux-x64': 2.5.7
-      '@biomejs/cli-linux-x64-musl': 2.5.7
-      '@biomejs/cli-win32-arm64': 2.5.7
-      '@biomejs/cli-win32-x64': 2.5.7
+      '@biomejs/cli-darwin-arm64': 2.5.8
+      '@biomejs/cli-darwin-x64': 2.5.8
+      '@biomejs/cli-linux-arm64': 2.5.8
+      '@biomejs/cli-linux-arm64-musl': 2.5.8
+      '@biomejs/cli-linux-x64': 2.5.8
+      '@biomejs/cli-linux-x64-musl': 2.5.8
+      '@biomejs/cli-win32-arm64': 2.5.8
+      '@biomejs/cli-win32-x64': 2.5.8
 
-  '@biomejs/cli-darwin-arm64@2.5.7':
+  '@biomejs/cli-darwin-arm64@2.5.8':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.5.7':
+  '@biomejs/cli-darwin-x64@2.5.8':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.5.7':
+  '@biomejs/cli-linux-arm64-musl@2.5.8':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.5.7':
+  '@biomejs/cli-linux-arm64@2.5.8':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.5.7':
+  '@biomejs/cli-linux-x64-musl@2.5.8':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.5.7':
+  '@biomejs/cli-linux-x64@2.5.8':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.5.7':
+  '@biomejs/cli-win32-arm64@2.5.8':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.5.7':
+  '@biomejs/cli-win32-x64@2.5.8':
     optional: true
 
-  '@discordjs/collection@3.0.0-dev.1785370677-4b3f1c166': {}
+  '@discordjs/collection@3.0.0-dev.1786752260-c9855614c': {}
 
-  '@discordjs/core@3.0.0-dev.1785370677-4b3f1c166':
+  '@discordjs/core@3.0.0-dev.1786752260-c9855614c':
     dependencies:
-      '@discordjs/rest': 3.0.0-dev.1785370677-4b3f1c166
-      '@discordjs/util': 2.0.0-dev.1785370677-4b3f1c166
-      '@discordjs/ws': 3.0.0-dev.1785370677-4b3f1c166
+      '@discordjs/rest': 3.0.0-dev.1786752260-c9855614c
+      '@discordjs/util': 2.0.0-dev.1786752260-c9855614c
+      '@discordjs/ws': 3.0.0-dev.1786752260-c9855614c
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.7
       discord-api-types: 0.38.53
@@ -356,10 +356,10 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@discordjs/rest@3.0.0-dev.1785370677-4b3f1c166':
+  '@discordjs/rest@3.0.0-dev.1786752260-c9855614c':
     dependencies:
-      '@discordjs/collection': 3.0.0-dev.1785370677-4b3f1c166
-      '@discordjs/util': 2.0.0-dev.1785370677-4b3f1c166
+      '@discordjs/collection': 3.0.0-dev.1786752260-c9855614c
+      '@discordjs/util': 2.0.0-dev.1786752260-c9855614c
       '@sapphire/async-queue': 1.5.5
       '@sapphire/snowflake': 3.5.5
       '@vladfrangu/async_event_emitter': 2.4.7
@@ -369,14 +369,14 @@ snapshots:
       undici: 7.24.6
       uuid: 13.0.2
 
-  '@discordjs/util@2.0.0-dev.1785370677-4b3f1c166':
+  '@discordjs/util@2.0.0-dev.1786752260-c9855614c':
     dependencies:
       discord-api-types: 0.38.53
 
-  '@discordjs/ws@3.0.0-dev.1785370677-4b3f1c166':
+  '@discordjs/ws@3.0.0-dev.1786752260-c9855614c':
     dependencies:
-      '@discordjs/collection': 3.0.0-dev.1785370677-4b3f1c166
-      '@discordjs/util': 2.0.0-dev.1785370677-4b3f1c166
+      '@discordjs/collection': 3.0.0-dev.1786752260-c9855614c
+      '@discordjs/util': 2.0.0-dev.1786752260-c9855614c
       '@sapphire/async-queue': 1.5.5
       '@types/ws': 8.18.1
       '@vladfrangu/async_event_emitter': 2.4.7
