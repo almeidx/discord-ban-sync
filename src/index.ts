@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, type RESTGetAPIGatewayBotResult, Routes } from "@discordjs/core";
+import { Client, GatewayIntentBits } from "@discordjs/core";
 import { REST } from "@discordjs/rest";
 import { WebSocketManager } from "@discordjs/ws";
 import { registerGuildBanAddListener } from "#listeners/guildBanAdd.ts";
@@ -23,9 +23,6 @@ process.on("uncaughtException", (error_) => {
 
 const rest = new REST().setToken(DISCORD_TOKEN);
 const gateway = new WebSocketManager({
-	fetchGatewayInformation() {
-		return rest.get(Routes.gatewayBot()) as Promise<RESTGetAPIGatewayBotResult>;
-	},
 	intents:
 		GatewayIntentBits.Guilds | // GUILD_CREATE, GUILD_DELETE, GUILD_UPDATE
 		GatewayIntentBits.GuildModeration, // GUILD_BAN_ADD, GUILD_BAN_REMOVE
@@ -44,4 +41,6 @@ registerGuildBanAddListener(client, banQueue);
 registerGuildBanRemoveListener(client, banQueue);
 registerInteractionCreateListener(client);
 
-await gateway.connect();
+await gateway.connect({
+	gatewayInformation: await client.api.gateway.getBot(),
+});
