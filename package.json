@@ -23,13 +23,13 @@
 		"pretty-ms": "^9.3.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.13",
+		"@biomejs/biome": "^2.5.14",
 		"@tsconfig/node24": "^24.0.5",
 		"@tsconfig/strictest": "^2.0.8",
-		"@types/node": "^24.13.4",
+		"@types/node": "^24.13.5",
 		"typescript": "~7.0.2"
 	},
-	"packageManager": "pnpm@12.4.1",
+	"packageManager": "pnpm@12.4.2",
 	"engines": {
 		"node": ">=22.19.0"
 	}
