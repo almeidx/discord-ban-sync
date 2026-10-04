@@ -5,10 +5,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 WORKDIR /app
 
-RUN npm --global install pnpm@latest-11
-RUN pnpm self-update
-
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
+RUN PNPM_VERSION=$(node -p "require('./package.json').packageManager.match(/pnpm@([\d.]+)/)[1]") \
+  && npm --global install "pnpm@${PNPM_VERSION}"
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
