@@ -25,6 +25,7 @@ A Discord bot that automatically synchronizes bans between multiple Discord serv
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - [Git]
 - [Node.js] (v24.1.0 or higher)
 - [pnpm] (v11.0.0 or higher)
@@ -46,15 +47,17 @@ cd discord-ban-sync
 ### Environment Setup
 
 1. Copy the example environment file:
+
 ```bash
 cp .env.example .env
 ```
 
 2. Configure your environment variables in the `.env` file
+
 ## Configuration
 
 | Variable                 | Description                                                                | Example                                 | Required |
-|--------------------------|----------------------------------------------------------------------------|-----------------------------------------|----------|
+| ------------------------ | -------------------------------------------------------------------------- | --------------------------------------- | -------- |
 | `DISCORD_TOKEN`          | Your Discord bot token                                                     | `your-bot-token-here`                   | Yes      |
 | `GUILD_IDS`              | Comma/Newline-separated list of server IDs                                 | `123456789012345678,123456789012345678` | Yes      |
 | `DELETE_MESSAGE_SECONDS` | Amount of seconds of messages to delete from users when banning (0-604800) | `604800` (7 days)                       | No       |
@@ -68,6 +71,7 @@ The easiest way to run the bot is using Docker. You have two options:
 #### Option 1: Using Docker Compose
 
 1. Copy the example environment file:
+
 ```bash
 cp .env.example .env
 ```
@@ -75,16 +79,19 @@ cp .env.example .env
 2. Configure your environment variables in the `.env` file
 
 3. Start the bot:
+
 ```bash
 docker compose up -d
 ```
 
 4. View logs:
+
 ```bash
 docker compose logs -f
 ```
 
 5. Stop the bot:
+
 ```bash
 docker compose down
 ```
@@ -92,11 +99,13 @@ docker compose down
 #### Option 2: Using Docker directly
 
 1. Pull the latest image:
+
 ```bash
 docker pull ghcr.io/almeidx/discord-ban-sync:latest
 ```
 
 2. Run the container with environment variables:
+
 ```bash
 docker run -d \
   --name discord-ban-sync \
@@ -107,11 +116,13 @@ docker run -d \
 ```
 
 3. View logs:
+
 ```bash
 docker logs -f discord-ban-sync
 ```
 
 4. Stop the container:
+
 ```bash
 docker stop discord-ban-sync
 docker rm discord-ban-sync

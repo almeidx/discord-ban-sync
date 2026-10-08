@@ -1,14 +1,11 @@
 name: Publish Docker
-
 on:
   push:
-    branches: [ "main" ]
-    tags: [ 'v*.*.*' ]
-
+    branches: ["main"]
+    tags: ["v*.*.*"]
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: almeidx/discord-ban-sync
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +15,6 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
