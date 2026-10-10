@@ -214,10 +214,12 @@ packages:
   '@discordjs/rest@3.0.0-dev.1790856158-4dc1acc60':
     resolution: {integrity: sha512-7Tnj92f8wiGPe8nHhKGGaj0PIRgFMXsUXuVqC0kOBcWJnyGbwGc/eMsHClmuNQ1aUUA+Sjgu/n16TL+VFOd/tg==}
     engines: {node: '>=24.17.0'}
+    deprecated: This version is deprecated. Please use a newer version.
 
   '@discordjs/util@2.0.0-dev.1790856158-4dc1acc60':
     resolution: {integrity: sha512-V+IfEYatMM5VLjdM7AgYYEduqCST7yh+VrI2dTSG4kWpDsv+d7ZtovDLRQ8Py4hZ653pDAxsmkoqejR98z6Ilg==}
     engines: {node: '>=24.17.0'}
+    deprecated: This version is deprecated. Please use a newer version.
 
   '@discordjs/ws@3.0.0-dev.1790856158-4dc1acc60':
     resolution: {integrity: sha512-MtB156ccAtSDXUc5+GN2y0OZX8qiE+WGs81Lz+jmJRoCBwXSH6ujuQQq51kMzoIHTwgSHKDNZWMQ5QPYvOISMw==}
