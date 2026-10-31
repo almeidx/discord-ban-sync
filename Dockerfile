@@ -1,4 +1,4 @@
-FROM node:24.22.1-slim
+FROM node:26.13.0-slim
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
