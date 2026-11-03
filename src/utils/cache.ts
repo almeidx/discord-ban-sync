@@ -7,6 +7,8 @@ export interface GuildCacheEntry {
 
 export const guilds = new Map<Snowflake, GuildCacheEntry>();
 
+export const unavailableGuildIds = new Set<Snowflake>();
+
 let botUserId: Snowflake | null = null;
 
 export function getBotUserId(): Snowflake | null {

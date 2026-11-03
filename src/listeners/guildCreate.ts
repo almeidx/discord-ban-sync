@@ -4,9 +4,9 @@ import {
 	type GatewayGuildCreateDispatchData,
 	PermissionFlagsBits,
 } from "@discordjs/core";
-import { getBotUserId, guilds } from "#utils/cache.ts";
+import { getBotUserId, guilds, unavailableGuildIds } from "#utils/cache.ts";
 import { isGuildEnabled } from "#utils/env.ts";
-import { warn } from "#utils/logger.ts";
+import { info, warn } from "#utils/logger.ts";
 import { computePermissionsForMember } from "#utils/permissions.ts";
 
 export function registerGuildCreateListener(client: Client) {
@@ -15,7 +15,17 @@ export function registerGuildCreateListener(client: Client) {
 			return;
 		}
 
+		if (data.unavailable) {
+			unavailableGuildIds.add(data.id);
+			warn(`${data.id}: guild is unavailable - bans will not sync there until it recovers`);
+			return;
+		}
+
 		guilds.set(data.id, { id: data.id, name: data.name });
+
+		if (unavailableGuildIds.delete(data.id)) {
+			info(`${data.name}: guild is available again`);
+		}
 
 		checkBotPermissions(data);
 	});

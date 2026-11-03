@@ -5,13 +5,22 @@ import {
 	type RESTPostAPIApplicationCommandsJSONBody,
 } from "@discordjs/core";
 import { setBotUserId } from "#utils/cache.ts";
-import { error, info } from "#utils/logger.ts";
+import { GUILD_IDS } from "#utils/env.ts";
+import { error, info, warn } from "#utils/logger.ts";
 
 export function registerReadyListener(client: Client) {
 	client.on(GatewayDispatchEvents.Ready, async ({ api, data }) => {
 		info(`Logged in as ${data.user.username}`);
 
 		setBotUserId(data.user.id);
+
+		const joinedGuildIds = data.guilds.map((guild) => guild.id);
+		const missingGuildIds = [...GUILD_IDS].filter((guildId) => !joinedGuildIds.includes(guildId));
+		if (missingGuildIds.length > 0) {
+			warn(
+				`Bot is not in ${missingGuildIds.length} configured guild(s) - bans will not sync there: ${missingGuildIds.join(", ")}`,
+			);
+		}
 
 		const commands = [
 			{
