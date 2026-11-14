@@ -23,12 +23,12 @@
 		"pretty-ms": "^10.0.0"
 	},
 	"devDependencies": {
-		"@tsconfig/node24": "^24.0.5",
-		"@tsconfig/strictest": "^2.0.8",
+		"@tsconfig/node24": "^24.0.6",
+		"@tsconfig/strictest": "^2.0.9",
 		"@types/node": "^26.6.6",
-		"oxfmt": "^0.76.0",
-		"oxlint": "^1.91.0",
-		"oxlint-tsgolint": "^7.0.2006",
+		"oxfmt": "^0.78.0",
+		"oxlint": "^1.93.0",
+		"oxlint-tsgolint": "^7.0.2007",
 		"typescript": "~7.0.2"
 	},
 	"engines": {
