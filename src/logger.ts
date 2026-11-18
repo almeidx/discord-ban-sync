@@ -1,27 +1,22 @@
 import { styleText } from "node:util";
 
-const logPrefix = "LOG";
 const errorPrefix = styleText("red", "ERROR");
 const infoPrefix = styleText("cyan", "INFO");
 const warnPrefix = styleText("yellow", "WARN");
 
-export function log(message: any, ...extra: any[]) {
-	console.log(prefix(message, logPrefix), ...extra);
-}
-
-export function error(message: any, ...extra: any[]) {
+export function error(message: string, ...extra: unknown[]) {
 	console.error(prefix(message, errorPrefix), ...extra);
 }
 
-export function info(message: any, ...extra: any[]) {
+export function info(message: string, ...extra: unknown[]) {
 	console.info(prefix(message, infoPrefix), ...extra);
 }
 
-export function warn(message: any, ...extra: any[]) {
+export function warn(message: string, ...extra: unknown[]) {
 	console.warn(prefix(message, warnPrefix), ...extra);
 }
 
-function prefix(message: any, type: string) {
+function prefix(message: string, type: string) {
 	return `${styleText("gray", formatDate(new Date()))} [${type}] ${message}`;
 }
 

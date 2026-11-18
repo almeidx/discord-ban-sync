@@ -1,16 +1,13 @@
-import { Client, GatewayIntentBits } from "@discordjs/core";
+import { Client, GatewayDispatchEvents, GatewayIntentBits } from "@discordjs/core";
 import { REST } from "@discordjs/rest";
 import { WebSocketManager } from "@discordjs/ws";
-import { registerGuildBanAddListener } from "#listeners/guildBanAdd.ts";
-import { registerGuildBanRemoveListener } from "#listeners/guildBanRemove.ts";
-import { registerGuildCreateListener } from "#listeners/guildCreate.ts";
-import { registerGuildDeleteListener } from "#listeners/guildDelete.ts";
-import { registerGuildUpdateListener } from "#listeners/guildUpdate.ts";
-import { registerInteractionCreateListener } from "#listeners/interactionCreate.ts";
-import { registerReadyListener } from "#listeners/ready.ts";
-import { BanQueue } from "#structures/banQueue.ts";
-import { DISCORD_TOKEN } from "#utils/env.ts";
-import { error } from "#utils/logger.ts";
+import { backfillBansCommand, backfillStatusCommand, registerBackfill } from "./backfill.ts";
+import { registerCommands } from "./commands.ts";
+import { DISCORD_TOKEN } from "./config.ts";
+import { registerGuildTracking } from "./guilds.ts";
+import { registerLiveSync } from "./liveSync.ts";
+import { error, info } from "./logger.ts";
+import { pingCommand } from "./ping.ts";
 
 process.on("unhandledRejection", (reason) => {
 	error("Unhandled promise rejection", reason);
@@ -30,16 +27,16 @@ const gateway = new WebSocketManager({
 });
 
 const client = new Client({ gateway, rest });
+const botUser = await client.api.users.getCurrent();
 
-const banQueue = new BanQueue(client.api);
+client.on(GatewayDispatchEvents.Ready, ({ data }) => {
+	info(`Logged in as ${data.user.username}`);
+});
 
-registerReadyListener(client);
-registerGuildCreateListener(client);
-registerGuildDeleteListener(client);
-registerGuildUpdateListener(client);
-registerGuildBanAddListener(client, banQueue);
-registerGuildBanRemoveListener(client, banQueue);
-registerInteractionCreateListener(client);
+registerGuildTracking(client, botUser.id);
+registerLiveSync(client);
+registerBackfill(client);
+registerCommands(client, [pingCommand, backfillBansCommand, backfillStatusCommand]);
 
 await gateway.connect({
 	gatewayInformation: await client.api.gateway.getBot(),

@@ -27,8 +27,8 @@ A Discord bot that automatically synchronizes bans between multiple Discord serv
 Before you begin, ensure you have the following installed:
 
 - [Git]
-- [Node.js] (v24.1.0 or higher)
-- [pnpm] (v11.0.0 or higher)
+- [Node.js] (v22.19.0 or higher)
+- [pnpm] (v12 or higher)
 - [Docker] (optional, for containerized deployment)
 - [PM2] (optional, for process management)
 
@@ -60,7 +60,7 @@ cp .env.example .env
 | ------------------------ | -------------------------------------------------------------------------- | --------------------------------------- | -------- |
 | `DISCORD_TOKEN`          | Your Discord bot token                                                     | `your-bot-token-here`                   | Yes      |
 | `GUILD_IDS`              | Comma/Newline-separated list of server IDs                                 | `123456789012345678,123456789012345678` | Yes      |
-| `DELETE_MESSAGE_SECONDS` | Amount of seconds of messages to delete from users when banning (0-604800) | `604800` (7 days)                       | No       |
+| `DELETE_MESSAGE_SECONDS` | Amount of seconds of messages to delete from users when banning (0-604800) | `604800` (7 days)                       | No (0)   |
 
 ## Usage
 
@@ -111,7 +111,7 @@ docker run -d \
   --name discord-ban-sync \
   -e DISCORD_TOKEN=your-bot-token-here \
   -e GUILD_IDS=123456789012345678,987654321098765432 \
-  -e DELETE_MESSAGE_SECONDS=604800 \ # Optional
+  -e DELETE_MESSAGE_SECONDS=604800 \
   ghcr.io/almeidx/discord-ban-sync:latest
 ```
 
@@ -178,4 +178,3 @@ Then restart the bot using your preferred method (local, Docker, or PM2).
 [apache 2.0]: https://github.com/almeidx/discord-ban-sync/blob/main/LICENSE
 [almeidx]: https://almeidx.dev
 [@almeidx]: https://github.com/almeidx
-[running the bot locally]: #running-the-bot-locally

@@ -3,15 +3,8 @@
 	"private": true,
 	"author": "Almeida <contact@almeidx.dev> (almeidx.dev)",
 	"type": "module",
-	"imports": {
-		"#commands/*": "./src/commands/*",
-		"#listeners/*": "./src/listeners/*",
-		"#structures/*": "./src/structures/*",
-		"#utils/*": "./src/utils/*"
-	},
 	"scripts": {
 		"build": "tsc",
-		"build:typecheck": "tsc --noEmit",
 		"fmt": "oxlint --fix && oxfmt",
 		"lint": "oxlint && oxfmt --check",
 		"start": "node --env-file=.env src/index.ts"
