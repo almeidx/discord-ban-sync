@@ -10,5 +10,5 @@
 		"resolveJsonModule": true,
 		"types": ["node"]
 	},
-	"extends": ["@tsconfig/node24/tsconfig.json", "@tsconfig/strictest/tsconfig.json"]
+	"extends": ["@tsconfig/node26/tsconfig.json", "@tsconfig/strictest/tsconfig.json"]
 }
