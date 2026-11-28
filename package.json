@@ -10,22 +10,22 @@
 		"start": "node --env-file=.env src/index.ts"
 	},
 	"dependencies": {
-		"@discordjs/core": "3.0.0-dev.1795176133-cd7400323",
-		"@discordjs/rest": "3.0.0-dev.1795176133-cd7400323",
-		"@discordjs/ws": "3.0.0-dev.1795176133-cd7400323",
+		"@discordjs/core": "3.0.0-dev.1795564932-32f16f4b6",
+		"@discordjs/rest": "3.0.0-dev.1795564932-32f16f4b6",
+		"@discordjs/ws": "3.0.0-dev.1795564932-32f16f4b6",
 		"pretty-ms": "^10.0.0"
 	},
 	"devDependencies": {
-		"@tsconfig/node26": "^26.0.0",
+		"@tsconfig/node26": "^26.0.2",
 		"@tsconfig/strictest": "^2.0.9",
-		"@types/node": "^26.6.6",
-		"oxfmt": "^0.79.0",
-		"oxlint": "^1.94.0",
-		"oxlint-tsgolint": "^7.0.2007",
+		"@types/node": "^26.6.11",
+		"oxfmt": "^0.80.0",
+		"oxlint": "^1.95.0",
+		"oxlint-tsgolint": "^7.0.2009",
 		"typescript": "~7.0.2"
 	},
 	"engines": {
 		"node": ">=22.19.0"
 	},
-	"packageManager": "pnpm@12.21.0"
+	"packageManager": "pnpm@12.23.0"
 }
